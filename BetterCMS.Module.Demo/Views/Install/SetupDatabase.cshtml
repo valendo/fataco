@@ -1,0 +1,77 @@
+﻿@using System.Web.Mvc.Html
+@using BetterCMS.Module.Demo.Content.Resources;
+@using Microsoft.Web.Mvc
+
+@model BetterCMS.Module.Demo.ViewModels.SetupDatabaseViewModel
+
+@{
+    Layout = "~/Areas/bcms-demo-data/Views/Shared/InstallLayout.cshtml";
+    ViewBag.Title = InstallGlobalization.SetupDatabase_Title;
+}
+
+@using (Html.BeginForm())
+{
+    <h2>@InstallGlobalization.SetupDatabase_Information</h2>
+    
+    <div class="bcms-advanced-box">
+        <span class="bcms-title">@InstallGlobalization.SetupDatabase_EditConnectionString:</span>
+        <p>
+            @Html.CheckBoxFor(m => m.EditConnectionString, new { @id = "bcms-advanced-user" })
+        </p>
+    </div>
+    
+    <div class="bcms-configuration-field">
+        <span class="bcms-title">@InstallGlobalization.SetupDatabase_Server:</span>
+        <p>
+            @Html.TextBoxFor(m => m.Server, new { @class = "bcms-editor-field-box", @id = "bcms-server-name" })
+        </p>
+    </div>
+    
+    <div class="bcms-configuration-field">
+        <span class="bcms-title">@InstallGlobalization.SetupDatabase_DatabaseName:</span>
+        <p>
+            @Html.TextBoxFor(m => m.Database, new { @class = "bcms-editor-field-box", @id = "bcms-database-name" })
+        </p>
+    </div>
+
+    <div class="bcms-configuration-field">
+        <span class="bcms-title">
+            @InstallGlobalization.SetupDatabase_DatabaseNameCreateNew:
+        </span>
+         <p>
+            @Html.CheckBoxFor(m => m.CreateDatabase, new { @id = "bcms-create-database" })
+        </p>
+    </div>
+    
+    <div class="bcms-configuration-field bcms-advanced-box">
+        <span class="bcms-title">@InstallGlobalization.SetupDatabase_IntegratedSecurity:</span>
+        <p>
+            @Html.CheckBoxFor(m => m.IsIntegratedSecurity, new { @id = "bcms-integrated-security" })
+        </p>
+    </div>
+    
+    <div class="bcms-user-credentials bcms-configuration-field">
+        <span class="bcms-title">@InstallGlobalization.SetupDatabase_Username:</span>
+        <p>
+            @Html.TextBoxFor(m => m.Username, new { @class = "bcms-editor-field-box", @id = "bcms-username" })
+        </p>
+    </div>
+
+    <div class="bcms-user-credentials bcms-configuration-field">
+        <span class="bcms-title">@InstallGlobalization.SetupDatabase_Password:</span>
+        <p>
+            @Html.PasswordFor(m => m.Password, new { @class = "bcms-editor-field-box", @id = "bcms-password" })
+        </p>
+    </div>
+    
+    <div id="bcms-connection-string-box" style="display:none;">
+        <span class="bcms-title">@InstallGlobalization.SetupDatabase_ConnectionString:</span>
+        <p>
+            @Html.TextAreaFor(m => m.ConnectionString, new { @class = "bcms-editor-field-box", @id = "bcms-connection-string" })
+        </p>
+    </div>
+
+    @Html.SubmitButton("testConnection", InstallGlobalization.SetupDatabase_TestConnection, new { @class = "bcms-btn-small", @id = "bcms-test-connection" })
+    @:&nbsp; &nbsp;
+    @Html.SubmitButton("submit", InstallGlobalization.SetupDatabase_Save, new { @class = "bcms-btn-small", @id = "bcms-submit-configuration" })
+}

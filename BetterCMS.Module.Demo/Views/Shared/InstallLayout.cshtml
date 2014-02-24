@@ -1,0 +1,39 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>@ViewBag.Title</title>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css' />
+        <link href="/file/bcms-demo-data/Content/Styles/bcms.install.css" rel='stylesheet' type='text/css' />
+    </head>
+    <body>
+        <div class="bcms-page">
+            <div class="bcms-header">
+                <h1>@ViewBag.Title</h1>
+            </div>
+            <div class="bcms-body">
+                <div class="bcms-setup-messages">
+                    <div class="bcms-messages">
+                        <ul class="bcms-success-messages" style="display:none;">
+                            <li></li>
+                        </ul>
+                        <ul class="bcms-error-messages" style="display:none;">
+                            <li></li>
+                        </ul>
+                    </div>
+                </div>
+
+                @RenderBody()
+            </div>            
+        </div>
+        <div class="bcms-footer"></div>
+        <script type="text/javascript" src="/file/bcms-demo-data/scripts/jquery-1.7.2.min.js"></script>
+        <script type="text/javascript" src="/file/bcms-demo-data/scripts/bcms-spinner.js"></script>
+        <script type="text/javascript" src="/file/bcms-demo-data/scripts/db-setup.js"></script>
+    </body>    
+</html>

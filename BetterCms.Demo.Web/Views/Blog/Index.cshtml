@@ -1,0 +1,23 @@
+﻿@using BetterCms.Demo.Web.Models
+@model IList<BlogItem>
+
+@foreach (var item in Model)
+{
+    <section class="blog-post">
+        <h1><a href="@item.Url">@item.Title</a></h1>
+        <span class="author">@item.Author</span><time datetime="@item.PublishedOn.ToString("yyyy-MM-dd")">@item.PublishedOn.ToString("MMM d, yyyy")</time>
+        <span>
+            @if (item.Tags != null) {
+                foreach (var tag in item.Tags)
+                {
+                    <a href="@Request.Path?tagName=@tag" class="single-tag">@tag</a>
+                }
+            }
+        </span>
+        <article>
+            <p>@Html.Raw(item.IntroText)</p>
+            
+            <a href="@item.Url">&lt; Read more &gt;</a>
+        </article>
+    </section>
+}

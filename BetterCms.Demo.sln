@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetterCms.Demo.Web", "BetterCms.Demo.Web\BetterCms.Demo.Web.csproj", "{F120D13C-2D36-44CB-894D-769EFE47BCEF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E45B69FE-434C-4B5D-81B2-C78934A1BF04} = {E45B69FE-434C-4B5D-81B2-C78934A1BF04}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{1F9A5C01-6507-485D-A291-FEB01BB41A8D}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{FBA93237-41DF-4335-8B94-B1E7D61150D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetterCMS.Module.Demo", "BetterCMS.Module.Demo\BetterCMS.Module.Demo.csproj", "{E45B69FE-434C-4B5D-81B2-C78934A1BF04}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+		Staging|Any CPU = Staging|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F120D13C-2D36-44CB-894D-769EFE47BCEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F120D13C-2D36-44CB-894D-769EFE47BCEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F120D13C-2D36-44CB-894D-769EFE47BCEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F120D13C-2D36-44CB-894D-769EFE47BCEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F120D13C-2D36-44CB-894D-769EFE47BCEF}.Staging|Any CPU.ActiveCfg = Staging|Any CPU
+		{F120D13C-2D36-44CB-894D-769EFE47BCEF}.Staging|Any CPU.Build.0 = Staging|Any CPU
+		{E45B69FE-434C-4B5D-81B2-C78934A1BF04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E45B69FE-434C-4B5D-81B2-C78934A1BF04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E45B69FE-434C-4B5D-81B2-C78934A1BF04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E45B69FE-434C-4B5D-81B2-C78934A1BF04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E45B69FE-434C-4B5D-81B2-C78934A1BF04}.Staging|Any CPU.ActiveCfg = Staging|Any CPU
+		{E45B69FE-434C-4B5D-81B2-C78934A1BF04}.Staging|Any CPU.Build.0 = Staging|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E45B69FE-434C-4B5D-81B2-C78934A1BF04} = {FBA93237-41DF-4335-8B94-B1E7D61150D8}
+	EndGlobalSection
+EndGlobal
