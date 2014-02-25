@@ -9,6 +9,9 @@ using BetterCMS.Module.Demo.Services;
 using BetterCms.Core;
 using BetterCms.Core.Dependencies;
 using BetterCms.Core.Environment.Host;
+using System.Globalization;
+using System.Threading;
+using System;
 
 namespace BetterCms.Demo.Web
 {
@@ -64,6 +67,23 @@ namespace BetterCms.Demo.Web
                 {
                     installService.NavigateToDatabaseSetup();
                 }
+            }
+        }
+
+        protected void Application_AcquireRequestState(object sender, EventArgs e)
+        {
+            if (HttpContext.Current.Session != null)
+            {
+                CultureInfo ci = (CultureInfo)Session["Culture"];
+
+                if (ci == null)
+                {
+                    ci = new CultureInfo("vi");
+                    Session["Culture"] = ci;
+                }
+
+                Thread.CurrentThread.CurrentUICulture = ci;
+                Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(ci.Name);
             }
         }
     }

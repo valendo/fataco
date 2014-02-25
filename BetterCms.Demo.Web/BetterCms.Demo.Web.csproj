@@ -234,6 +234,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\EmailHelper.cs" />
+    <Compile Include="Helpers\LanguageHelper.cs" />
     <Compile Include="Helpers\OptionsHelper.cs" />
     <Compile Include="Helpers\SocialHelper.cs" />
     <Compile Include="Infrastructure\EmailAttribute.cs" />

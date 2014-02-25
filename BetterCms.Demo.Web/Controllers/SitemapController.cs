@@ -12,6 +12,11 @@ using BetterCms.Module.Api.Operations.Pages.Pages.Page.Exists;
 using BetterCms.Module.Api.Operations.Pages.Sitemap;
 using BetterCms.Module.Api.Operations.Pages.Sitemap.Nodes;
 using BetterCms.Module.Api.Operations.Pages.Sitemap.Tree;
+using BetterCms.Module.Api.Operations.Pages.Pages.Page.Translations;
+using System.Globalization;
+using System.Web;
+using BetterCms.Demo.Web.Helpers;
+
 
 namespace BetterCms.Demo.Web.Controllers
 {
@@ -28,7 +33,7 @@ namespace BetterCms.Demo.Web.Controllers
                 var sitemapId = GetSitemapId(api);
                 if (sitemapId.HasValue)
                 {
-                    var request = new GetSitemapTreeRequest { SitemapId = sitemapId.Value };
+                    var request = new GetSitemapTreeRequest { SitemapId = sitemapId.Value, Data = new GetSitemapTreeModel { LanguageId = LanguageHelper.CurrentLanguageId} };
 
                     var response = api.Pages.Sitemap.Tree.Get(request);
                     if (response.Data.Count > 0)
@@ -37,8 +42,13 @@ namespace BetterCms.Demo.Web.Controllers
                     }
                 }
             }
-
+            
             return View(menuItems);
+        }
+        public ActionResult ChangeCulture(string lang, string returnUrl)
+        {
+            Session["Culture"] = new CultureInfo(lang);
+            return Redirect(returnUrl);
         }
 
         public virtual ActionResult SubMenu(string parentUrl)

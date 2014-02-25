@@ -37,6 +37,10 @@
             <nav class="page-navigation" id="site-nav">
                 @{ Html.RenderAction("Index", "SiteMap", new { area = "" }); }
             </nav>
+            <div>
+                @Html.ActionLink("Tieng Viet", "ChangeCulture", "Sitemap", new { lang = "vi", returnUrl = this.Request.RawUrl, area = "" }, null)
+                @Html.ActionLink("English", "ChangeCulture", "Sitemap", new { lang = "en", returnUrl = this.Request.RawUrl, area = "" }, null)
+            </div>
         </div>
     </header>
 
