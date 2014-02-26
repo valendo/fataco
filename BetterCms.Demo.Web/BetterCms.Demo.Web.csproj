@@ -388,7 +388,9 @@
       <TransformOnBuild>true</TransformOnBuild>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\BetterCMS\Modules\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BetterCMS.Module.Demo\BetterCMS.Module.Demo.csproj">
       <Project>{e45b69fe-434c-4b5d-81b2-c78934a1bf04}</Project>
@@ -402,6 +404,7 @@
     <Content Include="Views\Shared\Layouts\Light\Partial\_GalleryScripts.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\BetterCMS\versions.info.cache" />
     <None Include="Config\cms.Debug.config">
       <DependentUpon>cms.config</DependentUpon>
       <IsTransformFile>True</IsTransformFile>
