@@ -174,9 +174,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\DeleteProductCategoryCommand.cs" />
-    <Compile Include="Commands\GetProductCategoryListCommand.cs" />
-    <Compile Include="Commands\SaveProductCategoryCommand.cs" />
+    <Compile Include="Commands\ProductCategory\DeleteProductCategoryCommand.cs" />
+    <Compile Include="Commands\ProductCategory\GetProductCategoriesCommand.cs" />
+    <Compile Include="Commands\ProductCategory\GetProductCategoryCommand.cs" />
+    <Compile Include="Commands\ProductCategory\SaveProductCategoryCommand.cs" />
     <Compile Include="Controllers\ProductCategoryController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -196,7 +197,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="betterCms.license.txt" />
     <Content Include="Global.asax" />
-    <EmbeddedResource Include="Scripts\bcms.store.js" />
+    <EmbeddedResource Include="Scripts\bcms.category.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -219,7 +220,10 @@
     <Content Include="Config\cms.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\ProductCategory\List.cshtml" />
+    <EmbeddedResource Include="Views\ProductCategory\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ProductCategory\EditCategory.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

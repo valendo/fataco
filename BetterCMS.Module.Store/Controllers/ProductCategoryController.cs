@@ -1,8 +1,10 @@
 ﻿using BetterCms.Core.Security;
 using BetterCms.Module.Root;
+using BetterCms.Module.Root.Models;
 using BetterCms.Module.Root.Mvc;
 using BetterCms.Module.Root.Mvc.Grids.GridOptions;
 using BetterCMS.Module.Store.Commands;
+using BetterCMS.Module.Store.Commands.ProductCategory;
 using BetterCMS.Module.Store.ViewModels;
 using Microsoft.Web.Mvc;
 using System;
@@ -13,58 +15,70 @@ using System.Web.Mvc;
 
 namespace BetterCMS.Module.Store.Controllers
 {
+    [BcmsAuthorize(RootModuleConstants.UserRoles.Administration)]
     [ActionLinkArea(StoreModuleDescriptor.StoreAreaName)]
     public class ProductCategoryController : CmsControllerBase
     {
-        [BcmsAuthorize(RootModuleConstants.UserRoles.Administration)]
-        public ActionResult ListTemplate()
+        public ActionResult Index(SearchableGridOptions request)
         {
-            var view = RenderView("List",null);
-            var productCategories = GetCommand<GetProductCategoryListCommand>().ExecuteCommand(new SearchableGridOptions());
-            return ComboWireJson(productCategories != null, view, productCategories, JsonRequestBehavior.AllowGet);
+            request.SetDefaultPaging();
+            var model = GetCommand<GetProductCategoriesCommand>().ExecuteCommand(request);
+
+            return View(model);
         }
 
-        [BcmsAuthorize(RootModuleConstants.UserRoles.Administration)]
-        public ActionResult ProductCategoriesList(SearchableGridOptions request)
+        [HttpGet]
+        public ActionResult CreateCategory()
         {
-            var model = GetCommand<GetProductCategoryListCommand>().ExecuteCommand(request);
-            return WireJson(model != null, model);
+            var model = GetCommand<GetProductCategoryCommand>().ExecuteCommand(System.Guid.Empty);
+            var view = RenderView("EditCategory", model);
+
+            return ComboWireJson(model != null, view, model, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult EditCategory(string id)
+        {
+            var model = GetCommand<GetProductCategoryCommand>().ExecuteCommand(id.ToGuidOrDefault());
+            var view = RenderView("EditCategory", model);
+
+            return ComboWireJson(model != null, view, model, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
-        [BcmsAuthorize(RootModuleConstants.UserRoles.Administration)]
-        public ActionResult SaveProductCategory(ProductCategoryViewModel model)
+        public ActionResult SaveCategory(ProductCategoryViewModel model)
         {
-            var success = false;
-            ProductCategoryViewModel response = null;
             if (ModelState.IsValid)
             {
-                response = GetCommand<SaveProductCategoryCommand>().ExecuteCommand(model);
+                var response = GetCommand<SaveProductCategoryCommand>().ExecuteCommand(model);
                 if (response != null)
                 {
                     if (model.Id.HasDefaultValue())
                     {
-                        Messages.AddSuccess("Created successfully.");
+                        Messages.AddSuccess("created successfully");
                     }
-                    success = true;
+                    return WireJson(true, response);
                 }
             }
-            return WireJson(success, response);
+
+            return WireJson(false);
         }
 
         [HttpPost]
-        [BcmsAuthorize(RootModuleConstants.UserRoles.Administration)]
-        public ActionResult DeleteProductCategory(string id, string version)
+        public ActionResult DeleteCategory(string id, string version)
         {
-            var request = new ProductCategoryViewModel { Id = id.ToGuidOrDefault(), Version = version.ToIntOrDefault() };
-            var success = GetCommand<DeleteProductCategoryCommand>().ExecuteCommand(request);
+            var success = GetCommand<DeleteProductCategoryCommand>().ExecuteCommand(
+                new ProductCategoryViewModel
+                {
+                    Id = id.ToGuidOrDefault(),
+                    Version = version.ToIntOrDefault()
+                });
+
             if (success)
             {
-                if (!request.Id.HasDefaultValue())
-                {
-                    Messages.AddSuccess("Deleted successfully.");
-                }
+                Messages.AddSuccess("deleted successfully");
             }
+
             return WireJson(success);
         }
     }

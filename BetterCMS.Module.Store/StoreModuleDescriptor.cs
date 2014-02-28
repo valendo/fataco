@@ -78,7 +78,7 @@ namespace BetterCMS.Module.Store
             return new IPageActionProjection[]
             {
                 new SeparatorProjection(9999), 
-                new LinkActionProjection(storeJsModuleIncludeDescriptor, page => "loadSiteSettingsStoreProductCategories")
+                new LinkActionProjection(storeJsModuleIncludeDescriptor, page => "loadSiteSettingsStoreModule")
                     {
                         Order = 9999,
                         Title = page => "Products",

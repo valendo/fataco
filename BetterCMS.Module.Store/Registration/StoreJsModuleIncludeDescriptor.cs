@@ -10,19 +10,21 @@ namespace BetterCMS.Module.Store.Registration
 {
     public class StoreJsModuleIncludeDescriptor : JsIncludeDescriptor
     {
-        public StoreJsModuleIncludeDescriptor(ModuleDescriptor module) : base(module, "bcms.store")
+        public StoreJsModuleIncludeDescriptor(ModuleDescriptor module) : base(module, "bcms.category")
         {
             Links = new IActionProjection[]
             {
-                new JavaScriptModuleLinkTo<ProductCategoryController>(this, "loadSiteSettingsProductCategoriesUrl", c => c.ListTemplate()),
-                new JavaScriptModuleLinkTo<ProductCategoryController>(this, "loadProductCategoriesUrl", c => c.ProductCategoriesList(null)),
-                new JavaScriptModuleLinkTo<ProductCategoryController>(this, "saveProductCategoryUrl", c => c.SaveProductCategory(null)),
-                new JavaScriptModuleLinkTo<ProductCategoryController>(this, "deleteProductCategoryUrl", c => c.DeleteProductCategory(null, null)),
+                new JavaScriptModuleLinkTo<ProductCategoryController>(this, "loadSiteSettingsCategoriesUrl", c => c.Index(null)),
+                            new JavaScriptModuleLinkTo<ProductCategoryController>(this, "loadEditCategoryUrl", c=> c.EditCategory("{0}")), 
+                            new JavaScriptModuleLinkTo<ProductCategoryController>(this, "loadCreateCategoryUrl", c=> c.CreateCategory()), 
+                            new JavaScriptModuleLinkTo<ProductCategoryController>(this, "deleteCategoryUrl", c => c.DeleteCategory("{0}", "{1}"))
             };
             Globalization = new IActionProjection[]
                 {
-                    new JavaScriptModuleGlobalization(this, "productCategoryDialogTitle", () => "Product Categories"), 
-                    new JavaScriptModuleGlobalization(this, "deleteProductCategoryDialogTitle", () => "Are you sure you want to delete?"), 
+                    new JavaScriptModuleGlobalization(this, "categoriesListTabTitle", () =>"Categories"), 
+                    new JavaScriptModuleGlobalization(this, "categoriesAddNewTitle", () =>"Add new"),
+                    new JavaScriptModuleGlobalization(this, "deleteCategoryConfirmMessage", () => "Are you sure you want to delete?"),
+                    new JavaScriptModuleGlobalization(this, "editCategoryTitle", () => "Edit category"),
                 };
         }
     }
