@@ -23,5 +23,7 @@ namespace BetterCMS.Module.Store.ViewModels
 
         [Required]
         public virtual Guid ParentId { get; set; }
+
+        public virtual string Lang { get; set; }
     }
 }

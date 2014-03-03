@@ -13,6 +13,7 @@ namespace BetterCMS.Module.Store.Models.Maps
             Table("ProductCategories");
             Map(f => f.Name).Not.Nullable().Length(MaxLength.Name);
             Map(f => f.ParentId).Not.Nullable();
+            Map(f => f.Lang).Nullable();
         }
     }
 }

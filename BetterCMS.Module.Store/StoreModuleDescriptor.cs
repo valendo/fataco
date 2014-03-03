@@ -43,7 +43,11 @@ namespace BetterCMS.Module.Store
 
         public override IEnumerable<JsIncludeDescriptor> RegisterJsIncludes()
         {
-            return new[] { storeJsModuleIncludeDescriptor };
+            return new[]
+                {
+                    storeJsModuleIncludeDescriptor,
+                    new JsIncludeDescriptor(this, "bcms.category.filter")
+                };
         }
 
         private string minJsPath;

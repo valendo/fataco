@@ -15,18 +15,19 @@
             @Html.HiddenFor(m => m.Version)
             <div class="bcms-blog-left">
                 <div class="bcms-input-list-holder">
+                    <div class="bcms-content-titles">Language </div>
+                    @Html.DropDownListFor(m => m.Lang, new[] { new SelectListItem { Value = "vi", Text = "Tiếng việt", Selected = true }, new SelectListItem { Value = "en", Text = "English" } }, new { @class = "bcms-global-select", @style = "width: 245px;" })
+                </div>
+                <div class="bcms-input-list-holder">
                     <div class="bcms-content-titles">Category Name</div>
                     <div class="bcms-input-box">
-                        @Html.TextBoxFor(m => m.Name, new { @class = "bcms-editor-field-box", data_bind = "value: name, valueUpdate: 'afterkeydown'" })
+                        @Html.TextBoxFor(m => m.Name, new { @class = "bcms-editor-field-box"})
                         @Html.BcmsValidationMessageFor(m => m.Name)
                     </div>
                 </div>
                 <div class="bcms-input-list-holder">
                     <div class="bcms-content-titles">Parent Id</div>
-                    <div class="bcms-input-box">
-                        @Html.TextBoxFor(m => m.ParentId, new { @class = "bcms-editor-field-box", data_bind = "value: parentId, valueUpdate: 'afterkeydown'" })
-                        @Html.BcmsValidationMessageFor(m => m.ParentId)
-                    </div>
+                    @Html.DropDownListFor(m => m.ParentId, new SelectList(ViewBag.ParentCategories, "Key", "Value"), new { @class = "bcms-global-select", @style = "width: 400px;" })
                 </div>
             </div>
         }

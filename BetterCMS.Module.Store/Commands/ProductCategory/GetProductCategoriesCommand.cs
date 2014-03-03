@@ -26,7 +26,8 @@ namespace BetterCMS.Module.Store.Commands.ProductCategory
                     Id= category.Id,
                     Version = category.Version,
                     Name = category.Name,
-                    ParentId = category.ParentId
+                    ParentId = category.ParentId,
+                    Lang = category.Lang
                 });
 
             //search

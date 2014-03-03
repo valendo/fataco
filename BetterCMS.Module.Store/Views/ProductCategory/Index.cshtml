@@ -37,6 +37,7 @@
         </div>
         <div class="bcms-featured-grid bcms-clearfix">
             @Html.RenderPaging(Model)
+            @Html.Partial("~/Areas/bcms-store/Views/ProductCategory/Partial/CategoriesFilterTemplate.cshtml", Model)
         </div>
     </div>
 

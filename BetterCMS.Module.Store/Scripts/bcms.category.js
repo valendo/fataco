@@ -1,8 +1,8 @@
 ﻿/*jslint unparam: true, white: true, browser: true, devel: true */
 /*global bettercms */
 
-bettercms.define('bcms.category', ['bcms.jquery', 'bcms', 'bcms.modal', 'bcms.siteSettings', 'bcms.dynamicContent', 'bcms.role', 'bcms.media', 'bcms.messages', 'bcms.grid', 'bcms.ko.extenders', 'bcms.redirect'],
-    function ($, bcms, modal, siteSettings, dynamicContent, role, media, messages, grid, ko, redirect) {
+bettercms.define('bcms.category', ['bcms.jquery', 'bcms', 'bcms.modal', 'bcms.siteSettings', 'bcms.dynamicContent', 'bcms.role', 'bcms.media', 'bcms.messages', 'bcms.grid', 'bcms.ko.extenders', 'bcms.redirect', 'bcms.category.filter'],
+    function ($, bcms, modal, siteSettings, dynamicContent, role, media, messages, grid, ko, redirect, filter) {
         'use strict';
 
         var category = {},
@@ -90,6 +90,18 @@ bettercms.define('bcms.category', ['bcms.jquery', 'bcms', 'bcms.modal', 'bcms.si
             grid.focusSearchInput(form.find(selectors.categoriesSearchField), true);
         }
 
+        function initializeSiteSettingsCategoriesListFilter(content, data) {
+            var form = categoriesContainer.find(selectors.categoriesForm);
+            grid.bindGridForm(form, function (html, data) {
+                container.html(html);
+                initializeSiteSettingsCategoriesListFilter(html, data);
+            });
+
+            filter.bind(categoriesContainer, ((content.Data) ? content.Data : data), function () {
+                searchSiteSettingsCategories(form);
+            });
+        }
+
         /**
         * Initailizes site settings categories list items
         */
@@ -120,6 +132,7 @@ bettercms.define('bcms.category', ['bcms.jquery', 'bcms', 'bcms.modal', 'bcms.si
                     categoriesContainer = container;
 
                     initializeSiteSettingsCategoriesList();
+                    initializeSiteSettingsCategoriesListFilter();
                 }, onShow);
 
             tabs.push(categories);
@@ -185,6 +198,7 @@ bettercms.define('bcms.category', ['bcms.jquery', 'bcms', 'bcms.modal', 'bcms.si
             self.id = categoryData.Id;
             self.name = ko.observable(categoryData.Name);
             self.parentId = ko.observable(categoryData.ParentId);
+            self.lang = ko.observable(categoryData.Lang);
             return self;
         }
 
@@ -254,72 +268,10 @@ bettercms.define('bcms.category', ['bcms.jquery', 'bcms', 'bcms.modal', 'bcms.si
         }
 
         /**
-        * Initialize custom jQuery validators
-        */
-        //function initializeCustomValidation() {
-        //    $.validator.addMethod("jqpasswordvalidation", function (value, element, params) {
-        //        if (value) {
-        //            var match = new RegExp(params.pattern).exec(value);
-        //            params.regex = true;
-
-        //            var isMatch = (match && (match.index === 0) && (match[0].length === value.length));
-        //            if (!isMatch) {
-        //                return false;
-        //            }
-        //        }
-
-        //        params.regex = false;
-        //        return !bcms.isEmptyGuid(categoryViewModel.id) || value;
-        //    }, function (params) {
-        //        if (params.regex) {
-        //            return params.patternmessage;
-        //        }
-
-        //        return params.message;
-        //    });
-
-        //    $.validator.unobtrusive.adapters.add("passwordvalidation", ['pattern', 'patternmessage'], function (opts) {
-        //        opts.rules["jqpasswordvalidation"] = { message: opts.message, pattern: opts.params.pattern, patternmessage: opts.params.patternmessage };
-        //    });
-        //}
-
-        /**
-        * Initialize edit user profile form url
-        */
-        //function initializeUserEditProfileFormUrl() {
-        //    $(selectors.openEditUserProfile).on('click', function () {
-        //        var self = $(this),
-        //            url = self.data('url'),
-        //            onSaveCallback = function (json) {
-        //                messages.refreshBox(usersContainer, json);
-        //                if (json.Success) {
-        //                    redirect.ReloadWithAlert();
-        //                }
-        //            };
-
-        //        if (url) {
-        //            modal.open({
-        //                title: globalization.editUserProfileTitle,
-        //                onLoad: function (dialog) {
-        //                    dynamicContent.bindDialog(dialog, url, {
-        //                        contentAvailable: initializeEditUserForm,
-
-        //                        postSuccess: onSaveCallback
-        //                    });
-        //                }
-        //            });
-        //        }
-        //    });
-        //}
-
-        /**
         * Initializes category module
         */
         category.init = function () {
             bcms.logger.debug('Initializing bcms.store module.');
-
-            //initializeCustomValidation();
-            //initializeUserEditProfileFormUrl();
         };
 
         bcms.registerInit(category.init);

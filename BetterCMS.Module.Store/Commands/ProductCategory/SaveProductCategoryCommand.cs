@@ -31,6 +31,7 @@ namespace BetterCMS.Module.Store.Commands.ProductCategory
             category.Version = request.Version;
             category.Name = request.Name;
             category.ParentId = request.ParentId;
+            category.Lang = request.Lang;
             Repository.Save(category);
             UnitOfWork.Commit();
 

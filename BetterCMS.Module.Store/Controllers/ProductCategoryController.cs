@@ -31,15 +31,43 @@ namespace BetterCMS.Module.Store.Controllers
         public ActionResult CreateCategory()
         {
             var model = GetCommand<GetProductCategoryCommand>().ExecuteCommand(System.Guid.Empty);
+            ViewBag.ParentCategories = GetParentCategories();
             var view = RenderView("EditCategory", model);
 
             return ComboWireJson(model != null, view, model, JsonRequestBehavior.AllowGet);
         }
 
+        private List<KeyValuePair<Guid,string>> GetParentCategories()
+        {
+            List<KeyValuePair<Guid, string>> parentCategories = new List<KeyValuePair<Guid, string>>();
+            GetParentCategoriesRecursive(new ProductCategoryViewModel { ParentId = Guid.Empty, Lang = "vi" }, ref parentCategories, 0);
+            parentCategories.Insert(0, new KeyValuePair<Guid, string>(Guid.Empty, "--None--"));
+            return parentCategories;
+        }
+        private void GetParentCategoriesRecursive(ViewModels.ProductCategoryViewModel request, ref List<KeyValuePair<Guid, string>> outCategories, int level)
+        {
+            string space = "";
+            for (int i = 0; i < level; i++)
+            {
+                space += "---";
+            }
+            var model = GetCommand<GetParentCategoriesCommand>().ExecuteCommand(request);
+            if (model.Count > 0)
+            {
+                foreach (var item in model)
+                {
+                    outCategories.Add(new KeyValuePair<Guid, string>(item.Id, space + item.Name));                    
+                    GetParentCategoriesRecursive(new ViewModels.ProductCategoryViewModel { ParentId = item.Id, Lang = request.Lang }, ref outCategories, level + 1);
+                }
+            }
+        }
+
+
         [HttpGet]
         public ActionResult EditCategory(string id)
         {
             var model = GetCommand<GetProductCategoryCommand>().ExecuteCommand(id.ToGuidOrDefault());
+            ViewBag.ParentCategories = GetParentCategories();
             var view = RenderView("EditCategory", model);
 
             return ComboWireJson(model != null, view, model, JsonRequestBehavior.AllowGet);
