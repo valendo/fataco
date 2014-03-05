@@ -1,8 +1,8 @@
 ﻿/*jslint unparam: true, white: true, browser: true, devel: true */
 /*global bettercms */
 
-bettercms.define('bcms.category.filter', ['bcms.jquery', 'bcms', 'bcms.ko.extenders', 'bcms.tags'],
-    function ($, bcms, ko, tags) {
+bettercms.define('bcms.category.filter', ['bcms.jquery', 'bcms', 'bcms.ko.extenders'],
+    function ($, bcms, ko) {
         'use strict';
 
         var filter = {},
@@ -18,18 +18,9 @@ bettercms.define('bcms.category.filter', ['bcms.jquery', 'bcms', 'bcms.ko.extend
         filter.links = links;
         filter.globalization = globalization;
 
-        function FilterViewModel(container, onSearchClick, jsonData) {
+        function FilterViewModel(container, onSearchClick) {
             var self = this;
-
             self.isVisible = ko.observable(false);
-            self.lang = ko.observable(jsonData.Lang);
-
-            self.isEdited = ko.computed(function () {
-                if (self.lang()) {
-                    return true;
-                }
-                return false;
-            });
 
             // Actions.
             self.toggleFilter = function () {
@@ -43,14 +34,13 @@ bettercms.define('bcms.category.filter', ['bcms.jquery', 'bcms', 'bcms.ko.extend
                     onSearchClick();
                 }
             };
-            self.clearFilter = function () {
-                self.lang('');
-                self.searchWithFilter();
+            self.changeAdminLanguage = function (data) {
+                alert(data.value);
             };
         }
 
-        filter.bind = function (container, jsonData, onSearchClick) {
-            var filterViewModel = new FilterViewModel(container, onSearchClick, jsonData);
+        filter.bind = function (container, onSearchClick) {
+            var filterViewModel = new FilterViewModel(container, onSearchClick);
             ko.applyBindings(filterViewModel, container.find(selectors.filterTemplate).get(0));
         };
 

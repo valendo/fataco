@@ -12,15 +12,15 @@
     {
         column.EditButtonColumn();
 
-        column.For(m => string.Format("<a class=\"bcms-tables-link bcms-grid-item-edit-button bcms-category-name\">{0}</a>", m.Name))
+        column.For(m => m.Name)
             .Named("Category Name")
             .SortColumnName("Name")
-            .Encode(false);
+            .Attributes(@class => "bcms-category-name");
 
-        column.For(m => m.ParentId)
-           .Named("Parent Category")
-           .SortColumnName("ParentId")
-           .Attributes(@class => "bcms-category-parentId");
+        //column.For(m => m.ParentId)
+        //   .Named("Parent Category")
+        //   .SortColumnName("ParentId")
+        //   .Attributes(@class => "bcms-category-parentId");
 
         column.DeleteButtonColumn();
     };

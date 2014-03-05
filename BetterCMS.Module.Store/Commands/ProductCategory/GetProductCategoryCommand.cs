@@ -27,7 +27,8 @@ namespace BetterCMS.Module.Store.Commands.ProductCategory
                                 Version = category.Version,
                                 Name = category.Name,
                                 ParentId = category.ParentId,
-                                Lang = category.Lang
+                                Lang = category.Lang,
+                                SortOrder = category.SortOrder
                             }
                     ).ToFuture();
                 model = listFuture.FirstOne();

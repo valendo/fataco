@@ -25,5 +25,7 @@ namespace BetterCMS.Module.Store.ViewModels
         public virtual Guid ParentId { get; set; }
 
         public virtual string Lang { get; set; }
+
+        public virtual int? SortOrder { get; set; }
     }
 }

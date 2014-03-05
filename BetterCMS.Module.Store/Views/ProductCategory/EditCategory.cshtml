@@ -29,6 +29,12 @@
                     <div class="bcms-content-titles">Parent Id</div>
                     @Html.DropDownListFor(m => m.ParentId, new SelectList(ViewBag.ParentCategories, "Key", "Value"), new { @class = "bcms-global-select", @style = "width: 400px;" })
                 </div>
+                <div class="bcms-input-list-holder">
+                    <div class="bcms-content-titles">Sort Order</div>
+                    <div class="bcms-input-box">
+                        @Html.TextBoxFor(m => m.SortOrder, new { @class = "bcms-editor-field-box" })
+                    </div>
+                </div>
             </div>
         }
     </div>

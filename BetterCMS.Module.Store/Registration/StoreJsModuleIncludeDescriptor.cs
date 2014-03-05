@@ -23,7 +23,7 @@ namespace BetterCMS.Module.Store.Registration
                 {
                     new JavaScriptModuleGlobalization(this, "categoriesListTabTitle", () =>"Categories"), 
                     new JavaScriptModuleGlobalization(this, "categoriesAddNewTitle", () =>"Add new"),
-                    new JavaScriptModuleGlobalization(this, "deleteCategoryConfirmMessage", () => "Are you sure you want to delete?"),
+                    new JavaScriptModuleGlobalization(this, "deleteCategoryConfirmMessage", () => "Are you sure delete '{0}'?"),
                     new JavaScriptModuleGlobalization(this, "editCategoryTitle", () => "Edit category"),
                 };
         }

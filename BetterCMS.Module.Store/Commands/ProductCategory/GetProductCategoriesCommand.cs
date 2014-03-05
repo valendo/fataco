@@ -10,12 +10,13 @@ using System.Web;
 using BetterCms.Module.Root.Mvc.Grids.Extensions;
 using BetterCms.Core.DataAccess.DataContext;
 using NHibernate.Linq;
+using BetterCMS.Module.Store.ViewModels.Filter;
 
 namespace BetterCMS.Module.Store.Commands.ProductCategory
 {
-    public class GetProductCategoriesCommand : CommandBase, ICommand<SearchableGridOptions, SearchableGridViewModel<ProductCategoryViewModel>>
+    public class GetProductCategoriesCommand : CommandBase, ICommand<CategoriesFilter, SearchableGridViewModel<ProductCategoryViewModel>>
     {
-        public SearchableGridViewModel<ProductCategoryViewModel> Execute(SearchableGridOptions request)
+        public SearchableGridViewModel<ProductCategoryViewModel> Execute(CategoriesFilter request)
         {
             request.SetDefaultSortingOptions("Name");
 
@@ -27,8 +28,14 @@ namespace BetterCMS.Module.Store.Commands.ProductCategory
                     Version = category.Version,
                     Name = category.Name,
                     ParentId = category.ParentId,
-                    Lang = category.Lang
+                    Lang = category.Lang,
+                    SortOrder = category.SortOrder
                 });
+            if (string.IsNullOrWhiteSpace(request.Lang))
+            {
+                request.Lang = "vi";
+            }
+            query = query.Where(t => t.Lang == request.Lang);
 
             //search
             if (!string.IsNullOrWhiteSpace(request.SearchQuery))
@@ -39,7 +46,7 @@ namespace BetterCMS.Module.Store.Commands.ProductCategory
             var count = query.ToRowCountFutureValue();
             //sorting, paging
             query = query.AddSortingAndPaging(request);
-            return new SearchableGridViewModel<ProductCategoryViewModel>(query.ToFuture().ToList(), request, count.Value);
+            return new SearchableGridViewModel<ProductCategoryViewModel>(query.ToList(), request, count.Value);
         }
     }
 }

@@ -32,6 +32,7 @@ namespace BetterCMS.Module.Store.Commands.ProductCategory
             category.Name = request.Name;
             category.ParentId = request.ParentId;
             category.Lang = request.Lang;
+            category.SortOrder = request.SortOrder;
             Repository.Save(category);
             UnitOfWork.Commit();
 
@@ -40,7 +41,8 @@ namespace BetterCMS.Module.Store.Commands.ProductCategory
                 Id = category.Id,
                 Name = category.Name,
                 Version = category.Version,
-                ParentId = category.ParentId
+                ParentId = category.ParentId,
+                SortOrder = category.SortOrder
             };
         }
 

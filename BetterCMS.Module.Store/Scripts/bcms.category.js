@@ -16,8 +16,7 @@ bettercms.define('bcms.category', ['bcms.jquery', 'bcms', 'bcms.modal', 'bcms.si
                 categoryEditButton: '.bcms-icn-edit',
                 categoryRowDeleteButton: '.bcms-grid-item-delete-button',
                 categoryParentRow: 'tr:first',
-                categoryNameCell: '.bcms-category-name',
-                categoryParentIdCell: '.bcms-category-parentId',                
+                categoryNameCell: '.bcms-category-name',           
                 categoryRowTemplate: '#bcms-categories-list-row-template',
                 categoryTableFirstRow: 'table.bcms-tables > tbody > tr:first',
                 categoryRowTemplateFirstRow: 'tr:first'
@@ -85,21 +84,12 @@ bettercms.define('bcms.category', ['bcms.jquery', 'bcms', 'bcms.modal', 'bcms.si
             });
 
             initializeSiteSettingsCategoriesListItem(categoriesContainer);
+            filter.bind(categoriesContainer, function () {
+                searchSiteSettingsCategories(form);
+            });
 
             // Select search (timeout is required to work on IE11)
             grid.focusSearchInput(form.find(selectors.categoriesSearchField), true);
-        }
-
-        function initializeSiteSettingsCategoriesListFilter(content, data) {
-            var form = categoriesContainer.find(selectors.categoriesForm);
-            grid.bindGridForm(form, function (html, data) {
-                container.html(html);
-                initializeSiteSettingsCategoriesListFilter(html, data);
-            });
-
-            filter.bind(categoriesContainer, ((content.Data) ? content.Data : data), function () {
-                searchSiteSettingsCategories(form);
-            });
         }
 
         /**
@@ -132,7 +122,6 @@ bettercms.define('bcms.category', ['bcms.jquery', 'bcms', 'bcms.modal', 'bcms.si
                     categoriesContainer = container;
 
                     initializeSiteSettingsCategoriesList();
-                    initializeSiteSettingsCategoriesListFilter();
                 }, onShow);
 
             tabs.push(categories);
@@ -196,9 +185,7 @@ bettercms.define('bcms.category', ['bcms.jquery', 'bcms', 'bcms.modal', 'bcms.si
         function CategoryViewModel(categoryData) {
             var self = this;
             self.id = categoryData.Id;
-            self.name = ko.observable(categoryData.Name);
-            self.parentId = ko.observable(categoryData.ParentId);
-            self.lang = ko.observable(categoryData.Lang);
+            self.name = categoryData.Name;
             return self;
         }
 
@@ -222,7 +209,6 @@ bettercms.define('bcms.category', ['bcms.jquery', 'bcms', 'bcms.modal', 'bcms.si
             row.find(selectors.categoryRowDeleteButton).data('id', json.Id);
             row.find(selectors.categoryRowDeleteButton).data('version', json.Version);
             row.find(selectors.categoryNameCell).html(json.Name);
-            row.find(selectors.categoryParentIdCell).html(json.ParentId);
         }
 
         /**

@@ -6,6 +6,7 @@ using BetterCms.Module.Root.Mvc.Grids.GridOptions;
 using BetterCMS.Module.Store.Commands;
 using BetterCMS.Module.Store.Commands.ProductCategory;
 using BetterCMS.Module.Store.ViewModels;
+using BetterCMS.Module.Store.ViewModels.Filter;
 using Microsoft.Web.Mvc;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ namespace BetterCMS.Module.Store.Controllers
     [ActionLinkArea(StoreModuleDescriptor.StoreAreaName)]
     public class ProductCategoryController : CmsControllerBase
     {
-        public ActionResult Index(SearchableGridOptions request)
+        public ActionResult Index(CategoriesFilter request)
         {
             request.SetDefaultPaging();
             var model = GetCommand<GetProductCategoriesCommand>().ExecuteCommand(request);
