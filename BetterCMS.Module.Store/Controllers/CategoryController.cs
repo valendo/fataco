@@ -4,9 +4,8 @@ using BetterCms.Module.Root.Models;
 using BetterCms.Module.Root.Mvc;
 using BetterCms.Module.Root.Mvc.Grids.GridOptions;
 using BetterCMS.Module.Store.Commands;
-using BetterCMS.Module.Store.Commands.ProductCategory;
+using BetterCMS.Module.Store.Commands.Category;
 using BetterCMS.Module.Store.ViewModels;
-using BetterCMS.Module.Store.ViewModels.Filter;
 using Microsoft.Web.Mvc;
 using System;
 using System.Collections.Generic;
@@ -18,12 +17,12 @@ namespace BetterCMS.Module.Store.Controllers
 {
     [BcmsAuthorize(RootModuleConstants.UserRoles.Administration)]
     [ActionLinkArea(StoreModuleDescriptor.StoreAreaName)]
-    public class ProductCategoryController : CmsControllerBase
+    public class CategoryController : CmsControllerBase
     {
-        public ActionResult Index(CategoriesFilter request)
+        public ActionResult Index(SearchableGridOptions request)
         {
             request.SetDefaultPaging();
-            var model = GetCommand<GetProductCategoriesCommand>().ExecuteCommand(request);
+            var model = GetCommand<GetCategoriesCommand>().ExecuteCommand(request);
 
             return View(model);
         }
@@ -31,7 +30,7 @@ namespace BetterCMS.Module.Store.Controllers
         [HttpGet]
         public ActionResult CreateCategory()
         {
-            var model = GetCommand<GetProductCategoryCommand>().ExecuteCommand(System.Guid.Empty);
+            var model = GetCommand<GetCategoryCommand>().ExecuteCommand(System.Guid.Empty);
             ViewBag.ParentCategories = GetParentCategories();
             var view = RenderView("EditCategory", model);
 
@@ -41,11 +40,11 @@ namespace BetterCMS.Module.Store.Controllers
         private List<KeyValuePair<Guid,string>> GetParentCategories()
         {
             List<KeyValuePair<Guid, string>> parentCategories = new List<KeyValuePair<Guid, string>>();
-            GetParentCategoriesRecursive(new ProductCategoryViewModel { ParentId = Guid.Empty, Lang = "vi" }, ref parentCategories, 0);
+            GetParentCategoriesRecursive(new CategoryViewModel { ParentId = Guid.Empty}, ref parentCategories, 0);
             parentCategories.Insert(0, new KeyValuePair<Guid, string>(Guid.Empty, "--None--"));
             return parentCategories;
         }
-        private void GetParentCategoriesRecursive(ViewModels.ProductCategoryViewModel request, ref List<KeyValuePair<Guid, string>> outCategories, int level)
+        private void GetParentCategoriesRecursive(ViewModels.CategoryViewModel request, ref List<KeyValuePair<Guid, string>> outCategories, int level)
         {
             string space = "";
             for (int i = 0; i < level; i++)
@@ -58,7 +57,7 @@ namespace BetterCMS.Module.Store.Controllers
                 foreach (var item in model)
                 {
                     outCategories.Add(new KeyValuePair<Guid, string>(item.Id, space + item.Name));                    
-                    GetParentCategoriesRecursive(new ViewModels.ProductCategoryViewModel { ParentId = item.Id, Lang = request.Lang }, ref outCategories, level + 1);
+                    GetParentCategoriesRecursive(new ViewModels.CategoryViewModel { ParentId = item.Id}, ref outCategories, level + 1);
                 }
             }
         }
@@ -67,7 +66,7 @@ namespace BetterCMS.Module.Store.Controllers
         [HttpGet]
         public ActionResult EditCategory(string id)
         {
-            var model = GetCommand<GetProductCategoryCommand>().ExecuteCommand(id.ToGuidOrDefault());
+            var model = GetCommand<GetCategoryCommand>().ExecuteCommand(id.ToGuidOrDefault());
             ViewBag.ParentCategories = GetParentCategories();
             var view = RenderView("EditCategory", model);
 
@@ -75,16 +74,16 @@ namespace BetterCMS.Module.Store.Controllers
         }
 
         [HttpPost]
-        public ActionResult SaveCategory(ProductCategoryViewModel model)
+        public ActionResult SaveCategory(CategoryViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var response = GetCommand<SaveProductCategoryCommand>().ExecuteCommand(model);
+                var response = GetCommand<SaveCategoryCommand>().ExecuteCommand(model);
                 if (response != null)
                 {
                     if (model.Id.HasDefaultValue())
                     {
-                        Messages.AddSuccess("created successfully");
+                        Messages.AddSuccess("Created successfully!");
                     }
                     return WireJson(true, response);
                 }
@@ -96,8 +95,8 @@ namespace BetterCMS.Module.Store.Controllers
         [HttpPost]
         public ActionResult DeleteCategory(string id, string version)
         {
-            var success = GetCommand<DeleteProductCategoryCommand>().ExecuteCommand(
-                new ProductCategoryViewModel
+            var success = GetCommand<DeleteCategoryCommand>().ExecuteCommand(
+                new CategoryViewModel
                 {
                     Id = id.ToGuidOrDefault(),
                     Version = version.ToIntOrDefault()
@@ -105,7 +104,7 @@ namespace BetterCMS.Module.Store.Controllers
 
             if (success)
             {
-                Messages.AddSuccess("deleted successfully");
+                Messages.AddSuccess("Deleted successfully!");
             }
 
             return WireJson(success);

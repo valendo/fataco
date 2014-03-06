@@ -1,8 +1,8 @@
 ﻿/*jslint unparam: true, white: true, browser: true, devel: true */
 /*global bettercms */
 
-bettercms.define('bcms.category', ['bcms.jquery', 'bcms', 'bcms.modal', 'bcms.siteSettings', 'bcms.dynamicContent', 'bcms.role', 'bcms.media', 'bcms.messages', 'bcms.grid', 'bcms.ko.extenders', 'bcms.redirect', 'bcms.category.filter'],
-    function ($, bcms, modal, siteSettings, dynamicContent, role, media, messages, grid, ko, redirect, filter) {
+bettercms.define('bcms.category', ['bcms.jquery', 'bcms', 'bcms.modal', 'bcms.siteSettings', 'bcms.dynamicContent', 'bcms.role', 'bcms.media', 'bcms.messages', 'bcms.grid', 'bcms.ko.extenders', 'bcms.redirect'],
+    function ($, bcms, modal, siteSettings, dynamicContent, role, media, messages, grid, ko, redirect) {
         'use strict';
 
         var category = {},
@@ -16,7 +16,8 @@ bettercms.define('bcms.category', ['bcms.jquery', 'bcms', 'bcms.modal', 'bcms.si
                 categoryEditButton: '.bcms-icn-edit',
                 categoryRowDeleteButton: '.bcms-grid-item-delete-button',
                 categoryParentRow: 'tr:first',
-                categoryNameCell: '.bcms-category-name',           
+                categoryNameCell: '.bcms-category-name',
+                categoryName_enCell: '.bcms-category-name_en',
                 categoryRowTemplate: '#bcms-categories-list-row-template',
                 categoryTableFirstRow: 'table.bcms-tables > tbody > tr:first',
                 categoryRowTemplateFirstRow: 'tr:first'
@@ -84,9 +85,9 @@ bettercms.define('bcms.category', ['bcms.jquery', 'bcms', 'bcms.modal', 'bcms.si
             });
 
             initializeSiteSettingsCategoriesListItem(categoriesContainer);
-            filter.bind(categoriesContainer, function () {
-                searchSiteSettingsCategories(form);
-            });
+            //filter.bind(categoriesContainer, function () {
+            //    searchSiteSettingsCategories(form);
+            //});
 
             // Select search (timeout is required to work on IE11)
             grid.focusSearchInput(form.find(selectors.categoriesSearchField), true);
@@ -186,6 +187,7 @@ bettercms.define('bcms.category', ['bcms.jquery', 'bcms', 'bcms.modal', 'bcms.si
             var self = this;
             self.id = categoryData.Id;
             self.name = categoryData.Name;
+            self.name_en = categoryData.Name_en;
             return self;
         }
 
@@ -209,6 +211,7 @@ bettercms.define('bcms.category', ['bcms.jquery', 'bcms', 'bcms.modal', 'bcms.si
             row.find(selectors.categoryRowDeleteButton).data('id', json.Id);
             row.find(selectors.categoryRowDeleteButton).data('version', json.Version);
             row.find(selectors.categoryNameCell).html(json.Name);
+            row.find(selectors.categoryName_enCell).html(json.Name_en);
         }
 
         /**

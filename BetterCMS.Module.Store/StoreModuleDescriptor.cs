@@ -14,7 +14,7 @@ namespace BetterCMS.Module.Store
 {
     public class StoreModuleDescriptor : ModuleDescriptor
     {
-        internal const string ModuleName = "Store";
+        internal const string ModuleName = "store";
         internal const string StoreAreaName = "bcms-store";
 
         public override string Description

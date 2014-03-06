@@ -8,7 +8,7 @@ using System.Web;
 
 namespace BetterCMS.Module.Store.ViewModels
 {
-    public class ProductCategoryViewModel : IEditableGridItem
+    public class CategoryViewModel : IEditableGridItem
     {
         [Required()]
         public virtual Guid Id { get; set; }
@@ -20,11 +20,12 @@ namespace BetterCMS.Module.Store.ViewModels
         [Required()]
         [StringLength(MaxLength.Name)]
         public virtual string Name { get; set; }
+        [Required()]
+        [StringLength(MaxLength.Name)]
+        public virtual string Name_en { get; set; }
 
         [Required]
         public virtual Guid ParentId { get; set; }
-
-        public virtual string Lang { get; set; }
 
         public virtual int? SortOrder { get; set; }
     }

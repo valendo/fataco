@@ -14,15 +14,12 @@ namespace BetterCMS.Module.Store.Models.Migrations
         public InitialSetup() : base(StoreModuleDescriptor.ModuleName) { }
         public override void Up()
         {
-            Create.Table("ProductCategories").InSchema(SchemaName)
+            Create.Table("Categories").InSchema(SchemaName)
                 .WithCmsBaseColumns()
                 .WithColumn("Name").AsString(MaxLength.Name).NotNullable()
-                .WithColumn("ParentId").AsGuid().NotNullable();
-        }
-
-        public override void Down()
-        {
-            Delete.Table("ProductCategories").InSchema(SchemaName);
+                .WithColumn("Name_en").AsString(MaxLength.Name).NotNullable()
+                .WithColumn("ParentId").AsGuid().NotNullable()
+                .WithColumn("SortOrder").AsInt32().Nullable();
         }
     }
 }

@@ -6,27 +6,27 @@
 @using BetterCMS.Module.Store.ViewModels
 @using MvcContrib.UI.Grid
 @using Microsoft.Web.Mvc;
-@model BetterCms.Module.Root.ViewModels.SiteSettings.SearchableGridViewModel<ProductCategoryViewModel>
+@model BetterCms.Module.Root.ViewModels.SiteSettings.SearchableGridViewModel<CategoryViewModel>
 @{
-    Action<ColumnBuilder<ProductCategoryViewModel>> columns = column =>
+    Action<ColumnBuilder<CategoryViewModel>> columns = column =>
     {
         column.EditButtonColumn();
 
         column.For(m => m.Name)
-            .Named("Category Name")
+            .Named("Name (vi)")
             .SortColumnName("Name")
             .Attributes(@class => "bcms-category-name");
-
-        //column.For(m => m.ParentId)
-        //   .Named("Parent Category")
-        //   .SortColumnName("ParentId")
-        //   .Attributes(@class => "bcms-category-parentId");
+        
+        column.For(m => m.Name_en)
+            .Named("Name (en)")
+            .SortColumnName("Name_en")
+            .Attributes(@class => "bcms-category-name_en");
 
         column.DeleteButtonColumn();
     };
 }
 
-@using (Html.BeginForm<ProductCategoryController>(f => f.Index(null), FormMethod.Post, new { @id = "bcms-categories-form", @class = "bcms-ajax-form" }))
+@using (Html.BeginForm<CategoryController>(f => f.Index(null), FormMethod.Post, new { @id = "bcms-categories-form", @class = "bcms-ajax-form" }))
 {
     @Html.HiddenGridOptions(Model.GridOptions)
     <div class="bcms-top-block-holder">
@@ -37,13 +37,14 @@
         </div>
         <div class="bcms-featured-grid bcms-clearfix">
             @Html.RenderPaging(Model)
-            @Html.Partial("~/Areas/bcms-store/Views/ProductCategory/Partial/CategoriesFilterTemplate.cshtml", Model)
+            <!--Filter-->
+            @*@Html.Partial("~/Areas/bcms-store/Views/Category/Partial/CategoriesFilterTemplate.cshtml", Model)*@
         </div>
     </div>
 
     @Html.SiteSettingsMessagesBox("bcms-categories-messages")
-    @Html.Grid(Model.Items).Sort(Model.GridOptions).Columns(columns).Attributes(@class => "bcms-tables").RenderUsing(new EditableHtmlTableGridRenderer<ProductCategoryViewModel>())
+    @Html.Grid(Model.Items).Sort(Model.GridOptions).Columns(columns).Attributes(@class => "bcms-tables").RenderUsing(new EditableHtmlTableGridRenderer<CategoryViewModel>())
 }
 <script type="text/html" id="bcms-categories-list-row-template">
-    @Html.Grid(new List<ProductCategoryViewModel> { new ProductCategoryViewModel() }).Columns(columns).Attributes(@class => "bcms-tables").RenderUsing(new HtmlTableGridSingleRowRenderer<ProductCategoryViewModel>())
+    @Html.Grid(new List<CategoryViewModel> { new CategoryViewModel() }).Columns(columns).Attributes(@class => "bcms-tables").RenderUsing(new HtmlTableGridSingleRowRenderer<CategoryViewModel>())
 </script>

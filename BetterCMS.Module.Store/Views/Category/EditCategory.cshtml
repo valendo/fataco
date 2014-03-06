@@ -4,29 +4,32 @@
 @using BetterCMS.Module.Store.ViewModels
 @using Microsoft.Web.Mvc
 
-@model ProductCategoryViewModel
+@model CategoryViewModel
 
 <div class="bcms-scroll-window" style="height: 527px;">
     @Html.TabbedContentMessagesBox()
     <div class="bcms-new-blog-content">
-        @using (Html.BeginForm<ProductCategoryController>(c => c.SaveCategory(null), FormMethod.Post, new { @class = "bcms-ajax-form" }))
+        @using (Html.BeginForm<CategoryController>(c => c.SaveCategory(null), FormMethod.Post, new { @class = "bcms-ajax-form" }))
         {
             @Html.HiddenFor(m => m.Id)
             @Html.HiddenFor(m => m.Version)
             <div class="bcms-blog-left">
                 <div class="bcms-input-list-holder">
-                    <div class="bcms-content-titles">Language </div>
-                    @Html.DropDownListFor(m => m.Lang, new[] { new SelectListItem { Value = "vi", Text = "Tiếng việt", Selected = true }, new SelectListItem { Value = "en", Text = "English" } }, new { @class = "bcms-global-select", @style = "width: 245px;" })
-                </div>
-                <div class="bcms-input-list-holder">
-                    <div class="bcms-content-titles">Category Name</div>
+                    <div class="bcms-content-titles">Name (vi)</div>
                     <div class="bcms-input-box">
                         @Html.TextBoxFor(m => m.Name, new { @class = "bcms-editor-field-box"})
                         @Html.BcmsValidationMessageFor(m => m.Name)
                     </div>
                 </div>
                 <div class="bcms-input-list-holder">
-                    <div class="bcms-content-titles">Parent Id</div>
+                    <div class="bcms-content-titles">Name (en)</div>
+                    <div class="bcms-input-box">
+                        @Html.TextBoxFor(m => m.Name_en, new { @class = "bcms-editor-field-box" })
+                        @Html.BcmsValidationMessageFor(m => m.Name_en)
+                    </div>
+                </div>
+                <div class="bcms-input-list-holder">
+                    <div class="bcms-content-titles">Parent</div>
                     @Html.DropDownListFor(m => m.ParentId, new SelectList(ViewBag.ParentCategories, "Key", "Value"), new { @class = "bcms-global-select", @style = "width: 400px;" })
                 </div>
                 <div class="bcms-input-list-holder">

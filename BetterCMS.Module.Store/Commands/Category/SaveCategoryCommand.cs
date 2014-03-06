@@ -7,13 +7,13 @@ using System.Web;
 using BetterCms.Core.DataAccess.DataContext;
 using BetterCms.Core.DataAccess.DataContext.Fetching;
 
-namespace BetterCMS.Module.Store.Commands.ProductCategory
+namespace BetterCMS.Module.Store.Commands.Category
 {
-    public class SaveProductCategoryCommand: CommandBase, ICommand<ViewModels.ProductCategoryViewModel, ViewModels.ProductCategoryViewModel>
+    public class SaveCategoryCommand: CommandBase, ICommand<ViewModels.CategoryViewModel, ViewModels.CategoryViewModel>
     {
-        public ViewModels.ProductCategoryViewModel Execute(ViewModels.ProductCategoryViewModel request)
+        public ViewModels.CategoryViewModel Execute(ViewModels.CategoryViewModel request)
         {
-            ValidateCategory(request);
+            //ValidateCategory(request);
             UnitOfWork.BeginTransaction();
             Models.ProductCategory category;
             if (!request.Id.HasDefaultValue())
@@ -30,33 +30,34 @@ namespace BetterCMS.Module.Store.Commands.ProductCategory
             }
             category.Version = request.Version;
             category.Name = request.Name;
+            category.Name_en = request.Name_en;
             category.ParentId = request.ParentId;
-            category.Lang = request.Lang;
             category.SortOrder = request.SortOrder;
             Repository.Save(category);
             UnitOfWork.Commit();
 
-            return new ViewModels.ProductCategoryViewModel
+            return new ViewModels.CategoryViewModel
             {
                 Id = category.Id,
                 Name = category.Name,
+                Name_en = category.Name_en,
                 Version = category.Version,
                 ParentId = category.ParentId,
                 SortOrder = category.SortOrder
             };
         }
 
-        private void ValidateCategory(ViewModels.ProductCategoryViewModel model)
-        {
-            var existingId = Repository
-                .AsQueryable<Models.ProductCategory>(c => c.Name == model.Name.Trim() && c.Id != model.Id)
-                .Select(r => r.Id)
-                .FirstOrDefault();
-            if (!existingId.HasDefaultValue())
-            {
-                var message = string.Format("Category name {0} exist", model.Name);
-                var logMessage = string.Format("Faild to update category. Category name {0} already exist", model.Name);
-            }
-        }
+        //private void ValidateCategory(ViewModels.CategoryViewModel model)
+        //{
+        //    var existingId = Repository
+        //        .AsQueryable<Models.ProductCategory>(c => c.Name == model.Name.Trim() && c.Id != model.Id)
+        //        .Select(r => r.Id)
+        //        .FirstOrDefault();
+        //    if (!existingId.HasDefaultValue())
+        //    {
+        //        var message = string.Format("Category name {0} exist", model.Name);
+        //        var logMessage = string.Format("Faild to update category. Category name {0} already exist", model.Name);
+        //    }
+        //}
     }
 }

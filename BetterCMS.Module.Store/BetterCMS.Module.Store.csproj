@@ -174,26 +174,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\ProductCategory\DeleteProductCategoryCommand.cs" />
-    <Compile Include="Commands\ProductCategory\GetParentCategoriesCommand.cs" />
-    <Compile Include="Commands\ProductCategory\GetProductCategoriesCommand.cs" />
-    <Compile Include="Commands\ProductCategory\GetProductCategoryCommand.cs" />
-    <Compile Include="Commands\ProductCategory\SaveProductCategoryCommand.cs" />
-    <Compile Include="Controllers\ProductCategoryController.cs" />
+    <Compile Include="Commands\Category\DeleteCategoryCommand.cs" />
+    <Compile Include="Commands\Category\GetParentCategoriesCommand.cs" />
+    <Compile Include="Commands\Category\GetCategoriesCommand.cs" />
+    <Compile Include="Commands\Category\GetCategoryCommand.cs" />
+    <Compile Include="Commands\Category\SaveCategoryCommand.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Maps\ProductCategoryMap.cs" />
     <Compile Include="Models\Migrations\InitialSetup.cs" />
-    <Compile Include="Models\Migrations\Migration201403031010.cs" />
-    <Compile Include="Models\Migrations\Migration201403041555.cs" />
     <Compile Include="Models\Migrations\MigrationVersioning.cs" />
     <Compile Include="Models\ProductCategory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Registration\StoreJsModuleIncludeDescriptor.cs" />
     <Compile Include="StoreModuleDescriptor.cs" />
-    <Compile Include="ViewModels\Filter\CategoriesFilter.cs" />
-    <Compile Include="ViewModels\ProductCategoryViewModel.cs" />
+    <Compile Include="ViewModels\CategoryViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -214,6 +211,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="ViewModels\Filter\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -225,13 +223,13 @@
     <Content Include="Config\cms.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\ProductCategory\Index.cshtml" />
+    <EmbeddedResource Include="Views\Category\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\ProductCategory\EditCategory.cshtml" />
+    <EmbeddedResource Include="Views\Category\EditCategory.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\ProductCategory\Partial\CategoriesFilterTemplate.cshtml" />
+    <EmbeddedResource Include="Views\Category\Partial\CategoriesFilterTemplate.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

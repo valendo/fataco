@@ -8,26 +8,26 @@ using System.Web;
 using NHibernate.Linq;
 using BetterCms.Core.DataAccess.DataContext;
 
-namespace BetterCMS.Module.Store.Commands.ProductCategory
+namespace BetterCMS.Module.Store.Commands.Category
 {
-    public class GetProductCategoryCommand : CommandBase, ICommand<Guid, ProductCategoryViewModel>
+    public class GetCategoryCommand : CommandBase, ICommand<Guid, CategoryViewModel>
     {
-        public ProductCategoryViewModel Execute(Guid categoryId)
+        public CategoryViewModel Execute(Guid categoryId)
         {
-            ProductCategoryViewModel model;
+            CategoryViewModel model;
             if (!categoryId.HasDefaultValue())
             {
                 var listFuture = Repository.AsQueryable<Models.ProductCategory>()
                     .Where(bp => bp.Id == categoryId)
                     .Select(
                         category =>
-                            new ProductCategoryViewModel
+                            new CategoryViewModel
                             {
                                 Id = category.Id,
                                 Version = category.Version,
                                 Name = category.Name,
+                                Name_en = category.Name_en,
                                 ParentId = category.ParentId,
-                                Lang = category.Lang,
                                 SortOrder = category.SortOrder
                             }
                     ).ToFuture();
@@ -35,7 +35,7 @@ namespace BetterCMS.Module.Store.Commands.ProductCategory
             }
             else
             {
-                model = new ProductCategoryViewModel();
+                model = new CategoryViewModel();
             }
             return model;
         }

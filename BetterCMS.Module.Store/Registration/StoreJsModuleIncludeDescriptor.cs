@@ -14,10 +14,10 @@ namespace BetterCMS.Module.Store.Registration
         {
             Links = new IActionProjection[]
             {
-                new JavaScriptModuleLinkTo<ProductCategoryController>(this, "loadSiteSettingsCategoriesUrl", c => c.Index(null)),
-                            new JavaScriptModuleLinkTo<ProductCategoryController>(this, "loadEditCategoryUrl", c=> c.EditCategory("{0}")), 
-                            new JavaScriptModuleLinkTo<ProductCategoryController>(this, "loadCreateCategoryUrl", c=> c.CreateCategory()), 
-                            new JavaScriptModuleLinkTo<ProductCategoryController>(this, "deleteCategoryUrl", c => c.DeleteCategory("{0}", "{1}"))
+                new JavaScriptModuleLinkTo<CategoryController>(this, "loadSiteSettingsCategoriesUrl", c => c.Index(null)),
+                            new JavaScriptModuleLinkTo<CategoryController>(this, "loadEditCategoryUrl", c=> c.EditCategory("{0}")), 
+                            new JavaScriptModuleLinkTo<CategoryController>(this, "loadCreateCategoryUrl", c=> c.CreateCategory()), 
+                            new JavaScriptModuleLinkTo<CategoryController>(this, "deleteCategoryUrl", c => c.DeleteCategory("{0}", "{1}"))
             };
             Globalization = new IActionProjection[]
                 {
