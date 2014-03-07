@@ -186,6 +186,7 @@
     <Compile Include="Models\Maps\ProductCategoryMap.cs" />
     <Compile Include="Models\Migrations\InitialSetup.cs" />
     <Compile Include="Models\Migrations\MigrationVersioning.cs" />
+    <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductCategory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Registration\StoreJsModuleIncludeDescriptor.cs" />

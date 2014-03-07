@@ -16,30 +16,37 @@ bettercms.define('bcms.category', ['bcms.jquery', 'bcms', 'bcms.modal', 'bcms.si
                 categoryEditButton: '.bcms-icn-edit',
                 categoryRowDeleteButton: '.bcms-grid-item-delete-button',
                 categoryParentRow: 'tr:first',
-                categoryNameCell: '.bcms-category-name',
-                categoryName_enCell: '.bcms-category-name_en',
+                categoryNameCell: '.bcms-category-Name',
+                categoryName_enCell: '.bcms-category-Name_en',
                 categoryRowTemplate: '#bcms-categories-list-row-template',
                 categoryTableFirstRow: 'table.bcms-tables > tbody > tr:first',
                 categoryRowTemplateFirstRow: 'tr:first'
             },
             links = {
+                //categories link
                 loadSiteSettingsCategoriesUrl: null,
                 loadCreateCategoryUrl: null,
                 loadEditCategoryUrl: null,
-                deleteCategoryUrl: null
+                deleteCategoryUrl: null,
+                //products link
+                loadSiteSettingsProductsUrl: null,
+                loadCreateProductUrl: null,
+                loadEditProductUrl: null,
+                deleteProductUrl: null
             },
-            globalization = {
-                categoriesListTabTitle: null,
-                categoriesAddNewTitle: null,
-                editCategoryTitle: null,
-                deleteCategoryConfirmMessage: null
-            },
+            //globalization = {
+            //    categoriesListTabTitle: null,
+            //    categoriesAddNewTitle: null,
+            //    editCategoryTitle: null,
+            //    deleteCategoryConfirmMessage: null
+            //},
             categoriesContainer = null,
+            productsContainer = null,
             categoryViewModel = null;
 
         // Assign objects to module.
         category.links = links;
-        category.globalization = globalization;
+        //category.globalization = globalization;
         category.selectors = selectors;
 
         /**
@@ -119,13 +126,16 @@ bettercms.define('bcms.category', ['bcms.jquery', 'bcms', 'bcms.modal', 'bcms.si
                         firstVisibleInputField.focus();
                     }
                 },
-                categories = new siteSettings.TabViewModel(globalization.categoriesListTabTitle, links.loadSiteSettingsCategoriesUrl, function (container) {
+                categories = new siteSettings.TabViewModel("Categories", links.loadSiteSettingsCategoriesUrl, function (container) {
                     categoriesContainer = container;
-
                     initializeSiteSettingsCategoriesList();
+                }, onShow),
+                products = new siteSettings.TabViewModel("Products", links.loadSiteSettingsProductsUrl, function (container) {
+                    productsContainer = container;
                 }, onShow);
 
             tabs.push(categories);
+            tabs.push(products);
 
             siteSettings.initContentTabs(tabs);
         };
@@ -147,7 +157,7 @@ bettercms.define('bcms.category', ['bcms.jquery', 'bcms', 'bcms.modal', 'bcms.si
                 }
             };
 
-            openCategoryEditForm(globalization.categoriesAddNewTitle, links.loadCreateCategoryUrl, onSaveCallback);
+            openCategoryEditForm('add new', links.loadCreateCategoryUrl, onSaveCallback);
         }
 
         /**
@@ -164,7 +174,7 @@ bettercms.define('bcms.category', ['bcms.jquery', 'bcms', 'bcms.modal', 'bcms.si
                     }
                 };
 
-            openCategoryEditForm(globalization.editCategoryTitle, $.format(links.loadEditCategoryUrl, id), onSaveCallback);
+            openCategoryEditForm('edit category', $.format(links.loadEditCategoryUrl, id), onSaveCallback);
         }
 
         /**
@@ -223,7 +233,7 @@ bettercms.define('bcms.category', ['bcms.jquery', 'bcms', 'bcms.modal', 'bcms.si
                 version = self.data('version'),
                 name = row.find(selectors.categoryNameCell).html(),
                 url = $.format(links.deleteCategoryUrl, id, version),
-                message = $.format(globalization.deleteCategoryConfirmMessage, name),
+                message = $.format("Are you sure delete '{0}'?", name),
                 onDeleteCompleted = function (json) {
                     try {
                         messages.refreshBox(categoriesContainer, json);

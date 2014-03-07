@@ -19,13 +19,13 @@ namespace BetterCMS.Module.Store.Registration
                             new JavaScriptModuleLinkTo<CategoryController>(this, "loadCreateCategoryUrl", c=> c.CreateCategory()), 
                             new JavaScriptModuleLinkTo<CategoryController>(this, "deleteCategoryUrl", c => c.DeleteCategory("{0}", "{1}"))
             };
-            Globalization = new IActionProjection[]
-                {
-                    new JavaScriptModuleGlobalization(this, "categoriesListTabTitle", () =>"Categories"), 
-                    new JavaScriptModuleGlobalization(this, "categoriesAddNewTitle", () =>"Add new"),
-                    new JavaScriptModuleGlobalization(this, "deleteCategoryConfirmMessage", () => "Are you sure delete '{0}'?"),
-                    new JavaScriptModuleGlobalization(this, "editCategoryTitle", () => "Edit category"),
-                };
+            //Globalization = new IActionProjection[]
+            //    {
+            //        new JavaScriptModuleGlobalization(this, "categoriesListTabTitle", () =>"Categories"), 
+            //        new JavaScriptModuleGlobalization(this, "categoriesAddNewTitle", () =>"Add new"),
+            //        new JavaScriptModuleGlobalization(this, "deleteCategoryConfirmMessage", () => "Are you sure delete '{0}'?"),
+            //        new JavaScriptModuleGlobalization(this, "editCategoryTitle", () => "Edit category"),
+            //    };
         }
     }
 }
