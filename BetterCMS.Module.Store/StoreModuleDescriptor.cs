@@ -35,10 +35,10 @@ namespace BetterCMS.Module.Store
             }
         }
 
-        private readonly StoreJsModuleIncludeDescriptor storeJsModuleIncludeDescriptor;
+        private readonly CategoryJsModuleIncludeDescriptor storeJsModuleIncludeDescriptor;
         public StoreModuleDescriptor(ICmsConfiguration configuration) : base(configuration)
         {
-            storeJsModuleIncludeDescriptor = new StoreJsModuleIncludeDescriptor(this);
+            storeJsModuleIncludeDescriptor = new CategoryJsModuleIncludeDescriptor(this);
         }
 
         public override IEnumerable<JsIncludeDescriptor> RegisterJsIncludes()
@@ -46,6 +46,7 @@ namespace BetterCMS.Module.Store
             return new[]
                 {
                     storeJsModuleIncludeDescriptor,
+                    new ProductJsModuleIncludeDescriptor(this),
                     new JsIncludeDescriptor(this, "bcms.category.filter")
                 };
         }

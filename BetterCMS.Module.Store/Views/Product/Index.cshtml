@@ -1,0 +1,45 @@
+﻿@using BetterCms.Module.Root.Content.Resources
+@using BetterCms.Module.Root.Mvc.Grids.Extensions
+@using BetterCms.Module.Root.Mvc.Grids.TableRenderers
+@using BetterCms.Module.Root.Mvc.Helpers
+@using BetterCMS.Module.Store.Controllers
+@using BetterCMS.Module.Store.ViewModels
+@using MvcContrib.UI.Grid
+@using Microsoft.Web.Mvc;
+@model BetterCms.Module.Root.ViewModels.SiteSettings.SearchableGridViewModel<ProductViewModel>
+@{
+    Action<ColumnBuilder<ProductViewModel>> columns = column =>
+    {
+        column.EditButtonColumn();
+
+        column.For(m => m.Code)
+            .Named("Code")
+            .SortColumnName("Code")
+            .Attributes(@class => "bcms-product-Code");
+
+        column.DeleteButtonColumn();
+    };
+}
+
+@using (Html.BeginForm<ProductController>(f => f.Index(null), FormMethod.Post, new { @id = "bcms-products-form", @class = "bcms-ajax-form" }))
+{
+    @Html.HiddenGridOptions(Model.GridOptions)
+    <div class="bcms-top-block-holder">
+        <div class="bcms-btn-links-main" id="bcms-create-product-button">Add New</div>
+        <div class="bcms-search-block">
+            @Html.TextBoxFor(m => m.SearchQuery, new { @class = "bcms-editor-field-box", @placeholder = RootGlobalization.WaterMark_Search })
+            <div class="bcms-btn-search" id="bcms-products-search-btn"></div>
+        </div>
+        <div class="bcms-featured-grid bcms-clearfix">
+            @Html.RenderPaging(Model)
+            <!--Filter-->
+            @*@Html.Partial("~/Areas/bcms-store/Views/Category/Partial/CategoriesFilterTemplate.cshtml", Model)*@
+        </div>
+    </div>
+
+    @Html.SiteSettingsMessagesBox("bcms-products-messages")
+    @Html.Grid(Model.Items).Sort(Model.GridOptions).Columns(columns).Attributes(@class => "bcms-tables").RenderUsing(new EditableHtmlTableGridRenderer<ProductViewModel>())
+}
+<script type="text/html" id="bcms-products-list-row-template">
+    @Html.Grid(new List<ProductViewModel> { new ProductViewModel() }).Columns(columns).Attributes(@class => "bcms-tables").RenderUsing(new HtmlTableGridSingleRowRenderer<ProductViewModel>())
+</script>
