@@ -32,13 +32,11 @@
     <div class="bcms-top-block-holder">
         <div class="bcms-btn-links-main" id="bcms-create-category-button">Add New</div>
         <div class="bcms-search-block">
-            @Html.TextBoxFor(m => m.SearchQuery, new { @class = "bcms-editor-field-box", @placeholder = RootGlobalization.WaterMark_Search })
+            @Html.TextBoxFor(m => m.SearchQuery, new { @class = "bcms-editor-field-box", @placeholder = "Search by name" })
             <div class="bcms-btn-search" id="bcms-categories-search-btn"></div>
         </div>
         <div class="bcms-featured-grid bcms-clearfix">
             @Html.RenderPaging(Model)
-            <!--Filter-->
-            @*@Html.Partial("~/Areas/bcms-store/Views/Category/Partial/CategoriesFilterTemplate.cshtml", Model)*@
         </div>
     </div>
 

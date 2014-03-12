@@ -16,7 +16,7 @@ namespace BetterCMS.Module.Store.Models
         public virtual string Color { get; set; }
         public virtual string Description { get; set; }
         public virtual string Description_en { get; set; }
-        public virtual Guid? ImageId { get; set; }
+        public virtual MediaImage Image { get; set; }
         public virtual bool IsFeature { get; set; }
         public virtual int? SortOrder { get; set; }
 

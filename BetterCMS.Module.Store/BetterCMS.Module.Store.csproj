@@ -200,6 +200,8 @@
     <Compile Include="Registration\ProductJsModuleIncludeDescriptor.cs" />
     <Compile Include="StoreModuleDescriptor.cs" />
     <Compile Include="ViewModels\CategoryViewModel.cs" />
+    <Compile Include="ViewModels\EditProductViewModel.cs" />
+    <Compile Include="ViewModels\Filter\ProductsFilter.cs" />
     <Compile Include="ViewModels\ProductViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -209,8 +211,8 @@
     <Content Include="betterCms.license.txt" />
     <Content Include="Global.asax" />
     <EmbeddedResource Include="Scripts\bcms.category.js" />
-    <EmbeddedResource Include="Scripts\bcms.category.filter.js" />
     <EmbeddedResource Include="Scripts\bcms.product.js" />
+    <EmbeddedResource Include="Scripts\bcms.product.filter.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -222,7 +224,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="ViewModels\Filter\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -240,13 +241,13 @@
     <EmbeddedResource Include="Views\Category\EditCategory.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\Category\Partial\CategoriesFilterTemplate.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Views\Product\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\Product\EditProduct.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Product\Partial\ProductsFilterTemplate.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

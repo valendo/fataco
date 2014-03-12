@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using BetterCMS.Module.Store.ViewModels.Filter;
 
 namespace BetterCMS.Module.Store.Controllers
 {
@@ -20,9 +21,10 @@ namespace BetterCMS.Module.Store.Controllers
     [ActionLinkArea(StoreModuleDescriptor.StoreAreaName)]
     public class ProductController : CmsControllerBase
     {
-        public ActionResult Index(SearchableGridOptions request)
+        public ActionResult Index(ProductsFilter request)
         {
             request.SetDefaultPaging();
+            ViewBag.ParentCategories = GetParentCategoriesForFilter();
             var model = GetCommand<GetProductsCommand>().ExecuteCommand(request);
 
             return View(model);
@@ -38,13 +40,22 @@ namespace BetterCMS.Module.Store.Controllers
             return ComboWireJson(model != null, view, model, JsonRequestBehavior.AllowGet);
         }
 
-        private List<KeyValuePair<Guid,string>> GetParentCategories()
+        private List<KeyValuePair<Guid,string>> GetParentCategoriesForFilter()
         {
             List<KeyValuePair<Guid, string>> parentCategories = new List<KeyValuePair<Guid, string>>();
             GetParentCategoriesRecursive(new CategoryViewModel { ParentId = Guid.Empty}, ref parentCategories, 0);
+            parentCategories.Insert(0, new KeyValuePair<Guid, string>(Guid.Empty, "None Category"));
+            parentCategories.Insert(0, new KeyValuePair<Guid, string>(Guid.Parse("99999999-9999-9999-9999-999999999999"), "--Select--"));
+            return parentCategories;
+        }
+        private List<KeyValuePair<Guid, string>> GetParentCategories()
+        {
+            List<KeyValuePair<Guid, string>> parentCategories = new List<KeyValuePair<Guid, string>>();
+            GetParentCategoriesRecursive(new CategoryViewModel { ParentId = Guid.Empty }, ref parentCategories, 0);
             parentCategories.Insert(0, new KeyValuePair<Guid, string>(Guid.Empty, "--None--"));
             return parentCategories;
         }
+
         private void GetParentCategoriesRecursive(ViewModels.CategoryViewModel request, ref List<KeyValuePair<Guid, string>> outCategories, int level)
         {
             string space = "";
@@ -75,7 +86,7 @@ namespace BetterCMS.Module.Store.Controllers
         }
 
         [HttpPost]
-        public ActionResult SaveProduct(ProductViewModel model)
+        public ActionResult SaveProduct(EditProductViewModel model)
         {
             if (ModelState.IsValid)
             {

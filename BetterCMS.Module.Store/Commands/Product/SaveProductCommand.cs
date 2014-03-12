@@ -7,12 +7,13 @@ using System.Web;
 using BetterCms.Core.DataAccess.DataContext;
 using BetterCms.Core.DataAccess.DataContext.Fetching;
 using BetterCMS.Module.Store.ViewModels;
+using BetterCms.Module.MediaManager.Models;
 
 namespace BetterCMS.Module.Store.Commands.Product
 {
-    public class SaveProductCommand: CommandBase, ICommand<ProductViewModel, ProductViewModel>
+    public class SaveProductCommand: CommandBase, ICommand<EditProductViewModel, ProductViewModel>
     {
-        public ProductViewModel Execute(ProductViewModel request)
+        public ProductViewModel Execute(EditProductViewModel request)
         {
             UnitOfWork.BeginTransaction();
             Models.Product product;
@@ -35,24 +36,36 @@ namespace BetterCMS.Module.Store.Commands.Product
             product.Color = request.Color;
             product.Description = request.Description;
             product.Description_en = request.Description_en;
-            product.ImageId = request.ImageId;
+            if (request.Image != null && request.Image.ImageId.HasValue)
+            {
+                product.Image = Repository.AsProxy<MediaImage>(request.Image.ImageId.Value);
+            }
+            else
+            {
+                product.Image = null;
+            }
             product.IsFeature = request.IsFeature;
             product.SortOrder = request.SortOrder;
             Repository.Save(product);
             UnitOfWork.Commit();
 
+            if (!request.Image.ImageId.HasValue)
+            {
+                request.Image.ThumbnailUrl = "/file/bcms-pages/content/styles/images/bcms-no-image-2.png";
+            }
+
             return new ProductViewModel
             {
                 Id = product.Id,
                 CategoryId = product.CategoryId,
-                Code = product.Color,
+                Code = product.Code,
                 Size = product.Size,
                 Color = product.Color,
                 Description = product.Description,
                 Description_en = product.Description_en,
-                ImageId = product.ImageId,
                 IsFeature = product.IsFeature,
-                SortOrder = product.SortOrder
+                SortOrder = product.SortOrder,
+                Image = request.Image
             };
         }
     }

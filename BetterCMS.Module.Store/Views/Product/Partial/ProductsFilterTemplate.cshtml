@@ -1,22 +1,26 @@
 ﻿@using BetterCMS.Module.Store.ViewModels
 @using BetterCms.Module.Root.Mvc.Helpers
 
-@model BetterCms.Module.Root.ViewModels.SiteSettings.SearchableGridViewModel<CategoryViewModel>
+@model BetterCms.Module.Root.ViewModels.SiteSettings.SearchableGridViewModel<ProductViewModel>
 <div id="bcms-filter-template">
     <div class="bcms-grid-filtering" data-bind="css: { 'bcms-active-filter': isVisible() }">
         <div class="bcms-filterbox" data-bind="click: toggleFilter">
             Filter
-            @*<div class="bcms-filter-modified" data-bind="style: { display: isEdited() ? 'inline-block' : 'none' }">modified</div>*@
         </div>
     </div>
     <div class="bcms-tags-block" style="display: none;" data-bind="visible: isVisible()">
         <div class="bcms-featured-tags">
             <div class="bcms-clearfix">
                 <div class="bcms-filter-options">
-                    <div class="bcms-filter-text">By Language</div>
-                    <select name="Lang" id="Lang" class="bcms-global-select" data-bind="event: { change: changeAdminLanguage }">
-                        <option value="vi" selected="selected">Tiếng việt</option>
-                        <option value="en">English</option>
+                    <div class="bcms-filter-text">By Category</div>
+                    @Html.DropDownList("CategoryId", new SelectList(ViewBag.ParentCategories, "Key", "Value"), new { @class = "bcms-global-select", @style = "width: 400px;" })
+                </div>
+                <div class="bcms-filter-options">
+                    <div class="bcms-filter-text">By IsFeature?</div>
+                    <select id="IsFeature" name="IsFeature">
+                        <option value="">--Select--</option>
+                        <option value="True">Yes</option>
+                        <option value="False">No</option>
                     </select>
                 </div>
             </div>
@@ -29,3 +33,4 @@
         </div>
     </div>
 </div>
+

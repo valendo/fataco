@@ -4,7 +4,7 @@
 @using BetterCMS.Module.Store.ViewModels
 @using Microsoft.Web.Mvc
 
-@model ProductViewModel
+@model EditProductViewModel
 
 <div class="bcms-scroll-window" style="height: 527px;">
     @Html.TabbedContentMessagesBox()
@@ -13,6 +13,9 @@
         {
             @Html.HiddenFor(m => m.Id)
             @Html.HiddenFor(m => m.Version)
+            @Html.HiddenFor(m => m.Image.ImageId, new { data_bind = "value: image().id()" })
+            @Html.HiddenFor(m => m.Image.ThumbnailUrl, new { data_bind = "value: image().thumbnailUrl()" })
+            
             <div class="bcms-blog-left">
                 <div class="bcms-input-list-holder">
                     <div class="bcms-content-titles">Category</div>
@@ -23,6 +26,33 @@
                     <div class="bcms-input-box">
                         @Html.TextBoxFor(m => m.Code, new { @class = "bcms-editor-field-box" })
                         @Html.BcmsValidationMessageFor(m => m.Code)
+                    </div>
+                </div>
+                <div class="bcms-input-list-holder">
+                    <div class="bcms-content-titles">Description (vi)</div>
+                    @Html.TextAreaFor(m => m.Description, new { @id = "bcms-description" })
+                </div>
+                <div class="bcms-input-list-holder">
+                    <div class="bcms-content-titles">Description (en)</div>
+                    @Html.TextAreaFor(m => m.Description_en, new { @id = "bcms-description_en" })
+                </div>
+                
+            </div>
+            
+            <div class="bcms-blog-right">
+                <div class="bcms-create-author-holder">
+                    <div class="bcms-content-titles">Image</div>
+                    <div class="bcms-uploaded-image">
+                        <!-- ko if: image().url() -->
+                        <a class="bcms-remove-image" data-bind="click: image().remove.bind(image())">Remove</a>
+                        <a data-bind="click: image().preview.bind(image())">
+                            <img data-bind="attr: { src: image().thumbnailUrl(), alt: image().tooltip() }" />
+                        </a>
+                        <!-- /ko -->
+                    </div>
+                    <div class="bcms-upload-info">
+                        <div class="bcms-upload-info-text">Image will be displayed as a thumbnail with your product.</div>
+                        <div class="bcms-btn-small" data-bind="click: image().select.bind(image())">Select Image</div>
                     </div>
                 </div>
                 <div class="bcms-input-list-holder">
@@ -39,18 +69,6 @@
                     </div>
                 </div>
                 <div class="bcms-input-list-holder">
-                    <div class="bcms-content-titles">Description (vi)</div>
-                    <div class="bcms-input-box">
-                        @Html.TextBoxFor(m => m.Description, new { @class = "bcms-editor-field-box" })
-                    </div>
-                </div>
-                <div class="bcms-input-list-holder">
-                    <div class="bcms-content-titles">Description (en)</div>
-                    <div class="bcms-input-box">
-                        @Html.TextBoxFor(m => m.Description_en, new { @class = "bcms-editor-field-box" })
-                    </div>
-                </div>
-                <div class="bcms-input-list-holder">
                     <div class="bcms-content-titles">Is Feature?</div>
                     <div class="bcms-input-box">
                         @Html.CheckBoxFor(m => m.IsFeature)
@@ -63,23 +81,6 @@
                     </div>
                 </div>
             </div>
-            
-            @*<div class="bcms-blog-right">
-                <div class="bcms-create-author-holder">
-                    <div class="bcms-content-titles">Image</div>
-                    <div class="bcms-uploaded-image">
-                        <!-- ko if: image().url() -->
-                        <a class="bcms-remove-image" data-bind="click: image().remove.bind(image())">Remove</a>
-                        <a data-bind="click: image().preview.bind(image())">
-                            <img data-bind="attr: { src: image().thumbnailUrl(), alt: image().tooltip() }" />
-                        </a>
-                        <!-- /ko -->
-                    </div>
-                    <div class="bcms-upload-info">
-                        <div class="bcms-btn-small" data-bind="click: image().select.bind(image())">Upload</div>
-                    </div>
-                </div>
-            </div>*@
         }
     </div>
 </div>

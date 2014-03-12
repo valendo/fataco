@@ -47,7 +47,7 @@ namespace BetterCMS.Module.Store
                 {
                     storeJsModuleIncludeDescriptor,
                     new ProductJsModuleIncludeDescriptor(this),
-                    new JsIncludeDescriptor(this, "bcms.category.filter")
+                    new JsIncludeDescriptor(this, "bcms.product.filter")
                 };
         }
 

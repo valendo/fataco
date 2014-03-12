@@ -17,9 +17,9 @@ namespace BetterCMS.Module.Store.Models.Maps
             Map(f => f.Color).Nullable();
             Map(f => f.Description).Nullable();
             Map(f => f.Description_en).Nullable();
-            Map(f => f.ImageId).Nullable();
             Map(f => f.IsFeature);
             Map(f => f.SortOrder);
+            References(f => f.Image).Cascade.SaveUpdate().LazyLoad();
         }
     }
 }

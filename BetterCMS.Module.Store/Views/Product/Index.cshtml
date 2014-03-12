@@ -12,6 +12,11 @@
     {
         column.EditButtonColumn();
 
+        column.For(m => string.Format("<img class=\"bcms-product-Image\" height=\"50px\" data-src=\"{0}\" src=\"{0}\"/>", (m.Image != null ? m.Image.ThumbnailUrl : "/file/bcms-pages/content/styles/images/bcms-no-image-2.png")))
+            .Named("Image")
+            .SortColumnName("Code")
+            .Encode(false);
+        
         column.For(m => m.Code)
             .Named("Code")
             .SortColumnName("Code")
@@ -27,13 +32,13 @@
     <div class="bcms-top-block-holder">
         <div class="bcms-btn-links-main" id="bcms-create-product-button">Add New</div>
         <div class="bcms-search-block">
-            @Html.TextBoxFor(m => m.SearchQuery, new { @class = "bcms-editor-field-box", @placeholder = RootGlobalization.WaterMark_Search })
+            @Html.TextBoxFor(m => m.SearchQuery, new { @class = "bcms-editor-field-box", @placeholder = "Search by code" })
             <div class="bcms-btn-search" id="bcms-products-search-btn"></div>
         </div>
         <div class="bcms-featured-grid bcms-clearfix">
             @Html.RenderPaging(Model)
             <!--Filter-->
-            @*@Html.Partial("~/Areas/bcms-store/Views/Category/Partial/CategoriesFilterTemplate.cshtml", Model)*@
+            @Html.Partial("~/Areas/bcms-store/Views/Product/Partial/ProductsFilterTemplate.cshtml", Model)
         </div>
     </div>
 

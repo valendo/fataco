@@ -7,21 +7,28 @@ using System.Linq;
 using System.Web;
 using NHibernate.Linq;
 using BetterCms.Core.DataAccess.DataContext;
+using BetterCms.Module.MediaManager.ViewModels;
+using BetterCms.Module.MediaManager.Services;
 
 namespace BetterCMS.Module.Store.Commands.Product
 {
-    public class GetProductCommand : CommandBase, ICommand<Guid, ProductViewModel>
+    public class GetProductCommand : CommandBase, ICommand<Guid, EditProductViewModel>
     {
-        public ProductViewModel Execute(Guid productId)
+        private readonly IMediaFileUrlResolver fileUrlResolver;
+        public GetProductCommand(IMediaFileUrlResolver fileUrlResolver)
         {
-            ProductViewModel model;
+            this.fileUrlResolver = fileUrlResolver;
+        }
+        public EditProductViewModel Execute(Guid productId)
+        {
+            EditProductViewModel model;
             if (!productId.HasDefaultValue())
             {
                 var listFuture = Repository.AsQueryable<Models.Product>()
                     .Where(t => t.Id == productId)
                     .Select(
                         t =>
-                            new ProductViewModel
+                            new EditProductViewModel
                             {
                                 Id = t.Id,
                                 Version = t.Version,
@@ -31,9 +38,17 @@ namespace BetterCMS.Module.Store.Commands.Product
                                 Color = t.Color,
                                 Description = t.Description,
                                 Description_en = t.Description_en,
-                                ImageId = t.ImageId,
                                 IsFeature = t.IsFeature,
-                                SortOrder = t.SortOrder
+                                SortOrder = t.SortOrder,
+                                Image = t.Image != null && !t.Image.IsDeleted ?
+                                    new ImageSelectorViewModel
+                                    {
+                                        ImageId = t.Image.Id,
+                                        ImageUrl = fileUrlResolver.EnsureFullPathUrl(t.Image.PublicUrl),
+                                        ThumbnailUrl = fileUrlResolver.EnsureFullPathUrl(t.Image.PublicThumbnailUrl),
+                                        ImageTooltip = t.Image.Caption,
+                                        FolderId = t.Image.Folder != null ? t.Image.Folder.Id : (Guid?)null
+                                    } : null
                                 
                             }
                     ).ToFuture();
@@ -41,7 +56,7 @@ namespace BetterCMS.Module.Store.Commands.Product
             }
             else
             {
-                model = new ProductViewModel();
+                model = new EditProductViewModel();
             }
             return model;
         }
