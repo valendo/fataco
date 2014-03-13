@@ -41,13 +41,22 @@ namespace BetterCMS.Module.Store
             storeJsModuleIncludeDescriptor = new CategoryJsModuleIncludeDescriptor(this);
         }
 
+        public override IEnumerable<CssIncludeDescriptor> RegisterCssIncludes()
+        {
+            return new[]
+            {
+                new CssIncludeDescriptor(this,"spectrum.css")
+            };
+        }
+
         public override IEnumerable<JsIncludeDescriptor> RegisterJsIncludes()
         {
             return new[]
                 {
                     storeJsModuleIncludeDescriptor,
                     new ProductJsModuleIncludeDescriptor(this),
-                    new JsIncludeDescriptor(this, "bcms.product.filter")
+                    new JsIncludeDescriptor(this, "bcms.product.filter"),
+                    new JsIncludeDescriptor(this, "spectrum")
                 };
         }
 

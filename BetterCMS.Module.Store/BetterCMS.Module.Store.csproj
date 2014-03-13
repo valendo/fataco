@@ -209,10 +209,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="betterCms.license.txt" />
+    <EmbeddedResource Include="Content\Styles\spectrum.css" />
     <Content Include="Global.asax" />
     <EmbeddedResource Include="Scripts\bcms.category.js" />
     <EmbeddedResource Include="Scripts\bcms.product.js" />
     <EmbeddedResource Include="Scripts\bcms.product.filter.js" />
+    <EmbeddedResource Include="Scripts\spectrum.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

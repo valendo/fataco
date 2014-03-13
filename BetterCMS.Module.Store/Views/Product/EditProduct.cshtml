@@ -64,8 +64,25 @@
                 <div class="bcms-input-list-holder">
                     <div class="bcms-content-titles">Color</div>
                     <div class="bcms-input-box">
-                        @Html.TextBoxFor(m => m.Color, new { @class = "bcms-editor-field-box" })
-                        @Html.BcmsValidationMessageFor(m => m.Color)
+                        @*@Html.TextBoxFor(m => m.Color, new { @class = "bcms-editor-field-box" })*@
+                        @Html.HiddenFor(m => m.Color)
+                        @{
+                            string[] colors = new string[12];
+                            string strColors = Model.Color;
+                            if (!string.IsNullOrWhiteSpace(strColors))
+                            {
+                                strColors = strColors.Substring(0, strColors.Length - 1);
+                                string[] tempColors = strColors.Split(';');
+                                for (int i = 0; i < tempColors.Length; i++)
+                                {
+                                    colors[i] = tempColors[i];
+                                }
+                            }
+                        }
+                        @for (int i = 0; i < 12; i++)
+                        {
+                            <input type="hidden" id="Color@(i)" name="Color@(i)" value="@(colors[i])"/>    
+                        }
                     </div>
                 </div>
                 <div class="bcms-input-list-holder">
@@ -84,3 +101,27 @@
         }
     </div>
 </div>
+
+<script type="text/javascript">
+    var colors = '';
+    for (var i = 0; i < 12; i++) {
+        $("#Color" + i).spectrum({
+            showInput: true,
+            preferredFormat: "hex",
+            allowEmpty:true,
+            color: $('#Color' + i).val(),
+            change: function (color) {
+                $('#Color' + i).val(color);
+                colors = '';
+                for (var i = 0; i < 12; i++) {
+                    var hexStr = $('#Color' + i).val();
+                    if (hexStr != '') {
+                        colors += hexStr + ';';    
+                    }
+                }
+                $('#Color').val(colors);
+            }
+        });
+    }
+    
+</script>
