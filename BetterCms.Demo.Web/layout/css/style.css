@@ -380,7 +380,7 @@ article, aside, details, footer, header, menu, nav, section
     {
         clear: both;
         background: url(images/section-shadow.png) no-repeat center bottom;
-        padding: 0 20px 60px;
+        padding: 0 20px 30px;
     }
 
     .main ul
@@ -1524,4 +1524,9 @@ p.author
 .flash_box {
 float: left;
 margin: 15px 0 0 20px;
+}
+
+.jcarousel ul li img
+{
+    height:180px;
 }
