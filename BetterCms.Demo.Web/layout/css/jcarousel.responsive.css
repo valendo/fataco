@@ -41,7 +41,7 @@
 .jcarousel img {
     display: block;
     max-width: 100%;
-    height: auto !important;
+    /*height: auto !important;*/
 }
 
 /** Carousel Controls **/
@@ -54,7 +54,7 @@
     width: 30px;
     height: 30px;
     text-align: center;
-    background: #4E443C;
+    background: #6d276f;
     color: #fff;
     text-decoration: none;
     text-shadow: 0 0 1px #000;
