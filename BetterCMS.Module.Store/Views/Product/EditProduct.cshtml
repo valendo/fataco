@@ -58,13 +58,12 @@
                 <div class="bcms-input-list-holder">
                     <div class="bcms-content-titles">Size</div>
                     <div class="bcms-input-box">
-                        @Html.TextBoxFor(m => m.Size, new { @class = "bcms-editor-field-box" })
+                        @Html.TextAreaFor(m => m.Size, new { @class = "bcms-editor-field-area" })
                     </div>
                 </div>
                 <div class="bcms-input-list-holder">
                     <div class="bcms-content-titles">Color</div>
                     <div class="bcms-input-box">
-                        @*@Html.TextBoxFor(m => m.Color, new { @class = "bcms-editor-field-box" })*@
                         @Html.HiddenFor(m => m.Color)
                         @{
                             string[] colors = new string[12];
@@ -108,7 +107,7 @@
         $("#Color" + i).spectrum({
             showInput: true,
             preferredFormat: "hex",
-            allowEmpty:true,
+            allowEmpty: true,
             color: $('#Color' + i).val(),
             change: function (color) {
                 $('#Color' + i).val(color);

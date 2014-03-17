@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetterCMS.Module.Demo", "Be
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetterCMS.Module.Store", "BetterCMS.Module.Store\BetterCMS.Module.Store.csproj", "{67447DAD-B411-48F5-B29C-A5684834D2BF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetterCMS.Module.News", "BetterCMS.Module.News\BetterCMS.Module.News.csproj", "{D06078AB-E365-4834-9354-50E050FCDDFC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,6 +48,12 @@ Global
 		{67447DAD-B411-48F5-B29C-A5684834D2BF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{67447DAD-B411-48F5-B29C-A5684834D2BF}.Staging|Any CPU.ActiveCfg = Release|Any CPU
 		{67447DAD-B411-48F5-B29C-A5684834D2BF}.Staging|Any CPU.Build.0 = Release|Any CPU
+		{D06078AB-E365-4834-9354-50E050FCDDFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D06078AB-E365-4834-9354-50E050FCDDFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D06078AB-E365-4834-9354-50E050FCDDFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D06078AB-E365-4834-9354-50E050FCDDFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D06078AB-E365-4834-9354-50E050FCDDFC}.Staging|Any CPU.ActiveCfg = Release|Any CPU
+		{D06078AB-E365-4834-9354-50E050FCDDFC}.Staging|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,5 +61,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{E45B69FE-434C-4B5D-81B2-C78934A1BF04} = {FBA93237-41DF-4335-8B94-B1E7D61150D8}
 		{67447DAD-B411-48F5-B29C-A5684834D2BF} = {FBA93237-41DF-4335-8B94-B1E7D61150D8}
+		{D06078AB-E365-4834-9354-50E050FCDDFC} = {FBA93237-41DF-4335-8B94-B1E7D61150D8}
 	EndGlobalSection
 EndGlobal

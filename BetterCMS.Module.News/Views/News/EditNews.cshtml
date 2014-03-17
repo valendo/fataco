@@ -1,0 +1,88 @@
+﻿@using BetterCms.Module.Root.Content.Resources
+@using BetterCms.Module.Root.Mvc.Helpers
+@using BetterCMS.Module.News.Controllers
+@using BetterCMS.Module.News.ViewModels
+@using Microsoft.Web.Mvc
+@using BetterCms.Module.Root.Mvc.UI
+
+@model EditNewsViewModel
+
+<div class="bcms-scroll-window" style="height: 527px;">
+    @Html.TabbedContentMessagesBox()
+    <div class="bcms-new-blog-content">
+        @using (Html.BeginForm<NewsController>(c => c.SaveNews(null), FormMethod.Post, new { @class = "bcms-ajax-form" }))
+        {
+            @Html.HiddenFor(m => m.Id)
+            @Html.HiddenFor(m => m.Version)
+            @Html.HiddenFor(m => m.Image.ImageId, new { data_bind = "value: image().id()" })
+            @Html.HiddenFor(m => m.Image.ThumbnailUrl, new { data_bind = "value: image().thumbnailUrl()" })
+            
+            <div class="bcms-blog-left">
+                <div class="bcms-input-list-holder">
+                    <div class="bcms-content-titles">Category</div>
+                    @Html.DropDownListFor(m => m.CategoryId, new SelectList(ViewBag.ParentCategories, "Key", "Value"), new { @class = "bcms-global-select", @style = "width: 400px;" })
+                </div>
+                <div class="bcms-input-list-holder">
+                    <div class="bcms-content-titles">Title (vi)</div>
+                    <div class="bcms-input-box">
+                        @Html.TextBoxFor(m => m.Title, new { @class = "bcms-editor-field-box" })
+                        @Html.BcmsValidationMessageFor(m => m.Title)
+                    </div>
+                </div>
+                <div class="bcms-input-list-holder">
+                    <div class="bcms-content-titles">Title (en)</div>
+                    <div class="bcms-input-box">
+                        @Html.TextBoxFor(m => m.Title_en, new { @class = "bcms-editor-field-box" })
+                    </div>
+                </div>
+                <div class="bcms-input-list-holder">
+                    <div class="bcms-content-titles">Summary (vi)</div>
+                    @Html.TextAreaFor(m => m.Summary, new { @class = "bcms-editor-field-area" })
+                </div>
+                <div class="bcms-input-list-holder">
+                    <div class="bcms-content-titles">Summary (en)</div>
+                    @Html.TextAreaFor(m => m.Summary_en, new { @class = "bcms-editor-field-area" })
+                </div>
+                <div class="bcms-input-list-holder">
+                    <div class="bcms-content-titles">Content (vi)</div>
+                    @Html.TextAreaFor(m => m.Content, new { @id = "bcms-content" })
+                </div>
+                <div class="bcms-input-list-holder">
+                    <div class="bcms-content-titles">Content (en)</div>
+                    @Html.TextAreaFor(m => m.Content_en, new { @id = "bcms-content_en" })
+                </div>
+            </div>
+            
+            <div class="bcms-blog-right">
+                <div class="bcms-create-author-holder">
+                    <div class="bcms-content-titles">Image</div>
+                    <div class="bcms-uploaded-image">
+                        <!-- ko if: image().url() -->
+                        <a class="bcms-remove-image" data-bind="click: image().remove.bind(image())">Remove</a>
+                        <a data-bind="click: image().preview.bind(image())">
+                            <img data-bind="attr: { src: image().thumbnailUrl(), alt: image().tooltip() }" />
+                        </a>
+                        <!-- /ko -->
+                    </div>
+                    <div class="bcms-upload-info">
+                        <div class="bcms-upload-info-text">Image will be displayed as a thumbnail with your product.</div>
+                        <div class="bcms-btn-small" data-bind="click: image().select.bind(image())">Select Image</div>
+                    </div>
+                </div>
+                <div class="bcms-input-field-holder">
+                    <div class="bcms-content-titles">Publish Date</div>
+                    <div class="bcms-date-input-box">
+                        @Html.DateTextBoxFor(m => m.PublishDate, Model.PublishDate, new Dictionary<string, object> { { "class", "bcms-editor-field-box bcms-datepicker" }, { "style", "width: 127px;" } })
+                        @Html.BcmsValidationMessageFor(m => m.PublishDate)
+                    </div>
+                </div>
+                <div class="bcms-input-field-holder">
+                    <div class="bcms-content-titles">Sort Order</div>
+                    <div class="bcms-input-box">
+                        @Html.TextBoxFor(m => m.SortOrder, new { @class = "bcms-editor-field-box" })
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

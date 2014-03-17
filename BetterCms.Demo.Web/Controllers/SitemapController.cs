@@ -36,6 +36,7 @@ namespace BetterCms.Demo.Web.Controllers
                     var request = new GetSitemapTreeRequest { SitemapId = sitemapId.Value, Data = new GetSitemapTreeModel { LanguageId = LanguageHelper.CurrentLanguageId} };
 
                     var response = api.Pages.Sitemap.Tree.Get(request);
+                    
                     if (response.Data.Count > 0)
                     {
                         menuItems = response.Data.Select(mi => new MenuItemViewModel { Caption = mi.Title, Url = mi.Url }).ToList();

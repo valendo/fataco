@@ -1,0 +1,48 @@
+﻿@using BetterCms.Module.Root.Content.Resources
+@using BetterCms.Module.Root.Mvc.Grids.Extensions
+@using BetterCms.Module.Root.Mvc.Grids.TableRenderers
+@using BetterCms.Module.Root.Mvc.Helpers
+@using BetterCMS.Module.News.Controllers
+@using BetterCMS.Module.News.ViewModels
+@using MvcContrib.UI.Grid
+@using Microsoft.Web.Mvc;
+@model BetterCms.Module.Root.ViewModels.SiteSettings.SearchableGridViewModel<CategoryViewModel>
+@{
+    Action<ColumnBuilder<CategoryViewModel>> columns = column =>
+    {
+        column.EditButtonColumn();
+
+        column.For(m => m.Name)
+            .Named("Name (vi)")
+            .SortColumnName("Name")
+            .Attributes(@class => "bcms-category-Name");
+        
+        column.For(m => m.Name_en)
+            .Named("Name (en)")
+            .SortColumnName("Name_en")
+            .Attributes(@class => "bcms-category-Name_en");
+
+        column.DeleteButtonColumn();
+    };
+}
+
+@using (Html.BeginForm<CategoryController>(f => f.Index(null), FormMethod.Post, new { @id = "bcms-categories-form", @class = "bcms-ajax-form" }))
+{
+    @Html.HiddenGridOptions(Model.GridOptions)
+    <div class="bcms-top-block-holder">
+        <div class="bcms-btn-links-main" id="bcms-create-category-button">Add New</div>
+        <div class="bcms-search-block">
+            @Html.TextBoxFor(m => m.SearchQuery, new { @class = "bcms-editor-field-box", @placeholder = "Search by name" })
+            <div class="bcms-btn-search" id="bcms-categories-search-btn"></div>
+        </div>
+        <div class="bcms-featured-grid bcms-clearfix">
+            @Html.RenderPaging(Model)
+        </div>
+    </div>
+
+    @Html.SiteSettingsMessagesBox("bcms-categories-messages")
+    @Html.Grid(Model.Items).Sort(Model.GridOptions).Columns(columns).Attributes(@class => "bcms-tables").RenderUsing(new EditableHtmlTableGridRenderer<CategoryViewModel>())
+}
+<script type="text/html" id="bcms-categories-list-row-template">
+    @Html.Grid(new List<CategoryViewModel> { new CategoryViewModel() }).Columns(columns).Attributes(@class => "bcms-tables").RenderUsing(new HtmlTableGridSingleRowRenderer<CategoryViewModel>())
+</script>

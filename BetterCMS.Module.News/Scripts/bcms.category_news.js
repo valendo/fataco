@@ -1,8 +1,8 @@
 ﻿/*jslint unparam: true, white: true, browser: true, devel: true */
 /*global bettercms */
 
-bettercms.define('bcms.category', ['bcms.jquery', 'bcms', 'bcms.modal', 'bcms.siteSettings', 'bcms.dynamicContent', 'bcms.role', 'bcms.media', 'bcms.messages', 'bcms.grid', 'bcms.ko.extenders', 'bcms.redirect','bcms.product'],
-    function ($, bcms, modal, siteSettings, dynamicContent, role, media, messages, grid, ko, redirect, product) {
+bettercms.define('bcms.category_news', ['bcms.jquery', 'bcms', 'bcms.modal', 'bcms.siteSettings', 'bcms.dynamicContent', 'bcms.role', 'bcms.media', 'bcms.messages', 'bcms.grid', 'bcms.ko.extenders', 'bcms.redirect','bcms.news'],
+    function ($, bcms, modal, siteSettings, dynamicContent, role, media, messages, grid, ko, redirect, news) {
         'use strict';
 
         var category = {},
@@ -29,12 +29,6 @@ bettercms.define('bcms.category', ['bcms.jquery', 'bcms', 'bcms.modal', 'bcms.si
                 loadEditCategoryUrl: null,
                 deleteCategoryUrl: null
             },
-            //globalization = {
-            //    categoriesListTabTitle: null,
-            //    categoriesAddNewTitle: null,
-            //    editCategoryTitle: null,
-            //    deleteCategoryConfirmMessage: null
-            //},
             categoriesContainer = null,
             categoryViewModel = null;
 
@@ -109,7 +103,7 @@ bettercms.define('bcms.category', ['bcms.jquery', 'bcms', 'bcms.modal', 'bcms.si
         /**
         * Opens site settings store section's categories and products tabs
         */
-        category.loadSiteSettingsStoreModule = function () {
+        category.loadSiteSettingsNewsModule = function () {
             var tabs = [],
                 onShow = function (container) {
                     var firstVisibleInputField = container.find('input[type=text],textarea,select').filter(':visible:first');
@@ -121,9 +115,9 @@ bettercms.define('bcms.category', ['bcms.jquery', 'bcms', 'bcms.modal', 'bcms.si
                     categoriesContainer = container;
                     initializeSiteSettingsCategoriesList();
                 }, onShow),
-                products = new siteSettings.TabViewModel("Products", product.links.loadSiteSettingsProductsUrl, product.initializeProductsList, onShow);
+                newsList = new siteSettings.TabViewModel("News", news.links.loadSiteSettingsNewsUrl, news.initializeNewsList, onShow);
 
-            tabs.push(products);
+            tabs.push(newsList);
             tabs.push(categories);
 
             siteSettings.initContentTabs(tabs);
@@ -259,7 +253,7 @@ bettercms.define('bcms.category', ['bcms.jquery', 'bcms', 'bcms.modal', 'bcms.si
         * Initializes category module
         */
         category.init = function () {
-            bcms.logger.debug('Initializing bcms.store module.');
+            bcms.logger.debug('Initializing bcms.news module.');
         };
 
         bcms.registerInit(category.init);

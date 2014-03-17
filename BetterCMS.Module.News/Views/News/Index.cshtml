@@ -1,0 +1,55 @@
+﻿@using BetterCms.Module.Root.Content.Resources
+@using BetterCms.Module.Root.Mvc.Grids.Extensions
+@using BetterCms.Module.Root.Mvc.Grids.TableRenderers
+@using BetterCms.Module.Root.Mvc.Helpers
+@using BetterCMS.Module.News.Controllers
+@using BetterCMS.Module.News.ViewModels
+@using MvcContrib.UI.Grid
+@using Microsoft.Web.Mvc;
+@model BetterCms.Module.Root.ViewModels.SiteSettings.SearchableGridViewModel<NewsViewModel>
+@{
+    Action<ColumnBuilder<NewsViewModel>> columns = column =>
+    {
+        column.EditButtonColumn();
+
+        column.For(m => string.Format("<img class=\"bcms-news-Image\" height=\"50px\" data-src=\"{0}\" src=\"{0}\"/>", (m.Image != null ? m.Image.ThumbnailUrl : "/file/bcms-pages/content/styles/images/bcms-no-image-2.png")))
+            .Named("Image")
+            .SortColumnName("Title")
+            .Encode(false);
+        
+        column.For(m => m.Title)
+            .Named("Title (vi)")
+            .SortColumnName("Title")
+            .Attributes(@class => "bcms-news-Title");
+
+        column.For(m => m.Title_en)
+            .Named("Title (en)")
+            .SortColumnName("Title_en")
+            .Attributes(@class => "bcms-news-Title_en");
+
+        column.DeleteButtonColumn();
+    };
+}
+
+@using (Html.BeginForm<NewsController>(f => f.Index(null), FormMethod.Post, new { @id = "bcms-news-form", @class = "bcms-ajax-form" }))
+{
+    @Html.HiddenGridOptions(Model.GridOptions)
+    <div class="bcms-top-block-holder">
+        <div class="bcms-btn-links-main" id="bcms-create-news-button">Add New</div>
+        <div class="bcms-search-block">
+            @Html.TextBoxFor(m => m.SearchQuery, new { @class = "bcms-editor-field-box", @placeholder = "Search by title" })
+            <div class="bcms-btn-search" id="bcms-news-search-btn"></div>
+        </div>
+        <div class="bcms-featured-grid bcms-clearfix">
+            @Html.RenderPaging(Model)
+            <!--Filter-->
+            @Html.Partial("~/Areas/bcms-news/Views/News/Partial/NewsFilterTemplate.cshtml", Model)
+        </div>
+    </div>
+
+    @Html.SiteSettingsMessagesBox("bcms-news-messages")
+    @Html.Grid(Model.Items).Sort(Model.GridOptions).Columns(columns).Attributes(@class => "bcms-tables").RenderUsing(new EditableHtmlTableGridRenderer<NewsViewModel>())
+}
+<script type="text/html" id="bcms-news-list-row-template">
+    @Html.Grid(new List<NewsViewModel> { new NewsViewModel() }).Columns(columns).Attributes(@class => "bcms-tables").RenderUsing(new HtmlTableGridSingleRowRenderer<NewsViewModel>())
+</script>
