@@ -14,6 +14,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using BetterCMS.Module.News.ViewModels.Filter;
+using BetterCMS.Module.News.Commands.Widget;
 
 
 namespace BetterCMS.Module.News.Controllers
@@ -121,6 +122,16 @@ namespace BetterCMS.Module.News.Controllers
             }
 
             return WireJson(success);
+        }
+
+        //frontend widgets
+        public ActionResult ListNews(string id)
+        {
+            Guid CategoryId = Guid.Empty;
+            Guid.TryParse(id, out CategoryId);
+            
+            var model = GetCommand<GetNewsListByCategoryIdCommand>().ExecuteCommand(CategoryId);
+            return View(model);
         }
     }
 }

@@ -20,6 +20,7 @@ namespace BetterCms.Demo.Web
 
             //routes.MapRoute("news-list", "news/{categoryName}/{page}", new { area = string.Empty, controller = "News", action = "List", categoryName = UrlParameter.Optional, page = UrlParameter.Optional }, new[] { "BetterCms.Demo.Web.Controllers" });
             //routes.MapRoute("news-list", "news", new { area = string.Empty, controller = "News", action = "List" }, new[] { "BetterCms.Demo.Web.Controllers" });
+            //routes.MapRoute("news-list", "news/latest/{category}", new { area = string.Empty, controller = "News", action = "ListNews", category = UrlParameter.Optional }, new[] { "BetterCMS.Module.News.Controllers" });
         }
     }
 }

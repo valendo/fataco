@@ -4,7 +4,6 @@ using BetterCms.Core.Modules.Projections;
 using BetterCms.Core.Mvc.Extensions;
 using BetterCms.Module.Root;
 using BetterCMS.Module.News.Registration;
-using BetterCMS.Module.News.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -57,10 +56,9 @@ namespace BetterCMS.Module.News
                 };
         }
 
-        public override void RegisterModuleTypes(ModuleRegistrationContext context, ContainerBuilder containerBuilder)
+        public override void RegisterCustomRoutes(ModuleRegistrationContext context, ContainerBuilder containerBuilder)
         {
-            containerBuilder.RegisterType<DefaultNewsService>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            //containerBuilder.RegisterType<DefaultNewsService>().As<INewsService>().InstancePerLifetimeScope().PropertiesAutowired(PropertyWiringOptions.PreserveSetValues);
+            //context.MapRoute("news-list",AreaName+ "/{}");
         }
 
         public override IEnumerable<BetterCms.Core.Modules.Projections.IPageActionProjection> RegisterSiteSettingsProjections(Autofac.ContainerBuilder containerBuilder)

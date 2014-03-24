@@ -1,0 +1,7 @@
+﻿@model List<BetterCMS.Module.News.ViewModels.NewsViewModel>
+
+<h1>Here is news list content</h1>
+@foreach (BetterCMS.Module.News.ViewModels.NewsViewModel item in Model)
+{
+    <h3>@item.Title</h3>
+}
