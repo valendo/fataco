@@ -10,7 +10,7 @@ namespace BetterCMS.Module.Store.Registration
 {
     public class CategoryJsModuleIncludeDescriptor : JsIncludeDescriptor
     {
-        public CategoryJsModuleIncludeDescriptor(ModuleDescriptor module) : base(module, "bcms.category")
+        public CategoryJsModuleIncludeDescriptor(ModuleDescriptor module) : base(module, "bcms.product.category")
         {
             Links = new IActionProjection[]
             {

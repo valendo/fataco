@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>BetterCms.Module.Pages</id>
+    <version>1.5.2</version>
+    <authors>Devbridge</authors>
+    <owners>Devbridge</owners>
+    <licenseUrl>http://www.bettercms.com/license.txt</licenseUrl>
+    <projectUrl>http://www.bettercms.com/</projectUrl>
+    <iconUrl>http://www.bettercms.com/nuget-logo.png</iconUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Pages module for BetterCMS. Better CMS is publishing focused and developer friendly .NET Open source CMS.</description>
+    <copyright>Better CMS is licensed under BETTER CMS LICENSE AGREEMENT (http://www.bettercms.com/license.txt).</copyright>
+    <dependencies>
+      <dependency id="BetterCms.Core" version="[1.5.2]" />
+      <dependency id="BetterCms.Module.Root" version="[1.5.2]" />
+      <dependency id="BetterCms.Module.MediaManager" version="[1.5.2]" />
+    </dependencies>
+  </metadata>
+</package>

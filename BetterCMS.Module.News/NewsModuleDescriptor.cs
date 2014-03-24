@@ -4,10 +4,13 @@ using BetterCms.Core.Modules.Projections;
 using BetterCms.Core.Mvc.Extensions;
 using BetterCms.Module.Root;
 using BetterCMS.Module.News.Registration;
+using BetterCMS.Module.News.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Autofac;
+using System.Diagnostics.CodeAnalysis;
 
 namespace BetterCMS.Module.News
 {
@@ -33,10 +36,10 @@ namespace BetterCMS.Module.News
             }
         }
 
-        private readonly CategoryJsModuleIncludeDescriptor storeJsModuleIncludeDescriptor;
+        private readonly CategoryJsModuleIncludeDescriptor newsJsModuleIncludeDescriptor;
         public NewsModuleDescriptor(ICmsConfiguration configuration) : base(configuration)
         {
-            storeJsModuleIncludeDescriptor = new CategoryJsModuleIncludeDescriptor(this);
+            newsJsModuleIncludeDescriptor = new CategoryJsModuleIncludeDescriptor(this);
         }
 
         //public override IEnumerable<CssIncludeDescriptor> RegisterCssIncludes()
@@ -46,39 +49,18 @@ namespace BetterCMS.Module.News
 
         public override IEnumerable<JsIncludeDescriptor> RegisterJsIncludes()
         {
-            return new[]
+            return new []
                 {
-                    storeJsModuleIncludeDescriptor,
+                    newsJsModuleIncludeDescriptor,
                     new NewsJsModuleIncludeDescriptor(this),
                     new JsIncludeDescriptor(this, "bcms.news.filter")
                 };
         }
 
-        private string minJsPath;
-        private string minCssPath;
-
-        public override string BaseModulePath
+        public override void RegisterModuleTypes(ModuleRegistrationContext context, ContainerBuilder containerBuilder)
         {
-            get
-            {
-                return VirtualPath.Combine("/", "file", AreaName);
-            }
-        }
-
-        public override string MinifiedJsPath
-        {
-            get
-            {
-                return minJsPath ?? (minJsPath = VirtualPath.Combine(JsBasePath, string.Format("bcms.{0}.js", Name.ToLowerInvariant())));
-            }
-        }
-
-        public override string MinifiedCssPath
-        {
-            get
-            {
-                return minCssPath ?? (minCssPath = VirtualPath.Combine(CssBasePath, string.Format("bcms.{0}.css", Name.ToLowerInvariant())));
-            }
+            containerBuilder.RegisterType<DefaultNewsService>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            //containerBuilder.RegisterType<DefaultNewsService>().As<INewsService>().InstancePerLifetimeScope().PropertiesAutowired(PropertyWiringOptions.PreserveSetValues);
         }
 
         public override IEnumerable<BetterCms.Core.Modules.Projections.IPageActionProjection> RegisterSiteSettingsProjections(Autofac.ContainerBuilder containerBuilder)
@@ -86,7 +68,7 @@ namespace BetterCMS.Module.News
             return new IPageActionProjection[]
             {
                 new SeparatorProjection(9999), 
-                new LinkActionProjection(storeJsModuleIncludeDescriptor, page => "loadSiteSettingsNewsModule")
+                new LinkActionProjection(newsJsModuleIncludeDescriptor, page => "loadSiteSettingsNewsModule")
                     {
                         Order = 9999,
                         Title = page => "News",

@@ -7,6 +7,7 @@ using BetterCMS.Module.Store.Registration;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Web;
 
@@ -49,6 +50,7 @@ namespace BetterCMS.Module.Store
             };
         }
 
+        [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1305:FieldNamesMustNotUseHungarianNotation", Justification = "Reviewed. Suppression is OK here.")]
         public override IEnumerable<JsIncludeDescriptor> RegisterJsIncludes()
         {
             return new[]
@@ -58,33 +60,6 @@ namespace BetterCMS.Module.Store
                     new JsIncludeDescriptor(this, "bcms.product.filter"),
                     new JsIncludeDescriptor(this, "spectrum")
                 };
-        }
-
-        private string minJsPath;
-        private string minCssPath;
-
-        public override string BaseModulePath
-        {
-            get
-            {
-                return VirtualPath.Combine("/", "file", AreaName);
-            }
-        }
-
-        public override string MinifiedJsPath
-        {
-            get
-            {
-                return minJsPath ?? (minJsPath = VirtualPath.Combine(JsBasePath, string.Format("bcms.{0}.js", Name.ToLowerInvariant())));
-            }
-        }
-
-        public override string MinifiedCssPath
-        {
-            get
-            {
-                return minCssPath ?? (minCssPath = VirtualPath.Combine(CssBasePath, string.Format("bcms.{0}.css", Name.ToLowerInvariant())));
-            }
         }
 
         public override IEnumerable<BetterCms.Core.Modules.Projections.IPageActionProjection> RegisterSiteSettingsProjections(Autofac.ContainerBuilder containerBuilder)

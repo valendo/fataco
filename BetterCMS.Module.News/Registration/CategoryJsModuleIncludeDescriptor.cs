@@ -10,15 +10,17 @@ namespace BetterCMS.Module.News.Registration
 {
     public class CategoryJsModuleIncludeDescriptor : JsIncludeDescriptor
     {
-        public CategoryJsModuleIncludeDescriptor(ModuleDescriptor module) : base(module, "bcms.category_news")
+        public CategoryJsModuleIncludeDescriptor(ModuleDescriptor module)
+            :base(module, "bcms.news.category")
         {
             Links = new IActionProjection[]
-            {
-                new JavaScriptModuleLinkTo<CategoryController>(this, "loadSiteSettingsCategoriesUrl", c => c.Index(null)),
-                new JavaScriptModuleLinkTo<CategoryController>(this, "loadEditCategoryUrl", c=> c.EditCategory("{0}")), 
-                new JavaScriptModuleLinkTo<CategoryController>(this, "loadCreateCategoryUrl", c=> c.CreateCategory()), 
-                new JavaScriptModuleLinkTo<CategoryController>(this, "deleteCategoryUrl", c => c.DeleteCategory("{0}", "{1}")),
-            };
+                        {
+                            new JavaScriptModuleLinkTo<CategoryController>(this, "loadSiteSettingsCategoriesUrl", c => c.Index(null)),
+                            new JavaScriptModuleLinkTo<CategoryController>(this, "loadEditCategoryUrl", c=> c.EditCategory("{0}")), 
+                            new JavaScriptModuleLinkTo<CategoryController>(this, "loadCreateCategoryUrl", c=> c.CreateCategory()), 
+                            new JavaScriptModuleLinkTo<CategoryController>(this, "deleteCategoryUrl", c => c.DeleteCategory("{0}", "{1}"))
+                        };
         }
+
     }
 }

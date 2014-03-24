@@ -42,7 +42,7 @@ namespace BetterCms.Demo.Web.Controllers
                 }
 
                 var pages = api.Blog.BlogPosts.Get(new GetBlogPostsRequest { Data = request });
-
+                
                 posts = pages.Data.Items.Select(
                         x => new BlogItem
                         {
