@@ -12,9 +12,9 @@ body, html
 
 body
 {
-    font-size: 12px;
+    font-size: 14px;
     line-height: 22px;
-    font-family: normal 12px/1.1em "Century Gothic","Apple Gothic",futura,'URW Gothic L';
+    font-family: normal 14px/1.1em "Century Gothic","Apple Gothic",futura,'URW Gothic L';
     color: #828282;
     background: url(images/body.png) repeat 0 0;
     min-width: 100%;
@@ -116,7 +116,7 @@ article, aside, details, footer, header, menu, nav, section
 {
     height: 110px;
     padding-top: 14px;
-    padding-left: 33px;
+    padding-left: 20px;
     padding-right: 17px;
     background-color: #6d276f;
 }
@@ -352,7 +352,7 @@ article, aside, details, footer, header, menu, nav, section
 
 .main
 {
-    padding: 47px 0px 0px;
+    padding: 20px 0px 0px;
     background: url(images/main.png) repeat-x 0 0;
 }
 
@@ -604,7 +604,6 @@ p.author
 
 #footer
 {
-    
     background: url(images/slide-img1.jpg) no-repeat center 0px;
 }
 
@@ -1442,6 +1441,17 @@ p.author
     color: #6d276f;
 }
 
+.heading3
+{
+    background: url(images/square_bullet.jpg) no-repeat 0 40%;
+    padding-left: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    border-radius: 7px;
+    color: #6d276f;
+}
+
 .flag_box
 {
     color: White;
@@ -1483,7 +1493,7 @@ p.author
 {
     float: left;
     width: 280px;
-    padding:0 22px ;
+    padding: 0 22px;
 }
 
 .m-item-title
@@ -1518,15 +1528,60 @@ p.author
 {
     float: left;
     height: 320px;
-    width: 1px; 
-    background:url("images/nav-border.png") repeat-y scroll right 0 transparent
+    width: 1px;
+    background: url("images/nav-border.png") repeat-y scroll right 0 transparent;
 }
-.flash_box {
-float: left;
-margin: 15px 0 0 20px;
+
+.flash_box
+{
+    float: left;
+    margin: 15px 0 0 20px;
 }
 
 .jcarousel ul li img
 {
-    height:180px;
+    height: 180px;
 }
+/*new slider*/
+  #slideshow
+        {
+            position: relative;
+            height: 360px;
+            width: 730px;
+            float: right;
+            margin-top: 0; 
+            overflow: hidden;
+        }
+
+            #slideshow IMG
+            {
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 8;
+                opacity: 0.0;
+            }
+
+                #slideshow IMG.active
+                {
+                    z-index: 10;
+                    opacity: 1.0;
+                }
+
+                #slideshow IMG.last-active
+                {
+                    z-index: 9;
+                }
+                /*end new slider*/
+.intro_about
+{
+    width: 264px;
+    float: left;
+    background: url(images/slide-img1.jpg)no-repeat;
+    color: white;
+    padding: 10px 10px 10px 20px;
+    font-size: 14px;
+    height: 340px;
+    line-height: 1.27;
+}
+

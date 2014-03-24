@@ -21,6 +21,34 @@
     <link href="css/jcarousel.responsive.css" rel="stylesheet" />
     <script src="js/jquery.jticker.js"></script>
     <script type="text/ecmascript">
+        function slideSwitch() {
+            var $active = $('#slideshow IMG.active');
+
+            if ($active.length == 0) $active = $('#slideshow IMG:last');
+
+            // use this to pull the images in the order they appear in the markup
+            var $next = $active.next().length ? $active.next()
+                : $('#slideshow IMG:first');
+
+            // uncomment the 3 lines below to pull the images in random order
+
+            // var $sibs  = $active.siblings();
+            // var rndNum = Math.floor(Math.random() * $sibs.length );
+            // var $next  = $( $sibs[ rndNum ] );
+
+
+            $active.addClass('last-active');
+
+            $next.css({ opacity: 0.0 })
+                .addClass('active')
+                .animate({ opacity: 1.0 }, 1000, function () {
+                    $active.removeClass('active last-active');
+                });
+        }
+
+        $(function () {
+            setInterval("slideSwitch()", 5000);
+        });
         $(function () {
             $('.jcarousel').jcarousel({
                 // Configuration goes here
@@ -33,6 +61,7 @@
 
         });
     </script>
+    
 </head>
 <body>
     <!-- wraper -->
@@ -51,22 +80,28 @@
                             <span id="dnn_header_lblQuotation1">
                                 <div>
                                     <p style="font-size: 13pt;">"FATACO – NGƯỜI BẠN THÂN THIẾT CỦA MỌI GIA ĐÌNH"</p>
-                                    <p style="text-align: right; margin-top: 10px; font-size: 7pt;"><strong>Sách 15 năm
-                                        quan hệ kinh tế thương mại Việt Nam – Hoa kỳ</strong></p>
+                                    <p style="text-align: right; margin-top: 10px; font-size: 7pt;">
+                                        <strong>Sách 15 năm
+                                        quan hệ kinh tế thương mại Việt Nam – Hoa kỳ</strong>
+                                    </p>
                                 </div>
                             </span>
                             <span id="dnn_header_lblQuotation2">
                                 <div>
                                     <p style="font-size: 13pt;">"ĐỊA CHỈ CỦA LÒNG TIN VÀ CHẤT LƯỢNG"</p>
-                                    <p style="text-align: right; margin-top: 10px; font-size: 7pt;"><strong>Vietnam business
-                                        forum</strong></p>
+                                    <p style="text-align: right; margin-top: 10px; font-size: 7pt;">
+                                        <strong>Vietnam business
+                                        forum</strong>
+                                    </p>
                                 </div>
                             </span>
                             <span id="dnn_header_lblQuotation3">
                                 <div>
                                     <p style="font-size: 13pt;">"NIỀM TỰ HÀO CHO NGÀNH NHỰA VIỆT NAM"</p>
-                                    <p style="text-align: right; margin-top: 10px; font-size: 7pt;"><strong>Tạp chí Thương
-                                        hiệu Việt</strong></p>
+                                    <p style="text-align: right; margin-top: 10px; font-size: 7pt;">
+                                        <strong>Tạp chí Thương
+                                        hiệu Việt</strong>
+                                    </p>
                                 </div>
                             </span>
 
@@ -89,13 +124,13 @@
                             <div class="clear"></div>
                         </div>
 
-                        <div style="clear:both"></div>
+                        <div style="clear: both"></div>
                         <div>
-                        <form method="post">
-                            <span class="field">
-                                <input type="text" class="field" value="keywords here ..." title="keywords here ..." /></span>
-                            <input type="submit" class="search-btn" value="" />
-                        </form>
+                            <form method="post">
+                                <span class="field">
+                                    <input type="text" class="field" value="keywords here ..." title="keywords here ..." /></span>
+                                <input type="submit" class="search-btn" value="" />
+                            </form>
                         </div>
                     </div>
                     <!-- end of search -->
@@ -105,17 +140,17 @@
                 <nav id="navigation">
                     <a href="#" class="nav-btn">HOME<span class="arr"></span></a>
                     <ul>
-                        <li class="active"><a href="#">Trang chủ</a></li>
-                        <li><a href="#">Giới thiệu</a></li>
-                        <li><a href="#">Sản phẩm</a></li>
-                        <li><a href="#">Tin tức & Sự kiện</a></li>
-                        <li><a href="#">Hỏi đáp</a></li>
-                        <li><a href="#">Liên hệ</a></li>
+                        <li class="active"><a href="home.html">Trang chủ</a></li>
+                        <li><a href="intro.html">Giới thiệu</a></li>
+                        <li><a href="product.html">Sản phẩm</a></li>
+                        <li><a href="news.html">Tin tức & Sự kiện</a></li>
+                        <li><a href="faq.html">Hỏi đáp</a></li>
+                        <li><a href="contact.html">Liên hệ</a></li>
                     </ul>
                 </nav>
                 <!-- end of navigation -->
                 <!-- slider -->
-                <div class="m-slider">
+                <!--<div class="m-slider">
                     <div class="slider-holder">
                         <span class="slider-shadow"></span>
                         <span class="slider-b"></span>
@@ -193,8 +228,50 @@
                             </ul>
                         </div>
                     </div>
-                </div>
+                </div>-->
+
+
                 <!-- end of slider -->
+
+                <div>
+                    <div class="intro_about">
+                        <h2>FATACO</h2>
+                        <br />
+                        <p style="color: #fff">
+                            <strong>CHUYÊN SẢN XUẤT VÀ CUNG CẤP</strong>
+                            <br />
+                            <p>
+                                - Các mặt hàng bằng nhựa MELAMINE cao cấp như: chén, dĩa, tô, khay, thố, muỗng,
+                                nĩa, cà mên, vá súp, gạt tàn thuốc, ly tách....
+                            </p>
+                            <br />
+                            <p>
+                                Các mặt hàng nhựa ACRYLIC, PC trong suốt như thủy tinh, ống nhựa PVC cao cấp và
+                                các mặt hàng nhựa gia dụng và nhựa công nghiệp
+                                                bằng plastic (PP, PE, ABS, etc.)
+                            </p>
+                            <br />
+                            <p>
+                                Sản phẩm của Công ty đã được Công ty SGS Taiwan; Tổ chức NSF Quốc tế; Tổng Cục Tiêu
+                                Chuẩn, Đo Lường Chất Lượng 3 và Chi Cục Đo Lường Chất Lượng TP.HCM kiểm nghiệm và
+                                công nhận không gây độc hại khi tiếp xúc với thực phẩm.
+                            </p>
+                        </p>
+                    </div>
+                    <div style="" id="slideshow">
+                        <img src="images/slider/harmony_collection.jpg" class="active"> 
+                        <img src="images/slider/nami_collection.jpg" >
+                        <img src="images/slider/platewise_collection.jpg" >
+                        <img src="images/slider/drinkwise_collection.jpg" >
+                        <img src="images/slider/spiral_collection.jpg" >
+                        <img src="images/slider/stainless_steel_collection.jpg" >
+                        <img src="images/slider/palm_wood_collection.jpg">
+                        <img src="images/slider/patina_collection.jpg">
+                        <img src="images/slider/barware_collection.jpg">
+                        <img src="images/slider/porcelain_accessories_collection.jpg">
+                    </div>
+                    <div style="clear: both;"></div>
+                </div>
                 <!-- main -->
                 <div class="main">
 
@@ -206,8 +283,10 @@
                                 <a href="#">
                                     <img src="images/product/m0.jpg" /></a>
                             </div>
-                            <div class="m-item-desc">Melamine: là loại nhựa có độ bền cao, chịu nhiệt tốt khả năng
-                                chống thấm nước tốt...</div>
+                            <div class="m-item-desc">
+                                Melamine: là loại nhựa có độ bền cao, chịu nhiệt tốt khả năng
+                                chống thấm nước tốt...
+                            </div>
 
                         </div>
                         <div class="vline"></div>
@@ -217,8 +296,10 @@
                                 <a href="#">
                                     <img src="images/product/a0.jpg" /></a>
                             </div>
-                            <div class="m-item-desc">Acrylic: là loại nhựa trong suốt như thủy tinh, có độ bền cao,
-                                ở Việt Nam một số người gọi là mica,...</div>
+                            <div class="m-item-desc">
+                                Acrylic: là loại nhựa trong suốt như thủy tinh, có độ bền cao,
+                                ở Việt Nam một số người gọi là mica,...
+                            </div>
 
                         </div>
                         <div class="vline"></div>
@@ -228,8 +309,10 @@
                                 <a href="#">
                                     <img src="images/product/n0.jpg" /></a>
                             </div>
-                            <div class="m-item-desc">Nhựa gia dụng: gồm các sản phẩm được sản xuất từ nhựa plastic,
-                                pp, pe,...</div>
+                            <div class="m-item-desc">
+                                Nhựa gia dụng: gồm các sản phẩm được sản xuất từ nhựa plastic,
+                                pp, pe,...
+                            </div>
 
                         </div>
                         <div style="clear: both;"></div>

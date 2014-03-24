@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en" style="-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0" />
+    <title>FATOCO layout</title>
+    <link rel="shortcut icon" type="image/x-icon" href="css/images/favicon.ico" />
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="all" />
+
+
+    <script src="js/jquery-1.8.0.min.js" type="text/javascript"></script>
+    <!--[if lt IE 9]>
+		<script src="js/modernizr.custom.js"></script>
+	<![endif]-->
+    <script src="js/jquery.flexslider-min.js" type="text/javascript"></script>
+    <script src="js/functions.js" type="text/javascript"></script>
+
+    <script src="js/jquery.jcarousel.min.js"></script>
+    <script src="js/jcarousel.responsive.js"></script>
+    <link href="css/jcarousel.responsive.css" rel="stylesheet" />
+    <script src="js/jquery.jticker.js"></script>
+    <link href="css/add.css" rel="stylesheet" />
+    <script src="js/colorbox/jquery.colorbox-min.js"></script>
+    <link href="js/colorbox/colorbox.css" rel="stylesheet" />
+    <script type="text/ecmascript">
+        $(function () {
+            $(".group1").colorbox({ rel: 'group1' });
+            $('.jcarousel').jcarousel({
+                // Configuration goes here
+            });
+            $("#ticker").ticker({
+                cursorList: " ",
+                rate: 10,
+                delay: 4000
+            }).trigger("play");
+            $('.VMENU_1').hide();
+            $('.VMENU_0').children('li').children('a').click(function () {
+                $('.VMENU_1').hide('slow');
+                $(this).siblings('ul').show('slow');
+            })
+            $('.VMENU_1').children('li').children('a').click(function () {
+                $('.VMENU_2').hide('slow');
+                $(this).siblings('ul').show('slow');
+            })
+        });
+    </script>
+</head>
+<body>
+    <!-- wraper -->
+    <div id="wrapper">
+        <!-- shell -->
+        <div class="shell">
+            <!-- container -->
+            <div class="container">
+                <!-- header -->
+                <header id="header">
+                    <h1 id="logo"><a href="#">Curve</a></h1>
+
+                    <div class="flash_box">
+                        <div id="ticker" style="width: 310px; height: 80px; color: White; line-height: normal;
+                            font-weight: bold; font-style: italic;">
+                            <span id="dnn_header_lblQuotation1">
+                                <div>
+                                    <p style="font-size: 13pt;">"FATACO – NGƯỜI BẠN THÂN THIẾT CỦA MỌI GIA ĐÌNH"</p>
+                                    <p style="text-align: right; margin-top: 10px; font-size: 7pt;">
+                                        <strong>Sách 15 năm
+                                        quan hệ kinh tế thương mại Việt Nam – Hoa kỳ</strong>
+                                    </p>
+                                </div>
+                            </span>
+                            <span id="dnn_header_lblQuotation2">
+                                <div>
+                                    <p style="font-size: 13pt;">"ĐỊA CHỈ CỦA LÒNG TIN VÀ CHẤT LƯỢNG"</p>
+                                    <p style="text-align: right; margin-top: 10px; font-size: 7pt;">
+                                        <strong>Vietnam business
+                                        forum</strong>
+                                    </p>
+                                </div>
+                            </span>
+                            <span id="dnn_header_lblQuotation3">
+                                <div>
+                                    <p style="font-size: 13pt;">"NIỀM TỰ HÀO CHO NGÀNH NHỰA VIỆT NAM"</p>
+                                    <p style="text-align: right; margin-top: 10px; font-size: 7pt;">
+                                        <strong>Tạp chí Thương
+                                        hiệu Việt</strong>
+                                    </p>
+                                </div>
+                            </span>
+
+                        </div>
+                    </div>
+
+
+                    <!-- search -->
+                    <div class="search">
+
+                        <div class="flag_box">
+                            <div class="flag_en">
+                                <a href="javascript:__doPostBack('dnn$header$link_en','')" id="dnn_header_link_en">English</a>
+                            </div>
+                            <div class="flag_saperator">|</div>
+                            <div class="flag_vi">
+                                <a href="javascript:__doPostBack('dnn$header$link_vi','')" id="dnn_header_link_vi">Tiếng
+                                    Việt</a>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+
+                        <div style="clear: both"></div>
+                        <div>
+                            <form method="post">
+                                <span class="field">
+                                    <input type="text" class="field" value="keywords here ..." title="keywords here ..." /></span>
+                                <input type="submit" class="search-btn" value="" />
+                            </form>
+                        </div>
+                    </div>
+                    <!-- end of search -->
+                </header>
+                <!-- end of header -->
+                <!-- navigation -->
+                <nav id="navigation">
+                    <a href="#" class="nav-btn">HOME<span class="arr"></span></a>
+                    <ul>
+                        <li class="active"><a href="home.html">Trang chủ</a></li>
+                        <li><a href="intro.html">Giới thiệu</a></li>
+                        <li><a href="product.html">Sản phẩm</a></li>
+                        <li><a href="news.html">Tin tức & Sự kiện</a></li>
+                        <li><a href="faq.html">Hỏi đáp</a></li>
+                        <li><a href="contact.html">Liên hệ</a></li>
+                    </ul>
+                </nav>
+                <!-- end of navigation -->
+                <!-- main -->
+                <div class="main">
+                    <section>
+                        <div class="row">
+                            <div class="paneLeft">
+                                <div id="VMENU709487940" class="VMENU">
+                                    <ul class="VMENU_0 VMENU_0_709487940 reset">
+                                        <li><a href="#" class="a_s"><span class="s">Giới thiệu</span></a>
+
+                                        </li>
+                                        <li class="d"></li>
+                                        <li><a href="#"><span>Giải thưởng</span></a>
+
+                                        </li>
+                                        <li class="d"></li>
+                                        <li><a href="#"><span>Hình ảnh công ty</span></a>
+
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="paneRight">
+                                <div class="heading3">Giới thiệu</div>
+                                <div>
+                                    <div class="detail_box">
+                                        <div class="fataco">
+                                            <br>
+                                            <p style="margin: 0in 0in 3.75pt; text-align: left;"><span style="font-size: 13px;">
+                                                <strong><span style="font-size: 13px; color: #000000;">Công ty TNHH TM-SX Phát Thành</span></strong><strong><span
+                                                    style="font-size: 13px; color: #000000;"> (FATACO)</span> </strong>được thành
+                                                lập vào 23 tháng 10 năm 1992.</span></p>
+                                            <br>
+                                            <div>
+                                                <h2>CHUYÊN SẢN XUẤT VÀ CUNG CẤP<br>
+                                                    <br>
+                                                </h2>
+                                                <p>
+                                                    <span class="Apple-tab-span" style="white-space: pre;"></span>- Các mặt hàng bằng
+                                                    nhựa MELAMINE cao cấp như: chén, dĩa, tô, khay, thố, muỗng, nĩa, cà mên, vá súp,
+                                                    gạt tàn thuốc, ly tách các loại với mẫu mã đa dạng.<br>
+                                                    <br>
+                                                </p>
+                                                <p>
+                                                    <span class="Apple-tab-span" style="white-space: pre;"></span>- Các mặt hàng nhựa
+                                                    ACRYLIC, PC trong suốt như thủy tinh, ống nhựa PVC cao cấp và các mặt hàng nhựa
+                                                    gia dụng và nhựa công nghiệp bằng plastic (PP, PE, ABS, etc.)<br>
+                                                    <br>
+                                                </p>
+                                            </div>
+                                            <div>
+                                                <h2>NĂNG LỰC SẢN XUẤT</h2>
+                                                <br>
+                                                <p><span class="Apple-tab-span" style="white-space: pre;"></span>- Nhà máy sản xuất
+                                                    chính tọa lạc tại 2909, Quốc Lộ 1A, phường Tân Thới Nhất, Quận 12, TP. Hồ Chí Minh
+                                                    với tổng diện tích rộng trên 50,000 mét vuông với đội ngũ nhân viên lành nghề và
+                                                    vẫn đang được tiếp tục đào tạo nâng cao tay nghề và trình độ chuyên môn để đáp ứng
+                                                    yêu cầu ngày càng cao của khách hàng.</p>
+                                                <br>
+                                                <p><span class="Apple-tab-span" style="white-space: pre;"></span>- 300 chuyền máy chuyên
+                                                    sản xuất những sản phẩm nhựa MELAMINE cao cấp với trên 1,000 khuôn khác nhau và
+                                                    80 máy ép phun từ 80 tấn đến 2000 tấn.</p>
+                                                <br>
+                                                <p><span class="Apple-tab-span" style="white-space: pre;"></span>- 1 dàn dây chuyền
+                                                    sản xuất ống nhựa PVC.</p>
+                                            </div>
+                                            <br>
+                                            <div>
+                                                <h2>THỊ TRƯỜNG</h2>
+                                                <br>
+                                                <p><span class="Apple-tab-span" style="white-space: pre;"></span>- Sản phẩm đã xuất
+                                                    khẩu sang các nước: Úc, Mỹ, Nga, Canada, Thụy Điển, Anh, Pháp, Campuchia, Thái Lan,
+                                                    Lào, Tân Tây Lan, Indonesia, Nhật, Malaysia, Hà Lan, Na Uy, Đức, Singapore…</p>
+                                            </div>
+                                            <br>
+                                            <div>
+                                                <h2>CHẤT LƯỢNG SẢN PHẨM</h2>
+                                                <br>
+                                                <p><span class="Apple-tab-span" style="white-space: pre;"></span>- Sản phẩm của Công
+                                                    ty đã được Công ty SGS Taiwan; Tổ chức NSF Quốc tế; Tổng Cục Tiêu Chuẩn, Đo Lường
+                                                    Chất Lượng 3 và Chi Cục Đo Lường Chất Lượng TP.HCM kiểm nghiệm và công nhận không
+                                                    gây độc hại khi tiếp xúc với thực phẩm. </p>
+                                            </div>
+                                            <br>
+                                            <div>
+                                                <p><span class="Apple-tab-span" style="white-space: pre;"></span>-&nbsp;Từ ngày thành
+                                                    lập cho đến nay, công ty chúng tôi không ngừng phấn đấu nâng cao chất lượng và hình
+                                                    thức sản phẩm, cũng như đầu tư nâng cao công nghệ và tay nghề để ngày càng thỏa
+                                                    mãn thị hiếu người tiêu dùng trong nước và xuất khẩu để xứng đáng với những gì mà
+                                                    người tiêu dùng đã tin cậy và bình chọn cho sản phẩm của chúng tôi là hàng Việt
+                                                    Nam chất lượng cao từ năm 2000 cho đến ngày nay.</p>
+                                                <br>
+                                                <p><span><span style="white-space: pre;">&nbsp;  </span><em style="font-size: 14px;">
+                                                    Mọi chi tiết xin quí khách vui lòng liên hệ: </em></span></p>
+                                            </div>
+                                            <br>
+                                            <table>
+                                                <tbody>
+                                                    <tr>
+                                                        <td valign="top">
+                                                            <table>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td valign="top" colspan="2">
+                                                                            <h1>Trụ Sở Chính
+                                                                                <br>
+                                                                                <br>
+                                                                            </h1>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td valign="top"><strong>Địa Chỉ:
+                                                                            <br>
+                                                                        </strong></td>
+                                                                        <td>41 Đội Cung, Phường 11, Quận 11, TP. Hồ Chí Minh, Việt Nam
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td valign="top"><strong>SDT: </strong></td>
+                                                                        <td>
+                                                                            <p>(+84)-8-3962 9026 - (+84)-8-3962 9692</p>
+                                                                            <p>(+84)-8-3962 9304 - (+84)-8-3962 9864</p>
+                                                                            <p>(+84)-8-3858 1990 - (+84)-8-3858 4473</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td valign="top"><strong>Fax:
+                                                                            <br>
+                                                                        </strong></td>
+                                                                        <td>(+84)-8-3962 9233</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td valign="top"><strong>Email: </strong></td>
+                                                                        <td>fataco@hcm.fpt.vn</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td valign="top"><strong>Website: </strong></td>
+                                                                        <td>www.fataco.com</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </td>
+                                                        <td>
+                                                            <img alt="" src="images/company.jpg">
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+
+                    </section>
+
+
+
+                </div>
+                <!-- end of main -->
+                <div class="socials">
+                    <div class="socials-inner">
+                        <h3>Follow us</h3>
+                        <ul>
+                            <li><a href="#" class="facebook-ico"><span></span>Facebook</a></li>
+                            <li><a href="#" class="twitter-ico"><span></span>Twitter</a></li>
+                            <li><a href="#" class="rss-feed-ico"><span></span>Rss-feed</a></li>
+                            <li><a href="#" class="myspace-ico"><span></span>myspace</a></li>
+                            <li><a href="#" class="john-doe-123-ico"><span></span>john.doe.123</a></li>
+                        </ul>
+                        <div class="cl">&nbsp;</div>
+                    </div>
+                </div>
+                <div id="footer">
+                    <div class="footer-cols">
+                        <div class="col">
+                            <h2>About Us</h2>
+                            <ul>
+                                <li><a href="#">Company profile</a></li>
+                                <li><a href="#">Awards</a></li>
+                                <li><a href="#">Company Picture</a></li>
+
+                            </ul>
+                        </div>
+                        <div class="col">
+                            <h2>Product</h2>
+                            <ul>
+                                <li><a href="#">Melamine</a></li>
+                                <li><a href="#">Plastic</a></li>
+                                <li><a href="#">Acrylic</a></li>
+
+                            </ul>
+                        </div>
+                        <div class="col">
+                            <h2>News & Event</h2>
+                            <ul>
+                                <li><a href="#">Industry</a></li>
+                                <li><a href="#">Company</a></li>
+                            </ul>
+                        </div>
+                        <div class="col">
+                            <h2>Q & A</h2>
+                            <ul>
+                                <li><a href="#">Introduction of melamine</a></li>
+                                <li><a href="#">Melamine product Q&A</a></li>
+                                <li><a href="#">Qualified for food sanitary</a></li>
+
+                            </ul>
+                        </div>
+                        <div class="cl">&nbsp;</div>
+                    </div>
+                    <!-- end of footer-cols -->
+                    <div class="footer-bottom">
+                        <nav class="footer-nav">
+                            <ul>
+                                <li class="active"><a href="#">Trang chủ</a></li>
+                                <li><a href="#">Giới thiệu</a></li>
+                                <li><a href="#">Sản phẩm</a></li>
+                                <li><a href="#">Tin tức</a></li>
+                                <li><a href="#">Hỏi đáp</a></li>
+                                <li><a href="#">Liên hệ</a></li>
+                                <li><a href="#">Đối tác</a></li>
+                            </ul>
+                        </nav>
+                        <p class="copy">
+                            &copy; Copyright 2012 FATACO <span>|</span> <strong>Design by
+                            <a href="http://fataco.com" target="_blank">FATACO</a></strong>
+                        </p>
+                        <div class="cl">&nbsp;</div>
+                    </div>
+                </div>
+            </div>
+            <!-- end of container -->
+        </div>
+        <!-- end of shell -->
+    </div>
+    <!-- end of wrapper -->
+</body>
+</html>

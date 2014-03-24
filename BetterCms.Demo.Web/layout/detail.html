@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en" style="-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0" />
+    <title>FATOCO layout</title>
+    <link rel="shortcut icon" type="image/x-icon" href="css/images/favicon.ico" />
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="all" />
+
+
+    <script src="js/jquery-1.8.0.min.js" type="text/javascript"></script>
+    <!--[if lt IE 9]>
+		<script src="js/modernizr.custom.js"></script>
+	<![endif]-->
+    <script src="js/jquery.flexslider-min.js" type="text/javascript"></script>
+    <script src="js/functions.js" type="text/javascript"></script>
+
+    <script src="js/jquery.jcarousel.min.js"></script>
+    <script src="js/jcarousel.responsive.js"></script>
+    <link href="css/jcarousel.responsive.css" rel="stylesheet" />
+    <script src="js/jquery.jticker.js"></script>
+    <link href="css/add.css" rel="stylesheet" />
+    <script src="js/colorbox/jquery.colorbox-min.js"></script>
+    <link href="js/colorbox/colorbox.css" rel="stylesheet" />
+    <script type="text/ecmascript">
+        $(function () {
+            $(".group1").colorbox({ rel: 'group1' });
+            $('.jcarousel').jcarousel({
+                // Configuration goes here
+            });
+            $("#ticker").ticker({
+                cursorList: " ",
+                rate: 10,
+                delay: 4000
+            }).trigger("play");
+            $('.VMENU_1').hide();
+            $('.VMENU_0').children('li').children('a').click(function () {
+                $('.VMENU_1').hide('slow');
+                $(this).siblings('ul').show('slow');
+            })
+            $('.VMENU_1').children('li').children('a').click(function () {
+                $('.VMENU_2').hide('slow');
+                $(this).siblings('ul').show('slow');
+            })
+        });
+    </script>
+</head>
+<body>
+    <!-- wraper -->
+    <div id="wrapper">
+        <!-- shell -->
+        <div class="shell">
+            <!-- container -->
+            <div class="container">
+                <!-- header -->
+                <header id="header">
+                    <h1 id="logo"><a href="#">Curve</a></h1>
+
+                    <div class="flash_box">
+                        <div id="ticker" style="width: 310px; height: 80px; color: White; line-height: normal;
+                            font-weight: bold; font-style: italic;">
+                            <span id="dnn_header_lblQuotation1">
+                                <div>
+                                    <p style="font-size: 13pt;">"FATACO – NGƯỜI BẠN THÂN THIẾT CỦA MỌI GIA ĐÌNH"</p>
+                                    <p style="text-align: right; margin-top: 10px; font-size: 7pt;">
+                                        <strong>Sách 15 năm
+                                        quan hệ kinh tế thương mại Việt Nam – Hoa kỳ</strong>
+                                    </p>
+                                </div>
+                            </span>
+                            <span id="dnn_header_lblQuotation2">
+                                <div>
+                                    <p style="font-size: 13pt;">"ĐỊA CHỈ CỦA LÒNG TIN VÀ CHẤT LƯỢNG"</p>
+                                    <p style="text-align: right; margin-top: 10px; font-size: 7pt;">
+                                        <strong>Vietnam business
+                                        forum</strong>
+                                    </p>
+                                </div>
+                            </span>
+                            <span id="dnn_header_lblQuotation3">
+                                <div>
+                                    <p style="font-size: 13pt;">"NIỀM TỰ HÀO CHO NGÀNH NHỰA VIỆT NAM"</p>
+                                    <p style="text-align: right; margin-top: 10px; font-size: 7pt;">
+                                        <strong>Tạp chí Thương
+                                        hiệu Việt</strong>
+                                    </p>
+                                </div>
+                            </span>
+
+                        </div>
+                    </div>
+
+
+                    <!-- search -->
+                    <div class="search">
+
+                        <div class="flag_box">
+                            <div class="flag_en">
+                                <a href="javascript:__doPostBack('dnn$header$link_en','')" id="dnn_header_link_en">English</a>
+                            </div>
+                            <div class="flag_saperator">|</div>
+                            <div class="flag_vi">
+                                <a href="javascript:__doPostBack('dnn$header$link_vi','')" id="dnn_header_link_vi">Tiếng
+                                    Việt</a>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+
+                        <div style="clear: both"></div>
+                        <div>
+                            <form method="post">
+                                <span class="field">
+                                    <input type="text" class="field" value="keywords here ..." title="keywords here ..." /></span>
+                                <input type="submit" class="search-btn" value="" />
+                            </form>
+                        </div>
+                    </div>
+                    <!-- end of search -->
+                </header>
+                <!-- end of header -->
+                <!-- navigation -->
+                <nav id="navigation">
+                    <a href="#" class="nav-btn">HOME<span class="arr"></span></a>
+                    <ul>
+                        <li class="active"><a href="home.html">Trang chủ</a></li>
+                        <li><a href="intro.html">Giới thiệu</a></li>
+                        <li><a href="product.html">Sản phẩm</a></li>
+                        <li><a href="news.html">Tin tức & Sự kiện</a></li>
+                        <li><a href="faq.html">Hỏi đáp</a></li>
+                        <li><a href="contact.html">Liên hệ</a></li>
+                    </ul>
+                </nav>
+                <!-- end of navigation -->
+                <!-- main -->
+                <div class="main">
+                    <section>
+                        <div class="row">
+                            <div class="paneLeft">
+                                <div id="VMENU709487940" class="VMENU">
+                                    <ul class="VMENU_0 VMENU_0_709487940 reset">
+                                        <li><a href="#" class="a_s"><span class="s">Nhựa gia dụng và công nghiệp</span></a>
+                                        <ul class="VMENU_1 VMENU_1_709487940 reset">
+                                                <li><a href="#" rel="47" class="a_s"><span class="s">Bình Đá Và Ca Nước </span></a>
+                                                </li>
+                                                <li><a href="#"><span>Vỉ Đá - Vỉ Trứng</span></a>    </li>
+                                                <li><a href="#" ><span>Bàn, Ghế Dựa, Ghế Đẩu</span></a>    </li>
+                                                <li><a href="#" ><span>Giỏ Chợ, Giỏ Trái Cây</span></a>    </li>
+                                                <li><a href="#" ><span>Giỏ Đựng Các Loại</span></a>    </li>
+                                                <li><a href="#" ><span>Kệ Chén, Kệ Dép</span></a></li>
+                                                <li><a href="#" ><span>Hộp Đựng Thực Phẩm</span></a>    </li>
+                                                <li><a href="#" ><span>Gáo</span></a></li>
+                                                <li><a href="#" ><span>Tấm Lót Sàn, Pallet</span></a>    </li>
+                                                <li><a href="#" ><span>Móc Áo</span></a></li>
+                                                <li><a href="#" ><span>Rỗ</span></a></li>
+                                                <li><a href="#" ><span>Thau</span></a></li>
+                                                <li><a href="#" ><span>Xô</span></a></li>
+                                                <li><a href="#" ><span>Thùng, Thùng Rác</span></a>    </li>
+                                                <li><a href="#" ><span>Bàn Kéo Hồ và Máng Hồ</span></a>    </li>
+                                                <li><a href="#" ><span>Khay</span></a></li>
+                                                <li><a href="#" ><span>Sản Phẩm Xanh</span></a></li>
+                                                <li><a href="#" ><span>Các Sản Phẩm Khác</span></a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="d"></li>
+                                        <li><a href="#"><span>Sản phẩm MELAMINE</span></a>
+                                            <ul class="VMENU_1 VMENU_1_709487940 reset">
+                                                <li><a href="#" rel="74"><span>Bộ Sản Phẩm Viền</span></a>
+                                                    <ul class="VMENU_2 VMENU_2_709487940 reset" style="display: none;">
+                                                        <li><a href="#" rel="89"><span>Bộ V174 – Tiptop</span></a></li>
+                                                        <li><a href="#" rel="90"><span>Bộ V176 – Tiptop</span></a></li>
+                                                        <li><a href="#" rel="91"><span>Bộ V163</span></a></li>
+                                                        <li><a href="#" rel="92"><span>Bộ V162</span></a></li>
+                                                        <li><a href="#" rel="93"><span>Bộ V27</span></a></li>
+                                                        <li><a href="#" rel="94"><span>Bộ HV</span></a></li>
+                                                        <li><a href="#" rel="95"><span>Bộ V82</span></a></li>
+                                                        <li><a href="#" rel="96"><span>Bộ V184</span></a></li>
+                                                        <li><a href="#" rel="97"><span>Bộ V187 - Diamond</span></a></li>
+                                                        <li><a href="#" rel="98"><span>Bộ V154 - Diamond</span></a></li>
+                                                        <li><a href="#" rel="99"><span>Bộ V137 - Diamond</span></a></li>
+                                                        <li><a href="#" rel="100"><span>Bộ V191 - Diamond</span></a></li>
+                                                    </ul>
+                                                </li>
+                                                <li><a href="/Products/ProductList.aspx?CateID=75" rel="75"><span>Bộ Sản Phẩm Màu</span></a>
+                                                    <ul class="VMENU_2 VMENU_2_709487940 reset" style="display: none;">
+                                                        <li><a href="#"><span>Bộ màu trắng</span></a></li>
+                                                        <li><a href="#"><span>Bộ đỏ đen</span></a></li>
+                                                        <li><a href="#"><span>Bộ rêu lá</span></a></li>
+                                                        <li><a href="#"><span>Bộ đỏ hồng</span></a></li>
+                                                        <li><a href="#"><span>Bộ hồng trắng</span></a></li>
+                                                        <li><a href="#"><span>Bộ màu xanh</span></a></li>
+                                                        <li><a href="#"><span>Bộ màu vàng</span></a></li>
+                                                        <li><a href="#"><span>Bộ màu đỏ và cam</span></a></li>
+                                                    </ul>
+                                                </li>
+                                                <li><a href="/Products/ProductList.aspx?CateID=76" rel="76"><span>Sản phẩm dành cho
+                                                    trẻ em
+                                                </span></a>
+                                                    <ul class="acitem" style="display: block;">
+                                                        <span>
+                                                        <li><a href="/Products/ProductList.aspx?CateID=109" rel="109"><span>Khay trẻ em </span>
+                                                        </a></li>
+                                                        <li><a href="/Products/ProductList.aspx?CateID=110" rel="110"
+                                                            class="submenu_active"><span>Tô trẻ em </span></a></li>
+                                                    </ul>
+                                                </li>
+                                                <li><a href="#" rel="77"><span>Ly &amp; Ca </span></a></li>
+                                                <li><a href="#" rel="78"><span>Chén</span></a></li>
+                                                <li><a href="#" rel="79"><span>Dĩa &amp; Khay </span></a></li>
+                                                <li><a href="#" rel="80"><span>Gạt tàn</span></a></li>
+                                                <li><a href="#" rel="81"><span>Hũ</span></a></li>
+                                                <li><a href="#" rel="82"><span>Muỗng &amp; Vá </span></a></li>
+                                                <li><a href="#" rel="83"><span>Đũa</span></a></li>
+                                                <li><a href="#" rel="84"><span>Tô &amp; Thố </span></a></li>
+                                                <li><a href="#" rel="85"><span>Bộ bình và Bình Bông</span></a></li>
+                                                <li><a href="#" rel="86"><span>Cà mên</span></a></li>
+                                                <li><a href="#" rel="87"><span>Hộp mứt &amp; chò</span></a></li>
+                                                <li><a href="#" rel="88"><span>Các sản phẩm khác</span></a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="d"></li>
+                                        <li><a href="#"><span>Sản phẩm ACRYLIC</span></a>
+                                            <ul class="VMENU_1 VMENU_1_709487940 reset">
+                                                <li><a href="#"><span>Bình Bông</span></a></li>
+                                                <li><a href="#"><span>Các Loại Bình</span></a></li>
+                                                <li><a href="#"><span>Ly Ca</span></a></li>
+                                                <li><a href="#"><span>Hũ</span></a></li>
+                                                <li><a href="#"><span>Xô Đá</span></a></li>
+                                                <li><a href="#"><span>Các Sản Phẩm Khác</span></a>
+                                                </li>
+                                            </ul>
+
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="paneRight">
+                                <div class="heading3">Sản phẩm Acrylic > BT 321</div>
+                                <div>
+                                    <div class="product-image">
+                                        <img src="images/product/a2.jpg" />
+                                    </div>
+
+                                    <div>
+                                        <div class="heading2">Thông tin chi tiết</div>
+                                        <div class="m-product-name"><strong>Mã: </strong>BỘ BN 17</div>
+                                        <table cellpadding="0" cellspacing="2">
+                                            <tbody>
+                                                <tr>
+                                                    <td><strong>Cỡ:</strong></td>
+                                                    <td align="left">15 x 9 x 25.5 cm</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <div class="m-product-desc">
+                                            <strong style="float: left;">Màu: </strong><span style="width: 15px; height: 15px;
+                                                border: 1px solid gray; margin-left: 3px; float: left; background: #F176AE">
+                                            </span><span style="width: 15px; height: 15px; border: 1px solid gray; margin-left: 3px;
+                                                float: left; background: #EE1D23"></span><span class="clear"></span>
+                                            <br>
+                                        </div>
+                                        <div class="product-detail">
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi commodo augue ac
+                                            iaculis egestas. Nulla vestibulum eu mauris non fermentum. Nulla ullamcorper, augue
+                                            ac varius porta, ipsum lacus euismod ligula, nec tincidunt ligula massa in eros.
+                                            Ut pulvinar malesuada sagittis. Ut nisl neque, vestibulum in neque vel, elementum
+                                            placerat lorem. Curabitur turpis nibh, cursus in augue non, dictum rutrum lectus.
+                                            Maecenas tempus lectus eget mauris sagittis, id imperdiet lectus hendrerit. Praesent
+                                            varius tempus eros et feugiat. Etiam vulputate tincidunt justo, at dictum turpis
+                                            pellentesque id. Donec vitae lacus purus. Pellentesque habitant morbi tristique
+                                            senectus et netus et malesuada fames ac turpis egestas. Praesent semper velit ut
+                                            faucibus accumsan. Aenean molestie, lacus bibendum auctor euismod, tellus felis
+                                            iaculis lacus, vitae posuere tortor mauris vitae odio.
+                                                                               <br />
+                                            <br />
+                                            Sed aliquet odio molestie turpis condimentum facilisis. Integer euismod, mauris
+                                            ac ultricies fermentum, nisl diam sagittis magna, non hendrerit ipsum odio at purus.
+                                            Etiam vulputate adipiscing turpis eget tincidunt. Praesent iaculis augue ut urna
+                                            ultricies, a pulvinar nibh ultricies. Donec nisi sapien, cursus at lectus nec, euismod
+                                            vulputate nisi. Nulla accumsan nisl in erat lobortis feugiat. Curabitur sed suscipit
+                                            lacus. Fusce congue, mi sit amet tincidunt iaculis, elit magna venenatis risus,
+                                            ac vehicula urna justo eu enim. Vestibulum euismod pulvinar mi, ut tempor quam gravida
+                                            eu. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac
+                                            turpis egestas.
+                                        <br />
+                                            <br />
+                                            Sed iaculis tincidunt metus et commodo. Nunc non massa massa. Mauris rhoncus luctus
+                                            condimentum. Mauris tristique porttitor sem. Vivamus ac consequat lectus. Aenean
+                                            facilisis viverra dapibus. Donec vel malesuada eros. Etiam non ligula sed ligula
+                                            auctor tempor. Vestibulum eleifend magna non ultricies porta. Phasellus fermentum,
+                                            lacus a sagittis lacinia, sem arcu sodales nibh, eleifend placerat nisi felis et
+                                            libero. Sed id risus et erat vulputate adipiscing. Nulla facilisi. Cum sociis natoque
+                                            penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam a sem non
+                                            massa rutrum ornare.
+                                        <br />
+                                            <br />
+                                            Phasellus vel vulputate nulla. Sed aliquam arcu ullamcorper enim mollis venenatis.
+                                            Nam tempor euismod mollis. Phasellus sit amet nulla augue. Etiam ornare nisl aliquet,
+                                            faucibus ante vel, pretium arcu. Maecenas luctus consectetur condimentum. Aliquam
+                                            erat volutpat. Etiam fermentum gravida volutpat. Vivamus purus orci, feugiat eu
+                                            ipsum ac, molestie condimentum nunc. Suspendisse nulla mi, pulvinar non lacinia
+                                            sit amet, ullamcorper ac libero. Aliquam erat volutpat. Maecenas hendrerit elementum
+                                            placerat.
+                                        <br />
+                                            <br />
+                                            Cras dignissim metus in nisi egestas, non bibendum lacus congue. Aliquam at sem
+                                            vulputate, aliquam libero et, bibendum libero. Nam porttitor risus at augue semper,
+                                            id pharetra purus faucibus. Praesent vel eros sed orci porttitor fringilla. Duis
+                                            vitae mi est. In non pharetra est. Etiam dignissim magna et laoreet vulputate. Suspendisse
+                                            faucibus sit amet libero non venenatis. Maecenas placerat, justo vel tempus porta,
+                                            tellus eros aliquet elit, non congue enim lacus in eros. Cum sociis natoque penatibus
+                                            et magnis dis parturient montes, nascetur ridiculus mus.
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+
+                    </section>
+
+
+
+                </div>
+                <!-- end of main -->
+                <div class="socials">
+                    <div class="socials-inner">
+                        <h3>Follow us</h3>
+                        <ul>
+                            <li><a href="#" class="facebook-ico"><span></span>Facebook</a></li>
+                            <li><a href="#" class="twitter-ico"><span></span>Twitter</a></li>
+                            <li><a href="#" class="rss-feed-ico"><span></span>Rss-feed</a></li>
+                            <li><a href="#" class="myspace-ico"><span></span>myspace</a></li>
+                            <li><a href="#" class="john-doe-123-ico"><span></span>john.doe.123</a></li>
+                        </ul>
+                        <div class="cl">&nbsp;</div>
+                    </div>
+                </div>
+                <div id="footer">
+                    <div class="footer-cols">
+                        <div class="col">
+                            <h2>About Us</h2>
+                            <ul>
+                                <li><a href="#">Company profile</a></li>
+                                <li><a href="#">Awards</a></li>
+                                <li><a href="#">Company Picture</a></li>
+
+                            </ul>
+                        </div>
+                        <div class="col">
+                            <h2>Product</h2>
+                            <ul>
+                                <li><a href="#">Melamine</a></li>
+                                <li><a href="#">Plastic</a></li>
+                                <li><a href="#">Acrylic</a></li>
+
+                            </ul>
+                        </div>
+                        <div class="col">
+                            <h2>News & Event</h2>
+                            <ul>
+                                <li><a href="#">Industry</a></li>
+                                <li><a href="#">Company</a></li>
+                            </ul>
+                        </div>
+                        <div class="col">
+                            <h2>Q & A</h2>
+                            <ul>
+                                <li><a href="#">Introduction of melamine</a></li>
+                                <li><a href="#">Melamine product Q&A</a></li>
+                                <li><a href="#">Qualified for food sanitary</a></li>
+
+                            </ul>
+                        </div>
+                        <div class="cl">&nbsp;</div>
+                    </div>
+                    <!-- end of footer-cols -->
+                    <div class="footer-bottom">
+                        <nav class="footer-nav">
+                            <ul>
+                                <li class="active"><a href="#">Trang chủ</a></li>
+                                <li><a href="#">Giới thiệu</a></li>
+                                <li><a href="#">Sản phẩm</a></li>
+                                <li><a href="#">Tin tức</a></li>
+                                <li><a href="#">Hỏi đáp</a></li>
+                                <li><a href="#">Liên hệ</a></li>
+                                <li><a href="#">Đối tác</a></li>
+                            </ul>
+                        </nav>
+                        <p class="copy">
+                            &copy; Copyright 2012 FATACO <span>|</span> <strong>Design by
+                            <a href="http://fataco.com" target="_blank">FATACO</a></strong>
+                        </p>
+                        <div class="cl">&nbsp;</div>
+                    </div>
+                </div>
+            </div>
+            <!-- end of container -->
+        </div>
+        <!-- end of shell -->
+    </div>
+    <!-- end of wrapper -->
+</body>
+</html>
