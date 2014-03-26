@@ -18,9 +18,12 @@ namespace BetterCms.Demo.Web
             routes.MapRoute("blog-feed", "blog/feed", new { area = string.Empty, controller = "Blog", action = "Feed" }, new[] { "BetterCms.Demo.Web.Controllers" });
             routes.MapRoute("change-culture", "sitemap/changeculture", new { area = string.Empty, controller = "sitemap", action = "changeculture" }, new[] { "BetterCms.Demo.Web.Controllers" });
 
-            //routes.MapRoute("news-list", "news/{categoryName}/{page}", new { area = string.Empty, controller = "News", action = "List", categoryName = UrlParameter.Optional, page = UrlParameter.Optional }, new[] { "BetterCms.Demo.Web.Controllers" });
-            //routes.MapRoute("news-list", "news", new { area = string.Empty, controller = "News", action = "List" }, new[] { "BetterCms.Demo.Web.Controllers" });
-            //routes.MapRoute("news-list", "news/latest/{category}", new { area = string.Empty, controller = "News", action = "ListNews", category = UrlParameter.Optional }, new[] { "BetterCMS.Module.News.Controllers" });
+            routes.MapRoute("news", "news/{id}", new
+            {
+                area = string.Empty,
+                controller = "HandlerUrl",
+                action = "News"
+            });
         }
     }
 }

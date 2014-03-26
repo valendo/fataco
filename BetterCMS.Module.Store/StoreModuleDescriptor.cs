@@ -68,7 +68,7 @@ namespace BetterCMS.Module.Store
             {
                 new LinkActionProjection(storeJsModuleIncludeDescriptor, page => "loadSiteSettingsStoreModule")
                     {
-                        Order = 10000,
+                        Order = 10002,
                         Title = page => "Products",
                         CssClass = page => "bcms-sidebar-link",
                         AccessRole = RootModuleConstants.UserRoles.MultipleRoles(RootModuleConstants.UserRoles.Administration)

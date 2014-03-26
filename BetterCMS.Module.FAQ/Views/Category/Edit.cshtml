@@ -1,0 +1,40 @@
+﻿@using BetterCms.Module.Root.Content.Resources
+@using BetterCms.Module.Root.Mvc.Helpers
+@using BetterCMS.Module.FAQ.Controllers
+@using BetterCMS.Module.FAQ.ViewModels
+@using Microsoft.Web.Mvc
+
+@model CategoryViewModel
+
+<div class="bcms-scroll-window" style="height: 527px;">
+    @Html.TabbedContentMessagesBox()
+    <div class="bcms-new-blog-content">
+        @using (Html.BeginForm<CategoryController>(c => c.Save(null), FormMethod.Post, new { @class = "bcms-ajax-form" }))
+        {
+            @Html.HiddenFor(m => m.Id)
+            @Html.HiddenFor(m => m.Version)
+            <div class="bcms-blog-left">
+                <div class="bcms-input-list-holder">
+                    <div class="bcms-content-titles">Name (vi)</div>
+                    <div class="bcms-input-box">
+                        @Html.TextBoxFor(m => m.Name, new { @class = "bcms-editor-field-box" })
+                        @Html.BcmsValidationMessageFor(m => m.Name)
+                    </div>
+                </div>
+                <div class="bcms-input-list-holder">
+                    <div class="bcms-content-titles">Name (en)</div>
+                    <div class="bcms-input-box">
+                        @Html.TextBoxFor(m => m.Name_en, new { @class = "bcms-editor-field-box" })
+                        @Html.BcmsValidationMessageFor(m => m.Name_en)
+                    </div>
+                </div>
+                <div class="bcms-input-list-holder">
+                    <div class="bcms-content-titles">Sort Order</div>
+                    <div class="bcms-input-box">
+                        @Html.TextBoxFor(m => m.SortOrder, new { @class = "bcms-editor-field-box" })
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

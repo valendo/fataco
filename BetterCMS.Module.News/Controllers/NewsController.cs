@@ -123,15 +123,5 @@ namespace BetterCMS.Module.News.Controllers
 
             return WireJson(success);
         }
-
-        //frontend widgets
-        public ActionResult ListNews(string id)
-        {
-            Guid CategoryId = Guid.Empty;
-            Guid.TryParse(id, out CategoryId);
-            
-            var model = GetCommand<GetNewsListByCategoryIdCommand>().ExecuteCommand(CategoryId);
-            return View(model);
-        }
     }
 }

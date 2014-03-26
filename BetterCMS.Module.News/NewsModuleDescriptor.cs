@@ -56,19 +56,13 @@ namespace BetterCMS.Module.News
                 };
         }
 
-        public override void RegisterCustomRoutes(ModuleRegistrationContext context, ContainerBuilder containerBuilder)
-        {
-            //context.MapRoute("news-list",AreaName+ "/{}");
-        }
-
         public override IEnumerable<BetterCms.Core.Modules.Projections.IPageActionProjection> RegisterSiteSettingsProjections(Autofac.ContainerBuilder containerBuilder)
         {
             return new IPageActionProjection[]
             {
-                new SeparatorProjection(9999), 
                 new LinkActionProjection(newsJsModuleIncludeDescriptor, page => "loadSiteSettingsNewsModule")
                     {
-                        Order = 9999,
+                        Order = 10001,
                         Title = page => "News",
                         CssClass = page => "bcms-sidebar-link",
                         AccessRole = RootModuleConstants.UserRoles.MultipleRoles(RootModuleConstants.UserRoles.Administration)

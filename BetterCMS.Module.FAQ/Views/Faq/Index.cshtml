@@ -1,0 +1,48 @@
+﻿@using BetterCms.Module.Root.Content.Resources
+@using BetterCms.Module.Root.Mvc.Grids.Extensions
+@using BetterCms.Module.Root.Mvc.Grids.TableRenderers
+@using BetterCms.Module.Root.Mvc.Helpers
+@using BetterCMS.Module.FAQ.Controllers
+@using BetterCMS.Module.FAQ.ViewModels
+@using MvcContrib.UI.Grid
+@using Microsoft.Web.Mvc;
+@model BetterCms.Module.Root.ViewModels.SiteSettings.SearchableGridViewModel<FaqViewModel>
+@{
+    Action<ColumnBuilder<FaqViewModel>> columns = column =>
+    {
+        column.EditButtonColumn();
+
+        column.For(m => m.Question)
+            .Named("Question (vi)")
+            .SortColumnName("Question")
+            .Attributes(@class => "bcms-faq-Question");
+
+        column.For(m => m.Question_en)
+            .Named("Question (en)")
+            .SortColumnName("Question_en")
+            .Attributes(@class => "bcms-faq-Question_en");
+
+        column.DeleteButtonColumn();
+    };
+}
+
+@using (Html.BeginForm<FaqController>(f => f.Index(null), FormMethod.Post, new { @id = "bcms-faq-form", @class = "bcms-ajax-form" }))
+{
+    @Html.HiddenGridOptions(Model.GridOptions)
+    <div class="bcms-top-block-holder">
+        <div class="bcms-btn-links-main" id="bcms-create-faq-button">Add New</div>
+        <div class="bcms-search-block">
+            @Html.TextBoxFor(m => m.SearchQuery, new { @class = "bcms-editor-field-box", @placeholder = "Search by question" })
+            <div class="bcms-btn-search" id="bcms-faq-search-btn"></div>
+        </div>
+        <div class="bcms-featured-grid bcms-clearfix">
+            @Html.RenderPaging(Model)
+        </div>
+    </div>
+
+    @Html.SiteSettingsMessagesBox("bcms-faq-messages")
+    @Html.Grid(Model.Items).Sort(Model.GridOptions).Columns(columns).Attributes(@class => "bcms-tables").RenderUsing(new EditableHtmlTableGridRenderer<FaqViewModel>())
+}
+<script type="text/html" id="bcms-faq-list-row-template">
+    @Html.Grid(new List<FaqViewModel> { new FaqViewModel() }).Columns(columns).Attributes(@class => "bcms-tables").RenderUsing(new HtmlTableGridSingleRowRenderer<FaqViewModel>())
+</script>

@@ -1,0 +1,46 @@
+﻿@using BetterCms.Module.Root.Content.Resources
+@using BetterCms.Module.Root.Mvc.Helpers
+@using BetterCMS.Module.FAQ.Controllers
+@using BetterCMS.Module.FAQ.ViewModels
+@using Microsoft.Web.Mvc
+@using BetterCms.Module.Root.Mvc.UI
+
+@model FaqViewModel
+
+<div class="bcms-scroll-window" style="height: 527px;">
+    @Html.TabbedContentMessagesBox()
+    <div class="bcms-new-blog-content">
+        @using (Html.BeginForm<FaqController>(c => c.Save(null), FormMethod.Post, new { @class = "bcms-ajax-form" }))
+        {
+            @Html.HiddenFor(m => m.Id)
+            @Html.HiddenFor(m => m.Version)
+            
+            <div class="bcms-input-list-holder">
+                <div class="bcms-content-titles">Category</div>
+                @Html.DropDownListFor(m => m.CategoryId, new SelectList(ViewBag.Categories, "Key", "Value"), new { @class = "bcms-global-select", @style = "width: 400px;" })
+            </div>
+            <div class="bcms-input-list-holder">
+                <div class="bcms-content-titles">Question (vi)</div>
+                @Html.TextAreaFor(m => m.Question, new { @class = "bcms-editor-field-area" })
+            </div>
+            <div class="bcms-input-list-holder">
+                <div class="bcms-content-titles">Question (en)</div>
+                @Html.TextAreaFor(m => m.Question_en, new { @class = "bcms-editor-field-area" })
+            </div>
+            <div class="bcms-input-list-holder">
+                <div class="bcms-content-titles">Answer (vi)</div>
+                @Html.TextAreaFor(m => m.Answer, new { @id = "bcms-answer" })
+            </div>
+            <div class="bcms-input-list-holder">
+                <div class="bcms-content-titles">Answer (en)</div>
+                @Html.TextAreaFor(m => m.Answer_en, new { @id = "bcms-answer_en" })
+            </div>
+            <div class="bcms-input-field-holder">
+                <div class="bcms-content-titles">Sort Order</div>
+                <div class="bcms-input-box">
+                    @Html.TextBoxFor(m => m.SortOrder, new { @class = "bcms-editor-field-box" })
+                </div>
+            </div>
+        }
+    </div>
+</div>

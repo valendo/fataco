@@ -80,9 +80,6 @@
     <Reference Include="BetterCMS.Module.News">
       <HintPath>App_Data\BetterCMS\Modules\BetterCMS.Module.News.dll</HintPath>
     </Reference>
-    <Reference Include="BetterCms.Module.Newsletter">
-      <HintPath>..\packages\BetterCms.Module.Newsletter.1.5.2\lib\net40\BetterCms.Module.Newsletter.dll</HintPath>
-    </Reference>
     <Reference Include="BetterCms.Module.Pages, Version=1.5.2.49, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\BetterCms.Module.Pages.1.5.2\lib\net40\BetterCms.Module.Pages.dll</HintPath>
@@ -240,6 +237,7 @@
   <ItemGroup>
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
+    <Compile Include="Controllers\HandlerUrlController.cs" />
     <Compile Include="Controllers\SitemapController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
