@@ -1,0 +1,22 @@
+﻿@{
+    Layout = "~/Views/Shared/Fataco/_FatacoLayout.cshtml";
+}
+
+
+<section>
+@section HeadScripts {
+    @RenderSection("HeadScripts", false)
+}
+
+
+ 
+    @RenderSection("MainContent", false)
+    
+ 
+
+</section>
+
+@section Scripts {
+    @RenderSection("Scripts", false)
+
+}

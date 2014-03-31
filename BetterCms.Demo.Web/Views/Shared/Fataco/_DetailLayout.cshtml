@@ -1,0 +1,44 @@
+﻿@{
+    Layout = "~/Views/Shared/Fataco/_FatacoLayout.cshtml";
+}
+
+
+<section>
+@section HeadScripts {
+    @RenderSection("HeadScripts", false)  
+}
+                        <div class="row"> 
+                            <div class="paneTop">
+                             @RenderSection("Top", false)
+                            </div>
+
+                            <div class="paneLeft">
+                                 @RenderSection("Left", false)
+                            </div>
+                            <div class="paneRight"> 
+                                @RenderSection("Right", false)
+                            </div>
+                            <div class="clear"></div>
+                            
+                            <div class="paneBottom">
+                             @RenderSection("Bottom", false)
+                            </div>
+                        </div>
+@RenderBody()
+                    </section>
+
+@section Scripts {
+    <script type="text/javascript">
+        $('.VMENU_1').hide();
+        $('.VMENU_0').children('li').children('a').click(function () {
+            $('.VMENU_1').hide('slow');
+            $(this).siblings('ul').show('slow');
+        })
+        $('.VMENU_1').children('li').children('a').click(function () {
+            $('.VMENU_2').hide('slow');
+            $(this).siblings('ul').show('slow');
+        })
+    </script>
+    @RenderSection("Scripts", false)
+
+}

@@ -46,6 +46,31 @@ namespace BetterCms.Demo.Web.Controllers
             
             return View(menuItems);
         }
+
+        public  ActionResult TopMenu()
+        {
+            var menuItems = new List<MenuItemViewModel>();
+
+            using (var api = ApiFactory.Create())
+            {
+                var sitemapId = GetSitemapId(api);
+                if (sitemapId.HasValue)
+                {
+                    var request = new GetSitemapTreeRequest { SitemapId = sitemapId.Value, Data = new GetSitemapTreeModel { LanguageId = LanguageHelper.CurrentLanguageId } };
+
+                    var response = api.Pages.Sitemap.Tree.Get(request);
+
+                    if (response.Data.Count > 0)
+                    {
+                        menuItems = response.Data.Select(mi => new MenuItemViewModel { Caption = mi.Title, Url = mi.Url }).ToList();
+                    }
+                }
+            }
+
+            return View(menuItems);
+        }
+
+
         public ActionResult ChangeCulture(string lang, string returnUrl)
         {
             Session["Culture"] = new CultureInfo(lang);

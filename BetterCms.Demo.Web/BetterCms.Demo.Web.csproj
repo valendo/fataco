@@ -466,6 +466,7 @@
       <DependentUpon>smtp.config</DependentUpon>
       <IsTransformFile>True</IsTransformFile>
     </None>
+    <Content Include="Views\SiteMap\TopMenu.cshtml" />
     <None Include="Web.Staging.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
