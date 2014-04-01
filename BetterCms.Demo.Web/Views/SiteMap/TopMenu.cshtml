@@ -1,0 +1,9 @@
+﻿@model IList<BetterCms.Demo.Web.Models.MenuItemViewModel>
+
+
+@foreach (var item in Model)
+{
+    <li><a href="@item.Url">@item.Caption</a></li>
+}
+
+ 
