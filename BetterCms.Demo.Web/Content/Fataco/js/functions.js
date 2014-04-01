@@ -26,7 +26,10 @@ $(function() {
 });
 
 $(window).load(function() {
- 
+    if ($('.paneTop').children('.bcms-region-start').length > 0)
+    {
+        $('.paneTop').css('min-height', '30px');
+    }
 	//$('.flexslider').flexslider({
 	//	animation: "slide",
 	//	controlsContainer: ".slider-holder",

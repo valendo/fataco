@@ -1,10 +1,19 @@
 ﻿@using BetterCms.Demo.Web.Models
 @model IList<MenuItemViewModel>
 
-<div class="submenu">
-    @foreach (var item in Model)
+ 
+
+
+<div id="VMENU709487940" class="VMENU">
+    <ul class="VMENU_0 VMENU_0_709487940 reset">
+
+     @foreach (var item in Model)
     {
-        <a href="@item.Url" class="@(Request.Path == item.Url ? "submenu-active": null)">@item.Caption</a>
-    }
+       <li> 
+       <a href="@item.Url" class="@(Request.Path == item.Url ? "a_s" : null)"><span class="@(Request.Path == item.Url ? "s" : null)">@item.Caption</span></a>
+       </li>
+         <li class="d"></li>
+    } 
+    </ul>
 </div>
 

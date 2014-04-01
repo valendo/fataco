@@ -5,26 +5,35 @@
 
 @using (Html.BeginForm("ContactForm", "Contact", FormMethod.Post, new { @class = "autobind" }))
 {
-    <h2>Contact Us</h2>
+    <div class="heading3">Gửi yêu cầu</div>
 
     <div class="field-holder">
+    <div>
         @Html.LabelFor(m => m.Name)
-        @Html.TextBoxFor(m => m.Name, new { @class = "text-field" })
+        </div>
+        @Html.TextBoxFor(m => m.Name, new { @class = "text-field",style="width:100%;height:20px;" })
         @Html.ValidationMessageFor(m => m.Name)
     </div>
 
     <div class="field-holder">
+           <div>
         @Html.LabelFor(m => m.Email)
-        @Html.TextBoxFor(m => m.Email, new { @class = "text-field" })
+        </div>
+        @Html.TextBoxFor(m => m.Email, new { @class = "text-field",style="width:100%;height:20px;" })
         @Html.ValidationMessageFor(m => m.Email)
     </div>
 
     <div class="field-holder">
+            <div>
         @Html.LabelFor(m => m.Message)
-        @Html.TextAreaFor(m => m.Message, new { @class = "text-area", style="height: 232px;" })
+        </div>
+        @Html.TextAreaFor(m => m.Message, new { @class = "text-area", style="width:100%;height: 80px;" })
         @Html.ValidationMessageFor(m => m.Message)
     </div>
     
     @Html.HiddenFor(m => m.EmailTo)
-    <a class="btn-primary" data-url="/contacts/submit-form">Send</a>
+    @*<a class="btn-primary" data-url="/contacts/submit-form">Send</a>*@
+     <div style="text-align: center">
+    <button class="button1" data-url="/contacts/submit-form" type="submit">Gửi yêu cầu</button>
+    </div>
 }

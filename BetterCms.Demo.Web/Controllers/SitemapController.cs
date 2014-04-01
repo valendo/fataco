@@ -113,6 +113,7 @@ namespace BetterCms.Demo.Web.Controllers
         }
 
 
+     
         public ActionResult ChangeCulture(string lang, string returnUrl)
         {
             Session["Culture"] = new CultureInfo(lang);
@@ -154,7 +155,7 @@ namespace BetterCms.Demo.Web.Controllers
                         if (response.Data.Count > 0)
                         {
                             menuItems = response.Data.Select(mi => new MenuItemViewModel { Caption = mi.Title, Url = mi.Url }).ToList();
-                            menuItems.Insert(0, new MenuItemViewModel { Caption = "Main", Url = parentUrl });
+                            //menuItems.Insert(0, new MenuItemViewModel { Caption = "Main", Url = parentUrl });
                         }
                     }
                 }

@@ -2,7 +2,7 @@
     Layout = "~/Views/Shared/Fataco/_FatacoLayout.cshtml";
 }
 
-
+ <div class="main">  
 <section>
 @section HeadScripts {
     @RenderSection("HeadScripts", false)  
@@ -26,7 +26,7 @@
                         </div>
 @RenderBody()
                     </section>
-
+</div>
 @section Scripts {
     <script type="text/javascript">
         $('.VMENU_1').hide();
