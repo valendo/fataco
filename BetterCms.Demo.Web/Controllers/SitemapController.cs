@@ -33,21 +33,21 @@ namespace BetterCms.Demo.Web.Controllers
                 var sitemapId = GetSitemapId(api);
                 if (sitemapId.HasValue)
                 {
-                    var request = new GetSitemapTreeRequest { SitemapId = sitemapId.Value, Data = new GetSitemapTreeModel { LanguageId = LanguageHelper.CurrentLanguageId} };
+                    var request = new GetSitemapTreeRequest { SitemapId = sitemapId.Value, Data = new GetSitemapTreeModel { LanguageId = LanguageHelper.CurrentLanguageId } };
 
                     var response = api.Pages.Sitemap.Tree.Get(request);
-                    
+
                     if (response.Data.Count > 0)
                     {
                         menuItems = response.Data.Select(mi => new MenuItemViewModel { Caption = mi.Title, Url = mi.Url }).ToList();
                     }
                 }
             }
-            
+
             return View(menuItems);
         }
 
-        public  ActionResult TopMenu()
+        public ActionResult TopMenu()
         {
             var menuItems = new List<MenuItemViewModel>();
 
@@ -68,6 +68,48 @@ namespace BetterCms.Demo.Web.Controllers
             }
 
             return View(menuItems);
+        }
+
+
+        public ActionResult FooterMenu()
+        {
+            var menuItems = new List<MenuItemViewModel>();
+
+            using (var api = ApiFactory.Create())
+            {
+                var sitemapId = GetSitemapId(api);
+                if (sitemapId.HasValue)
+                {
+                    var request = new GetSitemapTreeRequest { SitemapId = sitemapId.Value, Data = new GetSitemapTreeModel { LanguageId = LanguageHelper.CurrentLanguageId } };
+
+                    var response = api.Pages.Sitemap.Tree.Get(request);
+                    System.Text.StringBuilder sb = new System.Text.StringBuilder();
+                    if (response.Data.Count > 0)
+                    {
+                        foreach (var item in response.Data)
+                        {
+                            if (item.ChildrenNodes.Count > 0)
+                            {
+                                sb.Append("<div class=\"col\">");
+                                sb.Append("<h2>"+item.Title+"</h2>");
+                                sb.Append("<ul>");
+                                foreach (var item1 in item.ChildrenNodes)
+                                {
+                                    sb.Append("<li><a href=\"" + item1.Url + "\">" + item1.Title + "</a></li>");
+                                }
+
+                                sb.Append("<ul>");
+                                sb.Append("</div>");
+
+                            }
+                        }
+                        menuItems = response.Data.Select(mi => new MenuItemViewModel { Caption = mi.Title, Url = mi.Url }).ToList();
+                    }
+                    ViewBag.MenuString = sb.ToString();
+                }
+            }
+
+            return View();
         }
 
 
@@ -118,7 +160,7 @@ namespace BetterCms.Demo.Web.Controllers
                 }
             }
 
-            return View(menuItems);            
+            return View(menuItems);
         }
 
         private Guid? GetSitemapId(IApiFacade api)

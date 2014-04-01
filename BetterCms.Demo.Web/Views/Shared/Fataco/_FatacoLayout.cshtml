@@ -159,7 +159,8 @@
                 </div>
                 <div id="footer">
                     <div class="footer-cols">
-                        <div class="col">
+                        @{ Html.RenderAction("FooterMenu", "SiteMap", new { area = "" }); }
+                        @*<div class="col">
                             <h2>About Us</h2>
                             <ul>
                                 <li><a href="#">Company profile</a></li>
@@ -192,20 +193,14 @@
                                 <li><a href="#">Qualified for food sanitary</a></li>
 
                             </ul>
-                        </div>
+                        </div>*@
                         <div class="cl">&nbsp;</div>
                     </div>
                     <!-- end of footer-cols -->
                     <div class="footer-bottom">
                         <nav class="footer-nav">
                             <ul>
-                                <li class="active"><a href="#">Trang chủ</a></li>
-                                <li><a href="#">Giới thiệu</a></li>
-                                <li><a href="#">Sản phẩm</a></li>
-                                <li><a href="#">Tin tức</a></li>
-                                <li><a href="#">Hỏi đáp</a></li>
-                                <li><a href="#">Liên hệ</a></li>
-                                <li><a href="#">Đối tác</a></li>
+                                @{ Html.RenderAction("TopMenu", "SiteMap", new { area = "" }); }
                             </ul>
                         </nav>
                         <p class="copy">

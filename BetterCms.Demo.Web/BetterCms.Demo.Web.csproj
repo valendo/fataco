@@ -467,6 +467,7 @@
       <IsTransformFile>True</IsTransformFile>
     </None>
     <Content Include="Views\SiteMap\TopMenu.cshtml" />
+    <Content Include="Views\SiteMap\FooterMenu.cshtml" />
     <None Include="Web.Staging.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
