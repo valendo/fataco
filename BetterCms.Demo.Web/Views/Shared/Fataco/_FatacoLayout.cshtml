@@ -109,13 +109,15 @@
 
                         <div class="flag_box">
                             <div class="flag_en">
-                                <a href="javascript:__doPostBack('dnn$header$link_en','')" id="dnn_header_link_en">English</a>
+                                
+                                @Html.ActionLink("English", "ChangeCulture", "Sitemap", new { lang = "en", returnUrl = this.Request.RawUrl, area = "" }, null)
                             </div>
                             <div class="flag_saperator">|</div>
                             <div class="flag_vi">
-                                <a href="javascript:__doPostBack('dnn$header$link_vi','')" id="dnn_header_link_vi">Tiếng
-                                    Việt</a>
-                            </div>
+                                
+                                     @Html.ActionLink("Tiếng Việt", "ChangeCulture", "Sitemap", new { lang = "vi", returnUrl = this.Request.RawUrl, area = "" }, null)
+                            </div> 
+ 
                             <div class="clear"></div>
                         </div>
 

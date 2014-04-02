@@ -117,6 +117,24 @@ namespace BetterCms.Demo.Web.Controllers
         public ActionResult ChangeCulture(string lang, string returnUrl)
         {
             Session["Culture"] = new CultureInfo(lang);
+            using (var api = ApiFactory.Create())
+            {
+                var request =new  GetPageTranslationsRequest {PageUrl=returnUrl };
+                 
+                var xx=api.Pages.Page.Translations.Get(request);
+                if (xx.Data.TotalCount > 1)
+                {
+
+                    List<PageTranslationModel> pages1 =  xx.Data.Items.ToList();
+                    foreach (var item in pages1)
+                    {
+                        if (item.LanguageCode == lang)
+                        {
+                            return Redirect(item.PageUrl);
+                        }
+                    }
+                }
+            }
             return Redirect(returnUrl);
         }
 
