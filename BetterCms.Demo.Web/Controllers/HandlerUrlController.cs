@@ -11,12 +11,12 @@ namespace BetterCms.Demo.Web.Controllers
         //
         // GET: /HandlerController/
 
-        public ActionResult News(string id)
-        {
-            string url = "/news?id=" + id;
-            Server.TransferRequest(url);
-            return new EmptyResult();
-        }
+        //public ActionResult News(string category)
+        //{
+        //    string url = "/news?category=" + category;
+        //    Server.TransferRequest(url);
+        //    return new EmptyResult();
+        //}
 
     }
 }

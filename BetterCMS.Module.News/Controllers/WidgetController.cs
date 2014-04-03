@@ -5,18 +5,35 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
+using PagedList.Mvc;
+using BetterCMS.Module.News.ViewModels;
+using System.Web.Configuration;
 
 namespace BetterCMS.Module.News.Controllers
 {
     public class WidgetController : CmsControllerBase
     {
-        public ActionResult ListNews(string id)
+        public ActionResult NewsList(string id, int? page)
         {
-            Guid CategoryId = Guid.Empty;
-            Guid.TryParse(id, out CategoryId);
+            var listNews = GetCommand<GetNewsListByCategoryIdCommand>().ExecuteCommand(id);
+            var pageNumber = page ?? 1;
+            var pageSize = int.Parse(WebConfigurationManager.AppSettings["PageSize"].ToString());
+            var pagedList = listNews.ToPagedList(pageNumber, pageSize);
+            bool showPager = false;
+            if (listNews.Count > pageSize)
+            {
+                showPager = true;
+            }
+            ViewBag.ShowPager = showPager;
+            return View(pagedList);
+            
+        }
 
-            var model = GetCommand<GetNewsListByCategoryIdCommand>().ExecuteCommand(CategoryId);
-            return View(model);
+        public ActionResult CategoryList()
+        {
+            var list = GetCommand<GetCategoryListCommand>().ExecuteCommand(Guid.Empty);
+            return View(list);
         }
     }
 }

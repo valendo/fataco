@@ -382,7 +382,7 @@ article, aside, details, footer, header, menu, nav, section
         background: url(images/section-shadow.png) no-repeat center bottom;
         padding: 0 20px 30px;
     }
-
+    /*
     .main ul
     {
         list-style: none;
@@ -406,7 +406,7 @@ article, aside, details, footer, header, menu, nav, section
                 {
                     text-decoration: none;
                 }
-
+    */
     .main .cols
     {
         padding-left: 0;

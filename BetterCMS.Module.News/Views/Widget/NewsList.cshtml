@@ -1,0 +1,47 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@using BetterCMS.Module.News.ViewModels;
+@using BetterCMS.Module.News.Helpers;
+
+@model IPagedList<NewsViewModel>
+
+<div class="heading3">@(Utility.CurrentLanguageCode == "en" ? "Fataco news & events" : "Tin tức & sự kiện Fataco")</div>
+<div class="news-list">
+    @foreach (NewsViewModel item in Model)
+    {
+        string title = item.Title;
+        string summary = item.Summary;
+        if (Utility.CurrentLanguageCode == "en")
+        {
+            if (!string.IsNullOrWhiteSpace(item.Title_en))
+            { 
+                title = item.Title_en;
+            }
+            if (!string.IsNullOrWhiteSpace(item.Summary_en))
+            {
+                summary = item.Summary_en;
+            }
+        }
+        string linkText = Utility.CurrentLanguageCode == "en" ? "View detail" : "Chi tiết";
+        <div class="NewsItem">
+            <div class="NewsImage">
+                <a href="#"><img width="190" alt="@title" src="@(item.Image != null ? item.Image.ImageUrl : "/content/fataco/images/news/News_thumb_general.png")"></a>
+            </div>
+            <div class="newsContent">
+                <div class="NewsTitle"><a href="#">@title</a></div>
+                <div class="NewsDate">@item.PublishDate.ToString("dd-MM-yyyy")</div>
+                <div class="NewsTeaser">@summary</div>
+                <div style="text-align: left;" class="NewsReadmore">
+                    <a href="detail.html">@linkText</a>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    }
+</div>
+
+@if (ViewBag.ShowPager)
+{
+    @Html.PagedListPager((IPagedList)Model, page => Utility.AppendQueryString(new List<KeyValuePair<String, String>> { new KeyValuePair<string, string>("page", page.ToString()) }))    
+}
+

@@ -1,0 +1,26 @@
+﻿@using BetterCMS.Module.News.ViewModels;
+@using BetterCMS.Module.News.Helpers;
+@model List<CategoryViewModel>
+
+<div id="VMENU709487940" class="VMENU">
+    <ul class="VMENU_0 VMENU_0_709487940 reset">
+        @foreach (CategoryViewModel item in Model)
+        {
+            string active_class = "";
+            string name = Utility.CurrentLanguageCode == "en" ? item.Name_en : item.Name;
+            
+            if (HttpContext.Current.Request.QueryString["id"] != null)
+            {
+                string id = HttpContext.Current.Request.QueryString["id"];
+                if (item.Id.ToString().Contains(id))
+                {
+                    active_class = "s";
+                }
+            }
+            string url = HttpContext.Current.Request.Url.AbsolutePath + "?t=" + name.GenerateSlug() + "&id=" + item.Id.ToString().ShortGuid();
+            <li><a href="@url"><span class="@active_class">@name</span></a></li>
+            <li class="d"></li>
+        }
+    </ul>
+</div>
+

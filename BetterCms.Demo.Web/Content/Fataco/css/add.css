@@ -380,7 +380,7 @@ ul.VMENU_2_709487940
 .NewsContent {float:left; }
 
  
-.NewsTitle {font-size:20px;color:#730c76;/*4a1c04*/ }
+.NewsTitle a {font-size:20px;color:#730c76;/*4a1c04*/ }
 .NewsDate {color:#ababab;}
  
 

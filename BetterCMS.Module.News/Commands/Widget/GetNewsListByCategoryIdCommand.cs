@@ -7,10 +7,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using BetterCMS.Module.News.Helpers;
 
 namespace BetterCMS.Module.News.Commands.Widget
 {
-    public class GetNewsListByCategoryIdCommand: CommandBase, ICommand<Guid, List<NewsViewModel>>
+    public class GetNewsListByCategoryIdCommand: CommandBase, ICommand<string, List<NewsViewModel>>
     {
         private readonly IMediaFileUrlResolver fileUrlResolver;
         public GetNewsListByCategoryIdCommand(IMediaFileUrlResolver fileUrlResolver)
@@ -18,19 +19,22 @@ namespace BetterCMS.Module.News.Commands.Widget
             this.fileUrlResolver = fileUrlResolver;
         }
 
-        public List<NewsViewModel> Execute(Guid CategoryId)
+        public List<NewsViewModel> Execute(string CategoryId)
         {
             var query = Repository
                 .AsQueryable<Models.News>()
-                .Where(t => t.CategoryId == CategoryId)
+                .Where(t => t.CategoryId.ToString().Contains(CategoryId) || string.IsNullOrWhiteSpace(CategoryId))
+                .OrderBy(t => t.SortOrder)
                 .Select(t => new NewsViewModel
                 {
                     Id = t.Id,
-                    Version = t.Version,
-                    CategoryId = t.CategoryId,
                     Title = t.Title,
                     Title_en = t.Title_en,
-                    SortOrder = t.SortOrder,
+                    Summary = t.Summary,
+                    Summary_en = t.Summary_en,
+                    Content = t.Content,
+                    Content_en = t.Content_en,
+                    PublishDate = t.PublishDate,
                     Image = t.Image != null && !t.Image.IsDeleted ?
                                     new ImageSelectorViewModel
                                     {

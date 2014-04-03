@@ -20,12 +20,12 @@ namespace BetterCms.Demo.Web
             routes.MapRoute("TopMenu", "sitemap/TopMenu", new { area = string.Empty, controller = "sitemap", action = "TopMenu" }, new[] { "BetterCms.Demo.Web.Controllers" });
             routes.MapRoute("FooterMenu", "sitemap/FooterMenu", new { area = string.Empty, controller = "sitemap", action = "FooterMenu" }, new[] { "BetterCms.Demo.Web.Controllers" });
 
-            routes.MapRoute("news", "news/{id}", new
-            {
-                area = string.Empty,
-                controller = "HandlerUrl",
-                action = "News"
-            });
+            //routes.MapRoute("news", "tin-tuc-su-kien/{category}", new
+            //{
+            //    area = string.Empty,
+            //    controller = "HandlerUrl",
+            //    action = "News"
+            //});
         }
     }
 }
