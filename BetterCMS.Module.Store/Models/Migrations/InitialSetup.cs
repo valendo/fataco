@@ -8,7 +8,7 @@ using System.Web;
 
 namespace BetterCMS.Module.Store.Models.Migrations
 {
-    [Migration(201402261030)]
+    [Migration(201404041400)]
     public class InitialSetup : DefaultMigration
     {
         public InitialSetup() : base(StoreModuleDescriptor.ModuleName) { }
@@ -19,6 +19,18 @@ namespace BetterCMS.Module.Store.Models.Migrations
                 .WithColumn("Name").AsString(MaxLength.Name).NotNullable()
                 .WithColumn("Name_en").AsString(MaxLength.Name).NotNullable()
                 .WithColumn("ParentId").AsGuid().NotNullable()
+                .WithColumn("SortOrder").AsInt32().Nullable();
+
+            Create.Table("Products").InSchema(SchemaName)
+                .WithCmsBaseColumns()
+                .WithColumn("CategoryId").AsGuid().Nullable()
+                .WithColumn("Code").AsString(MaxLength.Text).NotNullable()
+                .WithColumn("Size").AsString(MaxLength.Text).Nullable()
+                .WithColumn("Color").AsString(MaxLength.Text).Nullable()
+                .WithColumn("Description").AsString(MaxLength.Max).Nullable()
+                .WithColumn("Description_en").AsString(MaxLength.Max).Nullable()
+                .WithColumn("ImageId").AsGuid().Nullable()
+                .WithColumn("IsFeature").AsBoolean()
                 .WithColumn("SortOrder").AsInt32().Nullable();
         }
     }

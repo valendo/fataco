@@ -24,7 +24,7 @@ namespace BetterCMS.Module.News.Commands.Widget
             var query = Repository
                 .AsQueryable<Models.News>()
                 .Where(t => t.CategoryId.ToString().Contains(CategoryId) || string.IsNullOrWhiteSpace(CategoryId))
-                .OrderBy(t => t.SortOrder)
+                .OrderBy(t => t.SortOrder).OrderByDescending(t => t.PublishDate)
                 .Select(t => new NewsViewModel
                 {
                     Id = t.Id,

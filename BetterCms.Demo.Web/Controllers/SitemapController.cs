@@ -128,7 +128,8 @@ namespace BetterCms.Demo.Web.Controllers
                     List<PageTranslationModel> pages1 =  xx.Data.Items.ToList();
                     foreach (var item in pages1)
                     {
-                        if (item.LanguageCode == lang)
+                        string language = item.LanguageCode != null ? item.LanguageCode : "vi";
+                        if (language == lang)
                         {
                             return Redirect(item.PageUrl);
                         }

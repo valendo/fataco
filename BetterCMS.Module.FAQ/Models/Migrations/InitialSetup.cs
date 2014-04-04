@@ -8,7 +8,7 @@ using System.Web;
 
 namespace BetterCMS.Module.FAQ.Models.Migrations
 {
-    [Migration(201403251620)]
+    [Migration(201404041400)]
     public class InitialSetup : DefaultMigration
     {
         public InitialSetup() : base(FaqModuleDescriptor.ModuleName) { }
@@ -23,10 +23,10 @@ namespace BetterCMS.Module.FAQ.Models.Migrations
             Create.Table("Faqs").InSchema(SchemaName)
                 .WithCmsBaseColumns()
                 .WithColumn("CategoryId").AsGuid().Nullable()
-                .WithColumn("Question").AsString().NotNullable()
-                .WithColumn("Question_en").AsString().Nullable()
-                .WithColumn("Answer").AsString().Nullable()
-                .WithColumn("Answer_en").AsString().Nullable()
+                .WithColumn("Question").AsString(MaxLength.Text).NotNullable()
+                .WithColumn("Question_en").AsString(MaxLength.Text).Nullable()
+                .WithColumn("Answer").AsString(MaxLength.Max).Nullable()
+                .WithColumn("Answer_en").AsString(MaxLength.Max).Nullable()
                 .WithColumn("SortOrder").AsInt32().Nullable();
         }
     }

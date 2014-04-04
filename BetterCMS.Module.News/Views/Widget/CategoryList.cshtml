@@ -17,7 +17,11 @@
                     active_class = "s";
                 }
             }
-            string url = HttpContext.Current.Request.Url.AbsolutePath + "?t=" + name.GenerateSlug() + "&id=" + item.Id.ToString().ShortGuid();
+            string url = "#";
+            if (!string.IsNullOrWhiteSpace(ViewBag.NewsUrl))
+            {
+                url = ViewBag.NewsUrl + "?t=" + name.GenerateSlug() + "&id=" + item.Id.ToString().ShortGuid();
+            }
             <li><a href="@url"><span class="@active_class">@name</span></a></li>
             <li class="d"></li>
         }

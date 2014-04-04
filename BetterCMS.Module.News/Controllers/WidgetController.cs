@@ -14,7 +14,7 @@ namespace BetterCMS.Module.News.Controllers
 {
     public class WidgetController : CmsControllerBase
     {
-        public ActionResult NewsList(string id, int? page)
+        public ActionResult NewsList(string id, int? page, string detailUrl)
         {
             var listNews = GetCommand<GetNewsListByCategoryIdCommand>().ExecuteCommand(id);
             var pageNumber = page ?? 1;
@@ -26,13 +26,20 @@ namespace BetterCMS.Module.News.Controllers
                 showPager = true;
             }
             ViewBag.ShowPager = showPager;
-            return View(pagedList);
             
+            ViewBag.DetailUrl = detailUrl;
+            return View(pagedList);
+        }
+        public ActionResult NewsDetail(string id)
+        {
+            var model = GetCommand<GetNewsByIdCommand>().ExecuteCommand(id);
+            return View(model);
         }
 
-        public ActionResult CategoryList()
+        public ActionResult CategoryList(string newsUrl)
         {
             var list = GetCommand<GetCategoryListCommand>().ExecuteCommand(Guid.Empty);
+            ViewBag.NewsUrl = newsUrl;
             return View(list);
         }
     }

@@ -468,8 +468,10 @@
     </None>
     <Content Include="Views\SiteMap\TopMenu.cshtml" />
     <Content Include="Views\SiteMap\FooterMenu.cshtml" />
-    <Content Include="Views\SiteMap\VMenu.cshtml" />
-    <Content Include="Views\Widgets\VMenuWidget.cshtml" />
+    <Content Include="Views\Shared\Fataco\_ContactLayout.cshtml" />
+    <Content Include="Views\Shared\Fataco\_DetailLayout.cshtml" />
+    <Content Include="Views\Shared\Fataco\_FatacoLayout.cshtml" />
+    <Content Include="Views\Shared\Fataco\_HomeLayout.cshtml" />
     <None Include="Web.Staging.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -495,7 +497,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>10774</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:17433/</IISUrl>
+          <IISUrl>http://localhost:17432/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -5,6 +5,10 @@
 
 @model IPagedList<NewsViewModel>
 
+@{
+    string baseDetailUrl = ViewBag.DetailUrl;
+}
+
 <div class="heading3">@(Utility.CurrentLanguageCode == "en" ? "Fataco news & events" : "Tin tức & sự kiện Fataco")</div>
 <div class="news-list">
     @foreach (NewsViewModel item in Model)
@@ -22,24 +26,28 @@
                 summary = item.Summary_en;
             }
         }
-        string linkText = Utility.CurrentLanguageCode == "en" ? "View detail" : "Chi tiết";
+        //string linkText = Utility.CurrentLanguageCode == "en" ? "View detail" : "Chi tiết";
+        string detailUrl = "#";
+        if (!string.IsNullOrWhiteSpace(baseDetailUrl))
+        {
+            detailUrl = baseDetailUrl + "?t=" + Utility.GenerateSlug(title) + "&id=" + item.Id.ToString().ShortGuid();    
+        }
         <div class="NewsItem">
             <div class="NewsImage">
-                <a href="#"><img width="190" alt="@title" src="@(item.Image != null ? item.Image.ImageUrl : "/content/fataco/images/news/News_thumb_general.png")"></a>
+                <a href="@detailUrl"><img width="190" alt="@title" src="@(item.Image != null ? item.Image.ImageUrl : "/content/fataco/images/news/News_thumb_general.png")"></a>
             </div>
             <div class="newsContent">
-                <div class="NewsTitle"><a href="#">@title</a></div>
+                <div class="NewsTitle"><a href="@detailUrl">@title</a></div>
                 <div class="NewsDate">@item.PublishDate.ToString("dd-MM-yyyy")</div>
                 <div class="NewsTeaser">@summary</div>
-                <div style="text-align: left;" class="NewsReadmore">
-                    <a href="detail.html">@linkText</a>
-                </div>
+                @*<div style="text-align: left;" class="NewsReadmore">
+                    <a href="@detailUrl">@linkText</a>
+                </div>*@
             </div>
             <div class="clear"></div>
         </div>
     }
 </div>
-
 @if (ViewBag.ShowPager)
 {
     @Html.PagedListPager((IPagedList)Model, page => Utility.AppendQueryString(new List<KeyValuePair<String, String>> { new KeyValuePair<string, string>("page", page.ToString()) }))    

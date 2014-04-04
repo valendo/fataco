@@ -19,13 +19,13 @@ namespace BetterCMS.Module.News.Commands.News
         {
             this.fileUrlResolver = fileUrlResolver;
         }
-        public EditNewsViewModel Execute(Guid productId)
+        public EditNewsViewModel Execute(Guid id)
         {
             EditNewsViewModel model;
-            if (!productId.HasDefaultValue())
+            if (!id.HasDefaultValue())
             {
                 var listFuture = Repository.AsQueryable<Models.News>()
-                    .Where(t => t.Id == productId)
+                    .Where(t => t.Id == id)
                     .Select(
                         t =>
                             new EditNewsViewModel

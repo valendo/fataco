@@ -204,7 +204,6 @@
     <Compile Include="Models\Maps\ProductCategoryMap.cs" />
     <Compile Include="Models\Maps\ProductMap.cs" />
     <Compile Include="Models\Migrations\InitialSetup.cs" />
-    <Compile Include="Models\Migrations\Migration201403071434.cs" />
     <Compile Include="Models\Migrations\MigrationVersioning.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductCategory.cs" />

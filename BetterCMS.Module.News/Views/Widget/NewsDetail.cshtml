@@ -1,0 +1,34 @@
+﻿@using BetterCMS.Module.News.ViewModels;
+@using BetterCMS.Module.News.Helpers;
+
+@model NewsViewModel
+
+@{
+    string title = Model.Title;
+    string summary = Model.Summary;
+    string content = Model.Content;
+    if (Utility.CurrentLanguageCode == "en")
+    {
+        if (!string.IsNullOrWhiteSpace(Model.Title_en))
+        {
+            title = Model.Title_en;
+        }
+        if (!string.IsNullOrWhiteSpace(Model.Summary_en))
+        {
+            summary = Model.Summary_en;
+        }
+        if (!string.IsNullOrWhiteSpace(Model.Content_en))
+        {
+            content = Model.Content_en;
+        }
+    }
+}
+<div class="heading3">@(Utility.CurrentLanguageCode == "en" ? Model.Title_en : Model.Title)</div>
+<div class="newsContent">
+    <div class="NewsDate">@Model.PublishDate.ToString("dd-MM-yyyy")</div>
+    <div class="NewsTeaser" style="font-style:italic;">@summary</div>
+    <br/>
+    <div>@Html.Raw(content)</div>
+</div>
+<div class="clear"></div>
+

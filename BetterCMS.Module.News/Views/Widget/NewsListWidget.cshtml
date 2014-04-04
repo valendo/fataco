@@ -1,1 +1,6 @@
-﻿@{ Html.RenderAction("NewsList", "Widget", new { area = "bcms-news" }); }
+﻿@using BetterCMS.Module.News.Helpers
+
+@{
+    var detailUrl = OptionsHelper.GetValue(Model.Options, "DetailUrl");
+    Html.RenderAction("NewsList", "Widget", new { area = "bcms-news", detailUrl = detailUrl != null ? detailUrl : "" });
+}
