@@ -1,0 +1,27 @@
+﻿@using BetterCMS.Module.FAQ.ViewModels;
+@using BetterCMS.Module.FAQ.Helpers;
+
+@model List<FaqViewModel>
+
+<div id="faq-list">
+    @foreach (var item in Model)
+    {
+        string question = Utility.CurrentLanguageCode == "en" ? item.Question_en : item.Question;
+        string answer = Utility.CurrentLanguageCode == "en" ? item.Answer_en : item.Answer;
+        <h2>@question</h2>
+        <div class="answer">
+            <p>@Html.Raw(answer)</p>
+        </div>
+    }
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#faq-list h2').click(function () {
+
+            $(this).next('.answer').slideToggle(500);
+            $(this).toggleClass('close');
+
+        });
+    });
+</script>

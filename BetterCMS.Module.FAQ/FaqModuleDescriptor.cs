@@ -39,6 +39,14 @@ namespace BetterCMS.Module.FAQ
             faqJsModuleIncludeDescriptor = new CategoryJsModuleIncludeDescriptor(this);
         }
 
+        public override IEnumerable<CssIncludeDescriptor> RegisterCssIncludes()
+        {
+            return new[]
+                {
+                    new CssIncludeDescriptor(this, "style.css"),
+                };
+        }
+
         public override IEnumerable<JsIncludeDescriptor> RegisterJsIncludes()
         {
             return new JsIncludeDescriptor[]

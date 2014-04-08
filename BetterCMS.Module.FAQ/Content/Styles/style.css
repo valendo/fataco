@@ -1,0 +1,25 @@
+/* =The style for the lab
+-------------------------------------------------------------- */
+#faq-list{
+    padding-left:20px;
+}
+#faq-list .answer {
+    display:none;
+    padding-left:24px;
+    padding-bottom:20px;
+}
+
+#faq-list h2 {
+    line-height:24px;
+    font-size:18px;
+    color:#000;
+    padding-left:24px;
+    cursor:pointer;
+    background-image:url('../images/open.png');
+    background-position:left;
+    background-position-y:top;
+    background-repeat:no-repeat;
+}
+#faq-list h2.close {
+    background-image:url('../images/close.png');
+}

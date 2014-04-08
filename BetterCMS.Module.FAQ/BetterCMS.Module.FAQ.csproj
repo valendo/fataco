@@ -180,12 +180,17 @@
     <Compile Include="Commands\Faq\GetFaqCommand.cs" />
     <Compile Include="Commands\Faq\GetFaqsCommand.cs" />
     <Compile Include="Commands\Faq\SaveFaqCommand.cs" />
+    <Compile Include="Commands\Widget\GetCategoryListCommand.cs" />
+    <Compile Include="Commands\Widget\GetFaqListByCategoryIdCommand.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\FaqController.cs" />
+    <Compile Include="Controllers\WidgetController.cs" />
     <Compile Include="FaqModuleDescriptor.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\OptionsHelper.cs" />
+    <Compile Include="Helpers\Utility.cs" />
     <Compile Include="Models\Faq.cs" />
     <Compile Include="Models\FaqCategory.cs" />
     <Compile Include="Models\Maps\FaqCategoryMap.cs" />
@@ -203,6 +208,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="betterCms.license.txt" />
+    <EmbeddedResource Include="Content\Styles\style.css" />
+    <EmbeddedResource Include="Content\images\close.png" />
+    <EmbeddedResource Include="Content\images\open.png" />
     <Content Include="Global.asax" />
     <EmbeddedResource Include="Scripts\bcms.faq.category.js" />
     <EmbeddedResource Include="Scripts\bcms.faq.js" />
@@ -238,6 +246,18 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\Faq\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Widget\CategoryListWidget.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Widget\FaqListWidget.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Widget\CategoryList.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Widget\FaqList.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
