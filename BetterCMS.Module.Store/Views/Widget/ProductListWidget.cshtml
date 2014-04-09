@@ -1,0 +1,6 @@
+﻿@using BetterCMS.Module.Store.Helpers
+
+@{
+    var detailUrl = OptionsHelper.GetValue(Model.Options, "DetailUrl");
+    Html.RenderAction("ProductList", "Widget", new { area = "bcms-store", detailUrl = detailUrl != null ? detailUrl : "" });
+}

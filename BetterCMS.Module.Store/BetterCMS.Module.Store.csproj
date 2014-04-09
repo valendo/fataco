@@ -196,11 +196,17 @@
     <Compile Include="Commands\Product\GetProductsCommand.cs" />
     <Compile Include="Commands\Product\GetProductCommand.cs" />
     <Compile Include="Commands\Product\SaveProductCommand.cs" />
+    <Compile Include="Commands\Widget\GetCategoryListCommand.cs" />
+    <Compile Include="Commands\Widget\GetNewsByIdCommand.cs" />
+    <Compile Include="Commands\Widget\GetNewsListByCategoryIdCommand.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\WidgetController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\OptionsHelper.cs" />
+    <Compile Include="Helpers\Utility.cs" />
     <Compile Include="Models\Maps\ProductCategoryMap.cs" />
     <Compile Include="Models\Maps\ProductMap.cs" />
     <Compile Include="Models\Migrations\InitialSetup.cs" />
@@ -260,6 +266,24 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\Product\Partial\ProductsFilterTemplate.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Widget\CategoryList.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Widget\CategoryListWidget.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Widget\ProductDetail.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Widget\ProductDetailWidget.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Widget\ProductList.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Widget\ProductListWidget.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

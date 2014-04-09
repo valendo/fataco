@@ -1,0 +1,53 @@
+﻿@using BetterCMS.Module.Store.ViewModels;
+@using BetterCMS.Module.Store.Helpers;
+
+@model ProductViewModel
+
+@{
+    string codeLabel = "Mã";
+    string sizeLabel = "Cỡ";
+    string colorLabel = "Màu";
+    string infoText = "Thông tin chi tiết";
+    string description = Model.Description;
+    if (Utility.CurrentLanguageCode == "en")
+    {
+        codeLabel = "Code";
+        sizeLabel = "Size";
+        colorLabel = "Color";
+        infoText = "Detail information";
+        if (!string.IsNullOrWhiteSpace(Model.Description_en))
+        {
+            description = Model.Description_en;
+        }
+    }
+}
+<div class="heading3">@ViewBag.CategoryName > @Model.Code</div>
+<div>
+    <div class="product-image">
+        <img src="images/product/a2.jpg" />
+    </div>
+
+    <div>
+        <div class="heading2">@infoText</div>
+        <div class="m-product-name"><strong>@colorLabel: </strong>@Model.Code</div>
+        <table cellpadding="0" cellspacing="2">
+            <tbody>
+                <tr>
+                    <td><strong>@sizeLabel:</strong></td>
+                    <td align="left">@Model.Size</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="m-product-desc">
+            <strong style="float: left;">@colorLabel: </strong><span style="width: 15px; height: 15px;
+                                                border: 1px solid gray; margin-left: 3px; float: left; background: #F176AE">
+            </span><span style="width: 15px; height: 15px; border: 1px solid gray; margin-left: 3px;
+                                                float: left; background: #EE1D23"></span><span class="clear"></span>
+            <br>
+        </div>
+        <div class="product-detail">
+            @Html.Raw(description)
+        </div>
+    </div>
+</div>
+
