@@ -12,6 +12,7 @@ namespace BetterCMS.Module.News.Helpers
         public static string GenerateSlug(this string phrase, int maxLength = 50)
         {
             string str = phrase.ToLower();
+            str = ConvertVN(str);
             // invalid chars, make into spaces
             str = Regex.Replace(str, @"[^a-z0-9\s-]", "");
             // convert multiple spaces/hyphens into one space       
@@ -22,6 +23,20 @@ namespace BetterCMS.Module.News.Helpers
             str = Regex.Replace(str, @"\s", "-");
 
             return str;
+        }
+
+        public static string ConvertVN(string chucodau)
+        {
+            const string FindText = "áàảãạâấầẩẫậăắằẳẵặđéèẻẽẹêếềểễệíìỉĩịóòỏõọôốồổỗộơớờởỡợúùủũụưứừửữựýỳỷỹỵÁÀẢÃẠÂẤẦẨẪẬĂẮẰẲẴẶĐÉÈẺẼẸÊẾỀỂỄỆÍÌỈĨỊÓÒỎÕỌÔỐỒỔỖỘƠỚỜỞỠỢÚÙỦŨỤƯỨỪỬỮỰÝỲỶỸỴ";
+            const string ReplText = "aaaaaaaaaaaaaaaaadeeeeeeeeeeeiiiiiooooooooooooooooouuuuuuuuuuuyyyyyAAAAAAAAAAAAAAAAADEEEEEEEEEEEIIIIIOOOOOOOOOOOOOOOOOUUUUUUUUUUUYYYYY";
+            int index = -1;
+            char[] arrChar = FindText.ToCharArray();
+            while ((index = chucodau.IndexOfAny(arrChar)) != -1)
+            {
+                int index2 = FindText.IndexOf(chucodau[index]);
+                chucodau = chucodau.Replace(chucodau[index], ReplText[index2]);
+            }
+            return chucodau;
         }
         public static string ShortGuid(this string phrase)
         {

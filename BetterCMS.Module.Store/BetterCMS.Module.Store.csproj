@@ -94,6 +94,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Iesi.Collections.3.3.3.4001\lib\Net35\Iesi.Collections.dll</HintPath>
     </Reference>
+    <Reference Include="ImageResizer">
+      <HintPath>..\packages\ImageResizer.3.4.2\lib\ImageResizer.dll</HintPath>
+    </Reference>
+    <Reference Include="ImageResizer.Mvc">
+      <HintPath>..\packages\ImageResizer.Mvc.3.4.2\lib\ImageResizer.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Mvc">
       <HintPath>..\packages\Mvc3Futures.3.0.20105.0\lib\Microsoft.Web.Mvc.dll</HintPath>
@@ -199,6 +205,7 @@
     <Compile Include="Commands\Widget\GetCategoryListCommand.cs" />
     <Compile Include="Commands\Widget\GetNewsByIdCommand.cs" />
     <Compile Include="Commands\Widget\GetNewsListByCategoryIdCommand.cs" />
+    <Compile Include="Commands\Widget\GetCategoryCommand.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\WidgetController.cs" />

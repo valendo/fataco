@@ -4,6 +4,8 @@
 @model ProductViewModel
 
 @{
+    string categoryName = "";
+    CategoryViewModel category = (CategoryViewModel)ViewBag.Category;
     string codeLabel = "Mã";
     string sizeLabel = "Cỡ";
     string colorLabel = "Màu";
@@ -20,31 +22,61 @@
             description = Model.Description_en;
         }
     }
+    if (category != null)
+    {
+        categoryName = category.Name;
+        if (Utility.CurrentLanguageCode == "en")
+        {
+            categoryName = category.Name_en;
+        }
+    }
+    
 }
-<div class="heading3">@ViewBag.CategoryName > @Model.Code</div>
+@if (!string.IsNullOrWhiteSpace(categoryName))
+{
+    <div class="heading3">@categoryName > @Model.Code</div>    
+}
+else
+{
+    <div class="heading3">@Model.Code</div>    
+}
+
 <div>
     <div class="product-image">
-        <img src="images/product/a2.jpg" />
+        <img src="@(Model.Image != null ? Model.Image.ImageUrl + "?width=700" : "/content/fataco/images/no-image.jpg?width=700")" />
     </div>
 
     <div>
         <div class="heading2">@infoText</div>
-        <div class="m-product-name"><strong>@colorLabel: </strong>@Model.Code</div>
-        <table cellpadding="0" cellspacing="2">
-            <tbody>
-                <tr>
-                    <td><strong>@sizeLabel:</strong></td>
-                    <td align="left">@Model.Size</td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="m-product-desc">
-            <strong style="float: left;">@colorLabel: </strong><span style="width: 15px; height: 15px;
-                                                border: 1px solid gray; margin-left: 3px; float: left; background: #F176AE">
-            </span><span style="width: 15px; height: 15px; border: 1px solid gray; margin-left: 3px;
-                                                float: left; background: #EE1D23"></span><span class="clear"></span>
-            <br>
-        </div>
+        <div class="m-product-name"><strong>@codeLabel: </strong>@Model.Code</div>
+        @if (!string.IsNullOrWhiteSpace(Model.Size))
+        {
+            <table cellpadding="0" cellspacing="2">
+                <tbody>
+                    <tr>
+                        <td><strong>@sizeLabel:</strong></td>
+                        <td align="left">@Model.Size</td>
+                    </tr>
+                </tbody>
+            </table>
+        }
+        @if (!string.IsNullOrWhiteSpace(Model.Color))
+        { 
+            <div class="m-product-desc">
+                <strong style="float: left;">@colorLabel: </strong>
+                @{
+                    string[] arrColor = Model.Color.Split(';');
+                    foreach (string color in arrColor)
+                    {
+                        if (!string.IsNullOrWhiteSpace(color))
+                        {
+                            <span style="width: 15px; height: 15px;border: 1px solid gray; margin-left: 3px; float: left; background: @color"></span>
+                        }
+                    }
+                }
+                <br>
+            </div>
+        }
         <div class="product-detail">
             @Html.Raw(description)
         </div>

@@ -18,6 +18,7 @@ namespace BetterCMS.Module.Store.Controllers
     {
         public ActionResult ProductList(string id, int? page, string detailUrl)
         {
+            var category = GetCommand<GetCategoryCommand>().ExecuteCommand(id);
             var listProduct = GetCommand<GetProductListByCategoryIdCommand>().ExecuteCommand(id);
             var pageNumber = page ?? 1;
             var pageSize = int.Parse(WebConfigurationManager.AppSettings["PageSize"].ToString());
@@ -28,13 +29,15 @@ namespace BetterCMS.Module.Store.Controllers
                 showPager = true;
             }
             ViewBag.ShowPager = showPager;
-            
             ViewBag.DetailUrl = detailUrl;
+            ViewBag.Category = category;
             return View(pagedList);
         }
         public ActionResult ProductDetail(string id)
         {
             var model = GetCommand<GetProductByIdCommand>().ExecuteCommand(id);
+            var category = GetCommand<GetCategoryCommand>().ExecuteCommand(model.CategoryId.ToString());
+            ViewBag.Category = category;
             return View(model);
         }
 
@@ -65,7 +68,7 @@ namespace BetterCMS.Module.Store.Controllers
                     string url = "#";
                     if (!string.IsNullOrWhiteSpace(productUrl) && level1.Count == 0)
                     {
-                        url = productUrl + "?t=" + item.Name.GenerateSlug() + "&id=" + item.Id.ToString().ShortGuid();
+                        url = productUrl + "?t=" + name.GenerateSlug() + "&id=" + item.Id.ToString().ShortGuid();
                     }
                     sb.AppendFormat("<li><a href=\"{0}\"><span class=\"{1}\">{2}</span></a>", url, active_class, name);
                     if (level1.Count > 0)
@@ -83,7 +86,7 @@ namespace BetterCMS.Module.Store.Controllers
                             string url1 = "#";
                             if (!string.IsNullOrWhiteSpace(productUrl) && level2.Count == 0)
                             {
-                                url1 = productUrl + "?t=" + item1.Name.GenerateSlug() + "&id=" + item1.Id.ToString().ShortGuid();
+                                url1 = productUrl + "?t=" + name1.GenerateSlug() + "&id=" + item1.Id.ToString().ShortGuid();
                             }
                             sb.AppendFormat("<li><a href=\"{0}\"><span class=\"{1}\">{2}</span></a>", url1, active_class1, name1);
                             if (level2.Count > 0)
@@ -100,7 +103,7 @@ namespace BetterCMS.Module.Store.Controllers
                                     string url2 = "#";
                                     if (!string.IsNullOrWhiteSpace(productUrl))
                                     {
-                                        url2 = productUrl + "?t=" + item2.Name.GenerateSlug() + "&id=" + item2.Id.ToString().ShortGuid();
+                                        url2 = productUrl + "?t=" + name2.GenerateSlug() + "&id=" + item2.Id.ToString().ShortGuid();
                                     }
                                     sb.AppendFormat("<li><a href=\"{0}\"><span class=\"{1}\">{2}</span></a></li>", url2, active_class2, name2);
                                 }

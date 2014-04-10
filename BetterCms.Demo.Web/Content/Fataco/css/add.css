@@ -368,6 +368,10 @@ ul.VMENU_2_709487940
 {
     text-align:center;
 }
+.product-image img
+{
+    max-width:700px;
+}
 .product-detail
 {
 }
