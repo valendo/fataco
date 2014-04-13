@@ -1,0 +1,8 @@
+﻿@using BetterCms.Demo.Web.Helpers
+@{
+    var Url = OptionsHelper.GetValue(Model.Options, "Url");
+    if (Url != null)
+    { 
+        Response.Redirect(Url);  
+    }
+}
