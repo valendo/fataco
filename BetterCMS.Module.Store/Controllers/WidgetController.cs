@@ -33,6 +33,23 @@ namespace BetterCMS.Module.Store.Controllers
             ViewBag.Category = category;
             return View(pagedList);
         }
+
+        public ActionResult SearchResult(string query, int? page, string detailUrl)
+        {
+            var listProduct = GetCommand<GetProductListByQueryCommand>().ExecuteCommand(query);
+            var pageNumber = page ?? 1;
+            var pageSize = int.Parse(WebConfigurationManager.AppSettings["PageSize"].ToString());
+            var pagedList = listProduct.ToPagedList(pageNumber, pageSize);
+            bool showPager = false;
+            if (listProduct.Count > pageSize)
+            {
+                showPager = true;
+            }
+            ViewBag.ShowPager = showPager;
+            ViewBag.DetailUrl = detailUrl;
+            return View(pagedList);
+        }
+
         public ActionResult ProductDetail(string id)
         {
             var model = GetCommand<GetProductByIdCommand>().ExecuteCommand(id);

@@ -203,9 +203,10 @@
     <Compile Include="Commands\Product\GetProductCommand.cs" />
     <Compile Include="Commands\Product\SaveProductCommand.cs" />
     <Compile Include="Commands\Widget\GetCategoryListCommand.cs" />
-    <Compile Include="Commands\Widget\GetNewsByIdCommand.cs" />
-    <Compile Include="Commands\Widget\GetNewsListByCategoryIdCommand.cs" />
+    <Compile Include="Commands\Widget\GetProductByIdCommand.cs" />
+    <Compile Include="Commands\Widget\GetProductListByCategoryIdCommand.cs" />
     <Compile Include="Commands\Widget\GetCategoryCommand.cs" />
+    <Compile Include="Commands\Widget\GetProductListByQueryCommand.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\WidgetController.cs" />
@@ -291,6 +292,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\Widget\ProductListWidget.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Widget\SearchResult.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Widget\SearchResultWidget.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

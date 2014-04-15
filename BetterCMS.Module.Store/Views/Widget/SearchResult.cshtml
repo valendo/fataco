@@ -1,0 +1,91 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@using BetterCMS.Module.Store.ViewModels;
+@using BetterCMS.Module.Store.Helpers;
+
+@model IPagedList<ProductViewModel>
+
+@{
+    string headerText = "Sản phẩm";
+    string notFoundMsg = "Không tìm thấy sản phẩm nào.";
+    string baseDetailUrl = ViewBag.DetailUrl;
+    string codeLabel = "Mã";
+    string sizeLabel = "Cỡ";
+    string colorLabel = "Màu";
+    string detailText = "Chi tiết";
+    if (Utility.CurrentLanguageCode == "en")
+    {
+        headerText = "Products";
+        notFoundMsg = "No product was found.";
+        codeLabel = "Code";
+        sizeLabel = "Size";
+        colorLabel = "Color";
+        detailText = "View detail";
+    }
+}
+
+<div class="heading3">@headerText</div>
+<div>
+    @if (Model.Count > 0)
+    {
+        foreach (ProductViewModel item in Model)
+    {
+        string detailUrl = "#";
+        if (!string.IsNullOrWhiteSpace(baseDetailUrl))
+        {
+            detailUrl = baseDetailUrl + "?t=" + Utility.GenerateSlug(item.Code) + "&id=" + item.Id.ToString().ShortGuid();
+        }
+        <div class="m-product">
+            <div class="m-product-image">
+                <a class="group1" href="@(item.Image != null ? item.Image.ImageUrl + "?width=800" : "/content/fataco/images/no-image.jpg")">
+                    <img width="150" src="@(item.Image != null ? item.Image.ImageUrl + "?w=150&h=160&scale=canvas" : "/content/fataco/images/no-image.jpg?w=150&h=160&scale=canvas")" />
+                </a>
+            </div>
+            <div class="m-product-name"><strong>@codeLabel: </strong>@item.Code</div>
+            @if (!string.IsNullOrWhiteSpace(item.Size))
+            {
+                <table cellpadding="0" cellspacing="2">
+                    <tbody>
+                        <tr>
+                            <td valign="top"><strong>@sizeLabel:</strong></td>
+                            <td align="left">@Html.Raw(item.Size.Replace(Environment.NewLine, "<br/>"))</td>
+                        </tr>
+                    </tbody>
+                </table>
+            }
+
+            @if (!string.IsNullOrWhiteSpace(item.Color))
+            {
+                <div class="m-product-desc">
+                    <strong style="float: left;">@colorLabel: </strong>
+                    @{
+                string[] arrColor = item.Color.Split(';');
+                foreach (string color in arrColor)
+                {
+                    if (!string.IsNullOrWhiteSpace(color))
+                    {
+                        <span style="width: 15px; height: 15px;border: 1px solid gray; margin-left: 3px; float: left; background: @color"></span>
+                    }
+                }
+                    }
+
+                    <br>
+                </div>
+            }
+            <div class="m-product-detail">
+                <a href="@detailUrl">@detailText</a>
+            </div>
+        </div>
+    }
+    }
+    else
+    {
+        <i>@notFoundMsg</i>
+    }
+</div>
+
+@if (ViewBag.ShowPager)
+{
+    @Html.PagedListPager((IPagedList)Model, page => Utility.AppendQueryString(new List<KeyValuePair<String, String>> { new KeyValuePair<string, string>("page", page.ToString()) }))
+}
+
