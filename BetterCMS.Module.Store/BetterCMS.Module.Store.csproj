@@ -203,6 +203,7 @@
     <Compile Include="Commands\Product\GetProductCommand.cs" />
     <Compile Include="Commands\Product\SaveProductCommand.cs" />
     <Compile Include="Commands\Widget\GetCategoryListCommand.cs" />
+    <Compile Include="Commands\Widget\GetFeaturedProductCommand.cs" />
     <Compile Include="Commands\Widget\GetProductByIdCommand.cs" />
     <Compile Include="Commands\Widget\GetProductListByCategoryIdCommand.cs" />
     <Compile Include="Commands\Widget\GetCategoryCommand.cs" />
@@ -298,6 +299,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\Widget\SearchResultWidget.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Widget\FeaturedProductWidget.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Widget\FeaturedProduct.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

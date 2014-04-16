@@ -1,0 +1,43 @@
+﻿@using BetterCMS.Module.Store.ViewModels;
+@using BetterCMS.Module.Store.Helpers;
+
+@model List<ProductViewModel>
+
+@{
+    string baseDetailUrl = ViewBag.DetailUrl;
+    string headerText = "Sản phẩm nổi bật";
+    if (Utility.CurrentLanguageCode == "en")
+    {
+        headerText = "Featured products";
+    }
+}
+
+
+@if (Model.Count > 0)
+{
+    <section>
+        <div class="heading2">@headerText</div>
+
+        <div class="jcarousel-wrapper">
+            <div class="jcarousel">
+                <ul>
+                    @foreach (var item in Model)
+                    {
+                        string detailUrl = "#";
+                        if (!string.IsNullOrWhiteSpace(baseDetailUrl))
+                        {
+                            detailUrl = baseDetailUrl + "?t=" + Utility.GenerateSlug(item.Code) + "&id=" + item.Id.ToString().ShortGuid();
+                        }
+                        <li>
+                            <a href="@detailUrl"><img src="@(item.Image != null ? item.Image.ImageUrl + "?w=180&h=180&scale=canvas" : "/content/fataco/images/no-image.jpg?w=180&h=180&scale=canvas")" alt=""></a>
+                        </li>
+                    }
+                </ul>
+            </div>
+            <a href="#" class="jcarousel-control-prev">&lsaquo;</a>
+            <a href="#" class="jcarousel-control-next">&rsaquo;</a>
+
+            @*<p class="jcarousel-pagination"></p>*@
+        </div>
+    </section>
+}

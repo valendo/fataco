@@ -34,6 +34,13 @@ namespace BetterCMS.Module.Store.Controllers
             return View(pagedList);
         }
 
+        public ActionResult FeaturedProduct(string detailUrl)
+        {
+            var listProduct = GetCommand<GetFeaturedProductCommand>().ExecuteCommand(string.Empty);
+            ViewBag.DetailUrl = detailUrl;
+            return View(listProduct);
+        }
+
         public ActionResult SearchResult(string query, int? page, string detailUrl)
         {
             var listProduct = GetCommand<GetProductListByQueryCommand>().ExecuteCommand(query);
