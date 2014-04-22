@@ -1,4 +1,4 @@
-﻿@using BetterCms.Demo.Web.Models
+﻿@*@using BetterCms.Demo.Web.Models
 @model IList<MenuItemViewModel>
 
  
@@ -16,4 +16,5 @@
     } 
     </ul>
 </div>
-
+*@
+@Html.Raw(ViewBag.MenuString2)
