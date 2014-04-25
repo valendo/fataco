@@ -38,6 +38,13 @@
             $('.VMENU_2').hide('slow');
             $(this).siblings('ul').show('slow');
         })
+        $('.VMENU_0> li > a').click(function ()
+        {
+            if ($(this).siblings('ul').length>0)
+            {
+                return false;
+            }
+        });
     </script>
     @RenderSection("Scripts", false)
 

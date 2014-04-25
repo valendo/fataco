@@ -14,7 +14,9 @@ body
 {
     font-size: 14px;
     line-height: 22px;
-    font-family: normal 14px/1.1em "Century Gothic","Apple Gothic",futura,'URW Gothic L';
+    /*font-family: normal 14px/1.1em "Century Gothic","Apple Gothic",futura,'URW Gothic L';*/
+    font-size:14px;
+    font-family:Arial;
     color: #828282;
     background: url(images/body.png) repeat 0 0;
     min-width: 100%;

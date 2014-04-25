@@ -90,7 +90,7 @@ namespace BetterCMS.Module.Store.Controllers
                     }
                     var level1 = list.Where(t => t.ParentId == item.Id).OrderBy(t => t.SortOrder).ToList();
                     string url = "#";
-                    if (!string.IsNullOrWhiteSpace(productUrl) && level1.Count == 0)
+                    //if (!string.IsNullOrWhiteSpace(productUrl) && level1.Count == 0)
                     {
                         url = productUrl + "?t=" + name.GenerateSlug() + "&id=" + item.Id.ToString().ShortGuid();
                     }
