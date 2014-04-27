@@ -17,7 +17,7 @@ namespace BetterCms.Demo.Web.Controllers
             {
                 using (var message = new MailMessage())
                 {
-                    message.From = new MailAddress("info@BetterCmsDemo.com");
+                    message.From = new MailAddress("contact@fataco.com");
                     message.ReplyToList.Add(new MailAddress(viewModel.Email));
                     message.To.Add(new MailAddress(viewModel.EmailTo));
                     message.Subject = string.Format("[Fataco.com] Message from {0}", viewModel.Name);
