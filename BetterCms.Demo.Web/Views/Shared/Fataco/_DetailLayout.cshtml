@@ -27,7 +27,9 @@
 @RenderBody()
                     </section>
 </div>
+ @RenderSection("scripts", required: false)
 @section Scripts {
+
     <script type="text/javascript">
         $('.VMENU_1').hide();
         $('.VMENU_0').children('li').children('a').click(function () {

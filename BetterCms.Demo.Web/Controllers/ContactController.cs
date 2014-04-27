@@ -20,7 +20,7 @@ namespace BetterCms.Demo.Web.Controllers
                     message.From = new MailAddress("info@BetterCmsDemo.com");
                     message.ReplyToList.Add(new MailAddress(viewModel.Email));
                     message.To.Add(new MailAddress(viewModel.EmailTo));
-                    message.Subject = string.Format("[BetterCmsDemo.com] Message from {0}", viewModel.Name);
+                    message.Subject = string.Format("[Fataco.com] Message from {0}", viewModel.Name);
                     message.IsBodyHtml = true;
                     message.Body = EmailHelper.FormatMessage(viewModel);
 
@@ -40,15 +40,31 @@ namespace BetterCms.Demo.Web.Controllers
             {
                 success = false;
             }
-
-            return new JsonResult
+            System.Globalization.CultureInfo c = (System.Globalization.CultureInfo)Session["Culture"];
+            if (c.Name == "en")
             {
-                Data = new
+
+                return new JsonResult
                 {
-                    success = success,
-                    message = success ? "Your message successfully send." : "Sorry there has been an error while sending your message, please try again later."
-                }
-            };
+                    Data = new
+                    {
+                        success = success,
+                        message = success ? "Your message successfully send." : "Sorry there has been an error while sending your message, please try again later."
+                    }
+                };
+            }
+            else {
+
+                return new JsonResult
+                {
+                    Data = new
+                    {
+                        success = success,
+                        message = success ? "Yêu cầu của bạn đã được gởi tới FATACO" : "Xin lổi, Yêu cầu của bạn chưa được gởi đi, vui lòng thử lại lần nữa."
+                    }
+                };
+            }
+           
         }
     }
 }

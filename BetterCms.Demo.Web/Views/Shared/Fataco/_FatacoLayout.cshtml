@@ -12,7 +12,9 @@
     <link rel="shortcut icon" type="image/x-icon" href="css/images/favicon.ico" />
 
 
-    <script src="@Url.Content("~/Content/Fataco/js/jquery-1.8.0.min.js")"></script>
+    @*<script src="@Url.Content("~/Content/Fataco/js/jquery-1.8.0.min.js")"></script>*@
+     <script src="//codeorigin.jquery.com/jquery-1.8.3.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
     <!--[if lt IE 9]>
 		<script src="js/modernizr.custom.js"></script>
 	<![endif]-->
@@ -22,11 +24,20 @@
     <script src="@Url.Content("~/Content/Fataco/js/jquery.jticker.js")"></script>
     <script src="@Url.Content("~/Content/Fataco/js/colorbox/jquery.colorbox-min.js")"></script>
 
+   
+    <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")"></script>
+    <script src="@Url.Content("~/Scripts/validation.extenders.js")"></script>
+ 
+ 
+    <script src="@Url.Content("~/Scripts/messages.js")"></script>
+    <script src="@Url.Content("~/Scripts/forms.js")"></script>
+
     <link href="@Url.Content("~/Content/Fataco/css/style.css")" rel="stylesheet" />
     <link href="@Url.Content("~/Content/Fataco/css/add.css")" rel="stylesheet" />
     <link href="@Url.Content("~/Content/Fataco/js/colorbox/colorbox.css")" rel="stylesheet" />
     <link href="@Url.Content("~/Content/Fataco/css/jcarousel.responsive.css")" rel="stylesheet" />
-
+    <link rel="stylesheet" type="text/css" href="/file/bcms-root/content/styles/bcms.messages.css" />
 
     @RenderSection("HeadScripts", false)
 
@@ -63,151 +74,165 @@
         <!-- shell -->
         <div class="shell">
             <!-- container -->
-            <div class="container">
-                <!-- header -->
-                <header id="header">
-                    <h1 id="logo"><a href="/">Fataco</a></h1>
 
-                    <div class="flash_box">
-                        <div id="ticker" style="width: 310px; height: 80px; color: White; line-height: normal;
-                            font-weight: bold; font-style: italic;">
-                            @{
+        <div class="default-messages-container">
+            <div class="error-user-message-container">
+                <ins class="icon-static"></ins>
+                <div class="error user-message">
+                </div>
+            </div>
+            <div class="success-user-message-container">
+                <ins class="icon-static"></ins>
+                <div class="success user-message">
+                </div>
+            </div>
+        </div>
+
+                <div class="container">
+                    <!-- header -->
+                    <header id="header">
+                        <h1 id="logo"><a href="/">Fataco</a></h1>
+
+                        <div class="flash_box">
+                            <div id="ticker" style="width: 310px; height: 80px; color: White; line-height: normal;
+                                font-weight: bold; font-style: italic;">
+                                @{
                                 
-                                System.Globalization.CultureInfo ci = (System.Globalization.CultureInfo)HttpContext.Current.Session["Culture"];
-                                if (ci.Name == "en")
-                                {
-                                <span id="dnn_header_lblQuotation1">
-                                    <div>
-                                        <p style="font-size: 14px; text-transform: uppercase">
-                                            "Product quality is prerequisite,
-                                            client’s satisfaction and adequate price remains the indispensable power of our
-                                            company"
-                                        </p>
-
-                                    </div>
-                                </span>
-                                <span id="dnn_header_lblQuotation2">
-                                    <div>
-                                        <p style="font-size: 14px; text-transform: uppercase">
-                                            "Product quality is prerequisite,
-                                            client’s satisfaction and adequate price remains the indispensable power of our
-                                            company"
-                                        </p>
-
-                                    </div>
-                                </span>
-                                <span id="dnn_header_lblQuotation3">
-                                    <div>
-                                        <p style="font-size: 14px; text-transform: uppercase">
-                                            "Product quality is prerequisite,
-                                            client’s satisfaction and adequate price remains the indispensable power of our
-                                            company"
-                                        </p>
-
-                                    </div>
-                                </span>
-                                }
-                                else
-                                {
-                                <span id="dnn_header_lblQuotation1">
-                                    <div>
-                                        <p style="font-size: 13pt;">"FATACO – NGƯỜI BẠN THÂN THIẾT CỦA MỌI GIA ĐÌNH"</p>
-                                        <p style="text-align: right; margin-top: 10px; font-size: 7pt;">
-                                            <strong>Sách 15 năm
-                                        quan hệ kinh tế thương mại Việt Nam – Hoa kỳ</strong>
-                                        </p>
-                                    </div>
-                                </span>
-                                <span id="dnn_header_lblQuotation2">
-                                    <div>
-                                        <p style="font-size: 13pt;">"ĐỊA CHỈ CỦA LÒNG TIN VÀ CHẤT LƯỢNG"</p>
-                                        <p style="text-align: right; margin-top: 10px; font-size: 7pt;">
-                                            <strong>Vietnam business
-                                        forum</strong>
-                                        </p>
-                                    </div>
-                                </span>
-                                <span id="dnn_header_lblQuotation3">
-                                    <div>
-                                        <p style="font-size: 13pt;">"NIỀM TỰ HÀO CHO NGÀNH NHỰA VIỆT NAM"</p>
-                                        <p style="text-align: right; margin-top: 10px; font-size: 7pt;">
-                                            <strong>Tạp chí Thương
-                                        hiệu Việt</strong>
-                                        </p>
-                                    </div>
-                                </span>
-                                }
-                               
-                                
-                            }
-
-
-                        </div>
-                    </div>
-
-
-                    <!-- search -->
-                    <div class="search">
-
-                        <div class="flag_box">
-                            <div class="flag_vi">
-                                @Html.ActionLink("Tiếng Việt", "ChangeCulture", "Sitemap", new { lang = "vi", returnUrl = this.Request.RawUrl, area = "" }, null)
-                            </div>
-                            <div class="flag_saperator">|</div>
-                            <div class="flag_en">
-                                @Html.ActionLink("English", "ChangeCulture", "Sitemap", new { lang = "en", returnUrl = this.Request.RawUrl, area = "" }, null)
-                            </div>
-                            <div class="clear"></div>
-                        </div>
-
-                        <div style="clear: both"></div>
-                        <div>
-                            @{
-                                var searchResultUrl = "";
-                                if (BetterCms.Demo.Web.Helpers.LanguageHelper.CurrentLanguageCode == "vi")
-                                {
-                                    searchResultUrl = "/tim-kiem";
-                                }
-                                else
-                                {
-                                    searchResultUrl = "/search-result";
-                                }
-                            }
-                            <form method="get" action="@searchResultUrl">
-                                <span class="field">
-                                    @if (ci.Name == "en")
+                                    System.Globalization.CultureInfo ci = (System.Globalization.CultureInfo)HttpContext.Current.Session["Culture"];
+                                    if (ci.Name == "en")
                                     {
-                                        <input id="query" name="query" type="text" class="field" value="keywords here ..."
-                                            title="keywords here ..." />
+                                    <span id="dnn_header_lblQuotation1">
+                                        <div>
+                                            <p style="font-size: 14px; text-transform: uppercase">
+                                                "Product quality is prerequisite,
+                                            client’s satisfaction and adequate price remains the indispensable power of our
+                                            company"
+                                            </p>
+
+                                        </div>
+                                    </span>
+                                    <span id="dnn_header_lblQuotation2">
+                                        <div>
+                                            <p style="font-size: 14px; text-transform: uppercase">
+                                                "Product quality is prerequisite,
+                                            client’s satisfaction and adequate price remains the indispensable power of our
+                                            company"
+                                            </p>
+
+                                        </div>
+                                    </span>
+                                    <span id="dnn_header_lblQuotation3">
+                                        <div>
+                                            <p style="font-size: 14px; text-transform: uppercase">
+                                                "Product quality is prerequisite,
+                                            client’s satisfaction and adequate price remains the indispensable power of our
+                                            company"
+                                            </p>
+
+                                        </div>
+                                    </span>
                                     }
                                     else
                                     {
-                                        <input id="query" name="query" type="text" class="field" value="Tìm kiếm..."
-                                            title="Tìm kiếm..." />
+                                    <span id="dnn_header_lblQuotation1">
+                                        <div>
+                                            <p style="font-size: 13pt;">"FATACO – NGƯỜI BẠN THÂN THIẾT CỦA MỌI GIA ĐÌNH"</p>
+                                            <p style="text-align: right; margin-top: 10px; font-size: 7pt;">
+                                                <strong>Sách 15 năm
+                                        quan hệ kinh tế thương mại Việt Nam – Hoa kỳ</strong>
+                                            </p>
+                                        </div>
+                                    </span>
+                                    <span id="dnn_header_lblQuotation2">
+                                        <div>
+                                            <p style="font-size: 13pt;">"ĐỊA CHỈ CỦA LÒNG TIN VÀ CHẤT LƯỢNG"</p>
+                                            <p style="text-align: right; margin-top: 10px; font-size: 7pt;">
+                                                <strong>Vietnam business
+                                        forum</strong>
+                                            </p>
+                                        </div>
+                                    </span>
+                                    <span id="dnn_header_lblQuotation3">
+                                        <div>
+                                            <p style="font-size: 13pt;">"NIỀM TỰ HÀO CHO NGÀNH NHỰA VIỆT NAM"</p>
+                                            <p style="text-align: right; margin-top: 10px; font-size: 7pt;">
+                                                <strong>Tạp chí Thương
+                                        hiệu Việt</strong>
+                                            </p>
+                                        </div>
+                                    </span>
                                     }
-                                </span>
-                                <input type="submit" class="search-btn" value="" />
-                            </form>
+                               
+                                
+                                }
+
+
+                            </div>
                         </div>
-                    </div>
-                    <!-- end of search -->
-                </header>
-                <!-- end of header -->
-                <!-- navigation -->
-                <nav id="navigation">
-                    <a href="#" class="nav-btn">HOME<span class="arr"></span></a>
-                    <ul>
-                        @{ Html.RenderAction("TopMenu", "SiteMap", new { area = "" }); }
-                    </ul>
-                </nav>
-                <!-- end of navigation -->
-                <!-- main -->
 
 
-                @RenderBody()
+                        <!-- search -->
+                        <div class="search">
 
-                <!-- end of main -->
-               @*   <div class="socials">
+                            <div class="flag_box">
+                                <div class="flag_vi">
+                                    @Html.ActionLink("Tiếng Việt", "ChangeCulture", "Sitemap", new { lang = "vi", returnUrl = this.Request.RawUrl, area = "" }, null)
+                                </div>
+                                <div class="flag_saperator">|</div>
+                                <div class="flag_en">
+                                    @Html.ActionLink("English", "ChangeCulture", "Sitemap", new { lang = "en", returnUrl = this.Request.RawUrl, area = "" }, null)
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+
+                            <div style="clear: both"></div>
+                            <div>
+                                @{
+                                    var searchResultUrl = "";
+                                    if (BetterCms.Demo.Web.Helpers.LanguageHelper.CurrentLanguageCode == "vi")
+                                    {
+                                        searchResultUrl = "/tim-kiem";
+                                    }
+                                    else
+                                    {
+                                        searchResultUrl = "/search-result";
+                                    }
+                                }
+                                <form method="get" action="@searchResultUrl">
+                                    <span class="field">
+                                        @if (ci.Name == "en")
+                                        {
+                                            <input id="query" name="query" type="text" class="field" value="keywords here ..."
+                                                title="keywords here ..." />
+                                        }
+                                        else
+                                        {
+                                            <input id="query" name="query" type="text" class="field" value="Tìm kiếm..."
+                                                title="Tìm kiếm..." />
+                                        }
+                                    </span>
+                                    <input type="submit" class="search-btn" value="" />
+                                </form>
+                            </div>
+                        </div>
+                        <!-- end of search -->
+                    </header>
+                    <!-- end of header -->
+                    <!-- navigation -->
+                    <nav id="navigation">
+                        <a href="#" class="nav-btn">HOME<span class="arr"></span></a>
+                        <ul>
+                            @{ Html.RenderAction("TopMenu", "SiteMap", new { area = "" }); }
+                        </ul>
+                    </nav>
+                    <!-- end of navigation -->
+                    <!-- main -->
+
+
+                    @RenderBody()
+
+                    <!-- end of main -->
+                    @*   <div class="socials">
                    <div class="socials-inner">
                        @if (ci.Name == "en")
                         {
@@ -227,119 +252,119 @@
                         <div class="cl">&nbsp;</div>
                     </div>
                 </div>*@
-                <div id="footer">
-                    <div class="footer-cols">
-                        @*@{ Html.RenderAction("FooterMenu", "SiteMap", new { area = "" }); }*@
-                        @{
-                            if (ci.Name == "en")
-                            {
-                            <div class="col">
-                                <h2>About Us</h2>
-                                <ul>
-                                    <li><a href="/company-profile/">Company profile</a></li>
-                                    <li><a href="/awards/">Awards</a></li>
-                                    <li><a href="/company-picture/">Company Picture</a></li>
+                    <div id="footer">
+                        <div class="footer-cols">
+                            @*@{ Html.RenderAction("FooterMenu", "SiteMap", new { area = "" }); }*@
+                            @{
+                                if (ci.Name == "en")
+                                {
+                                <div class="col">
+                                    <h2>About Us</h2>
+                                    <ul>
+                                        <li><a href="/company-profile/">Company profile</a></li>
+                                        <li><a href="/awards/">Awards</a></li>
+                                        <li><a href="/company-picture/">Company Picture</a></li>
 
-                                </ul>
-                            </div>
-                            <div class="col">
-                                <h2>Products</h2>
-                                <ul>
-                                    <li><a href="/product?t=melamine&id=b5ac0969">Melamine</a>
-                                    </li>
-                                    <li><a href="/product?t=plastic&id=b15e4c12">Plastic</a></li>
-                                    <li><a href="/product?t=acrylic&id=57c804cf">Acrylic</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col">
+                                    <h2>Products</h2>
+                                    <ul>
+                                        <li><a href="/product?t=melamine&id=b5ac0969">Melamine</a>
+                                        </li>
+                                        <li><a href="/product?t=plastic&id=b15e4c12">Plastic</a></li>
+                                        <li><a href="/product?t=acrylic&id=57c804cf">Acrylic</a></li>
 
-                                </ul>
-                            </div>
-                            <div class="col">
-                                <h2>News & Event</h2>
-                                <ul>
-                                    <li><a href="/news?t=industry&id=02795b5c">Industry</a></li>
-                                    <li><a href="/news?t=company&id=b907ce4b">Company</a></li>
-                                </ul>
-                            </div>
-                            <div class="col">
-                                <h2>Q & A</h2>
-                                <ul>
-                                    <li><a href="/faqs/?t=introduction-of-melamine&id=cd4e16da">Introduction
+                                    </ul>
+                                </div>
+                                <div class="col">
+                                    <h2>News & Event</h2>
+                                    <ul>
+                                        <li><a href="/news?t=industry&id=02795b5c">Industry</a></li>
+                                        <li><a href="/news?t=company&id=b907ce4b">Company</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col">
+                                    <h2>Q & A</h2>
+                                    <ul>
+                                        <li><a href="/faqs/?t=introduction-of-melamine&id=cd4e16da">Introduction
                                         of melamine</a></li>
-                                    <li><a href="/faqs/?t=melamine-product-qa&id=3f99ff90">Melamine
+                                        <li><a href="/faqs/?t=melamine-product-qa&id=3f99ff90">Melamine
                                         product Q&A</a></li>
-                                    <li><a href="/faqs/?t=qualified-for-food-sanitary&id=a159ca64">Qualified for food sanitary</a>
-                                    </li>
+                                        <li><a href="/faqs/?t=qualified-for-food-sanitary&id=a159ca64">Qualified for food sanitary</a>
+                                        </li>
 
-                                </ul>
-                            </div>
-                            }
-                            else
-                            {
-                            <div class="col">
-                                <h2>Giới thiệu</h2>
-                                <ul>
-                                    <li><a href="/company-profile/">Sơ lược công ty</a></li>
-                                    <li><a href="/awards/">Thành tựu</a></li>
-                                    <li><a href="/company-picture/">Hình ảnh công ty</a></li>
+                                    </ul>
+                                </div>
+                                }
+                                else
+                                {
+                                <div class="col">
+                                    <h2>Giới thiệu</h2>
+                                    <ul>
+                                        <li><a href="/company-profile/">Sơ lược công ty</a></li>
+                                        <li><a href="/awards/">Thành tựu</a></li>
+                                        <li><a href="/company-picture/">Hình ảnh công ty</a></li>
 
-                                </ul>
-                            </div>
-                            <div class="col">
-                                <h2>Sản phẩm</h2>
-                                <ul>
-                                    <li><a href="/product?t=san-pham-melamine&id=b5ac0969">Sản phẩm
+                                    </ul>
+                                </div>
+                                <div class="col">
+                                    <h2>Sản phẩm</h2>
+                                    <ul>
+                                        <li><a href="/product?t=san-pham-melamine&id=b5ac0969">Sản phẩm
                                         MELAMINE</a></li>
-                                    <li><a href="/product?t=nhua-gia-dung-va-cong-nghiep&id=b15e4c12">Nhựa gia dụng và công
-                                        nghiệp</a></li>
-                                    <li><a href="/product?t=san-pham-acrylic&id=57c804cf">Sản phẩm
+                                        <li><a href="/product?t=nhua-gia-dung-va-cong-nghiep&id=b15e4c12">Nhựa gia dụng và công
+                                            nghiệp</a></li>
+                                        <li><a href="/product?t=san-pham-acrylic&id=57c804cf">Sản phẩm
                                         Acrylic</a></li>
 
-                                </ul>
-                            </div>
-                            <div class="col">
-                                <h2>Tin tức & sự kiện</h2>
-                                <ul>
-                                    <li><a href="/tin-tuc?t=nganh-nhua&id=02795b5c">Ngành nhựa</a>
-                                    </li>
-                                    <li><a href="/tin-tuc?t=cong-ty&id=b907ce4b">Công ty</a></li>
-                                </ul>
-                            </div>
-                            <div class="col">
-                                <h2>Hỏi đáp</h2>
-                                <ul>
-                                    <li><a href="/hoi-dap/?t=gioi-thieu-ve-melamine&id=cd4e16da">Giới
+                                    </ul>
+                                </div>
+                                <div class="col">
+                                    <h2>Tin tức & sự kiện</h2>
+                                    <ul>
+                                        <li><a href="/tin-tuc?t=nganh-nhua&id=02795b5c">Ngành nhựa</a>
+                                        </li>
+                                        <li><a href="/tin-tuc?t=cong-ty&id=b907ce4b">Công ty</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col">
+                                    <h2>Hỏi đáp</h2>
+                                    <ul>
+                                        <li><a href="/hoi-dap/?t=gioi-thieu-ve-melamine&id=cd4e16da">Giới
                                         thiệu về MELAMINE</a></li>
-                                    <li><a href="/hoi-dap/?t=huong-dan-su-dung&id=3f99ff90">Hướng
+                                        <li><a href="/hoi-dap/?t=huong-dan-su-dung&id=3f99ff90">Hướng
                                         dẫn sử dụng</a></li>
-                                    <li><a href="/hoi-dap/?t=an-toan-ve-sinh-thuc-pham&id=a159ca64">An toàn vệ sinh thực
-                                        phẩm</a></li>
+                                        <li><a href="/hoi-dap/?t=an-toan-ve-sinh-thuc-pham&id=a159ca64">An toàn vệ sinh thực
+                                            phẩm</a></li>
 
-                                </ul>
-                            </div>
+                                    </ul>
+                                </div>
+                                }
                             }
-                        }
 
-                        <div class="cl">&nbsp;</div>
-                    </div>
-                    <!-- end of footer-cols -->
-                    <div class="footer-bottom">
-                        <nav class="footer-nav">
-                            <ul>
-                                @{ Html.RenderAction("TopMenu", "SiteMap", new { area = "" }); }
-                            </ul>
-                        </nav>
-                        <p class="copy">
-                            &copy; Copyright 2012 FATACO <span>|</span> <strong>Design by
+                            <div class="cl">&nbsp;</div>
+                        </div>
+                        <!-- end of footer-cols -->
+                        <div class="footer-bottom">
+                            <nav class="footer-nav">
+                                <ul>
+                                    @{ Html.RenderAction("TopMenu", "SiteMap", new { area = "" }); }
+                                </ul>
+                            </nav>
+                            <p class="copy">
+                                &copy; Copyright 2012 FATACO <span>|</span> <strong>Design by
                             <a href="http://fataco.com" target="_blank">FATACO</a></strong>
-                        </p>
-                        <div class="cl">&nbsp;</div>
+                            </p>
+                            <div class="cl">&nbsp;</div>
+                        </div>
                     </div>
                 </div>
+                <!-- end of container -->
             </div>
-            <!-- end of container -->
+            <!-- end of shell -->
         </div>
-        <!-- end of shell -->
-    </div>
-    <!-- end of wrapper -->
+        <!-- end of wrapper -->
 
 
     @RenderSection("scripts", required: false)

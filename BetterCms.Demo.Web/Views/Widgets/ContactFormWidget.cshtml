@@ -6,19 +6,19 @@
 }
 
 
- 
 
+<div class="contactWarp">
 
 @using (Html.BeginForm("ContactForm", "Contact", FormMethod.Post, new { @class = "autobind" }))
 {
-     if (c != null && c.Name == "en")
-            {
-                 <div class="heading3">Send request</div>
-            }
-            else
-            {               
-                 <div class="heading3">Gửi yêu cầu</div>
-            }
+    if (c != null && c.Name == "en")
+    {
+    <div class="heading3">Send request</div>
+    }
+    else
+    {               
+    <div class="heading3">Gửi yêu cầu</div>
+    }
    
 
     <div class="field-holder">
@@ -29,7 +29,7 @@
             }
             else
             {               
-                 <span>Họ Tên</span>
+                <span>Họ Tên</span>
             }
 
         </div>
@@ -47,13 +47,13 @@
 
     <div class="field-holder">
         <div>
-             @if (c != null && c.Name == "en")
+            @if (c != null && c.Name == "en")
             {
                 <span>Message</span>
             }
             else
             {               
-                 <span>Nội dung</span>
+                <span>Nội dung</span>
             }
         </div>
         @Html.TextAreaFor(m => m.Message, new { @class = "text-area", style = "width:100%;height: 80px;" })
@@ -62,15 +62,55 @@
     
     @Html.HiddenFor(m => m.EmailTo)
 @*<a class="btn-primary" data-url="/contacts/submit-form">Send</a>*@
-    <div style="text-align: center">
-     @if (c != null && c.Name == "en")
+   <div style="text-align:center;"> 
+            @if (c != null && c.Name == "en")
             {
-               <button class="button1" data-url="/contacts/submit-form" type="submit">Send</button>
+<a id="contactSubmit" class="button1" data-url="/contacts/submit-form" >Send</a>
+    @*<a data-url="/contacts/submit-form" class="btn-primary">Send</a>*@
             }
             else
             {               
-                 <button class="button1" data-url="/contacts/submit-form" type="submit">Gửi yêu cầu</button>
+<a id="contactSubmit" class="button1" data-url="/contacts/submit-form">Gửi yêu cầu</a>
+                <img style="display:none;" id="contactLoading" src="/Content/Fataco/js/colorbox/images/loading.gif" />
+    @*<a data-url="/contacts/submit-form" class="btn-primary">Send</a>*@
             }
-        
-    </div>
+</div>
+
 }
+</div>
+<div class="contactMessage" style="display:none;color:#247FC1;margin-top:20px;border:solid 2px #404040;padding:10px;border-radius:10px;">
+
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#contactSubmit').click(function () {
+            var $form = $('form.autobind'),
+               $link = $('#contactSubmit'),
+               url = $link.data('url');
+            if ($form.valid()) {
+                $('#contactLoading').show();
+                $('#contactSubmit').hide();
+                var data = $form.serialize(); 
+                $.post(url, data)
+                    .done(function (result) {
+                        $('#contactLoading').hide();
+                        $('#contactSubmit').show();
+                        $('.contactMessage').show();
+                        $('.contactMessage').text(result.message);
+                        //if (result.success) {
+                            
+                        //    alert(result.message);
+                            
+                        //} else {
+                        //    alert(result.message);
+                        //}
+                    }).fail(function () {
+                        onError();
+                    }).always(function () {
+                    });
+            }
+            return false;
+        });
+    });
+</script>
