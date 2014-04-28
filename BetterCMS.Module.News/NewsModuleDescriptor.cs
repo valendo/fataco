@@ -68,7 +68,7 @@ namespace BetterCMS.Module.News
                         Order = 10001,
                         Title = page => "News",
                         CssClass = page => "bcms-sidebar-link",
-                        AccessRole = RootModuleConstants.UserRoles.MultipleRoles(RootModuleConstants.UserRoles.Administration)
+                        AccessRole = RootModuleConstants.UserRoles.MultipleRoles(new string[]{RootModuleConstants.UserRoles.EditContent,RootModuleConstants.UserRoles.PublishContent,RootModuleConstants.UserRoles.DeleteContent})
                     }                                      
             };
         }

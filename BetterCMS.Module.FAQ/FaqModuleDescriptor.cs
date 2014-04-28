@@ -66,7 +66,7 @@ namespace BetterCMS.Module.FAQ
                         Order = 10000,
                         Title = page => "FAQs",
                         CssClass = page => "bcms-sidebar-link",
-                        AccessRole = RootModuleConstants.UserRoles.MultipleRoles(RootModuleConstants.UserRoles.Administration)
+                       AccessRole = RootModuleConstants.UserRoles.MultipleRoles(new string[]{RootModuleConstants.UserRoles.EditContent,RootModuleConstants.UserRoles.PublishContent,RootModuleConstants.UserRoles.DeleteContent})
                     }                                      
             };
         }

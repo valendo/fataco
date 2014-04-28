@@ -71,7 +71,7 @@ namespace BetterCMS.Module.Store
                         Order = 10002,
                         Title = page => "Products",
                         CssClass = page => "bcms-sidebar-link",
-                        AccessRole = RootModuleConstants.UserRoles.MultipleRoles(RootModuleConstants.UserRoles.Administration)
+                        AccessRole = RootModuleConstants.UserRoles.MultipleRoles(new string[]{RootModuleConstants.UserRoles.EditContent,RootModuleConstants.UserRoles.PublishContent,RootModuleConstants.UserRoles.DeleteContent})
                     }                                      
             };
         }
