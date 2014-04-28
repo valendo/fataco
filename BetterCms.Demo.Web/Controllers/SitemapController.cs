@@ -205,7 +205,7 @@ namespace BetterCms.Demo.Web.Controllers
                                     foreach (var item1 in item.ChildrenNodes)
                                     {
                                         sb.Append("       <li>");
-                                        sb.Append("       <a href=\""+item1.Url+"\" class=\"" + (System.Web.HttpContext.Current.Request.Path == item1.Url ? "\"a_s\"" : null) + "\"><span class=\"" + (System.Web.HttpContext.Current.Request.Path == item1.Url ? "\"s\"" : null) + "\">" + item1.Title + "</span></a>");
+                                        sb.Append("       <a href=\""+item1.Url+"\" class=\"" + (System.Web.HttpContext.Current.Request.Path == item1.Url ? "a_s" : null) + "\"><span class=\"" + (System.Web.HttpContext.Current.Request.Path == item1.Url ? "s" : null) + "\">" + item1.Title + "</span></a>");
                                         sb.Append("       </li>");
                                         sb.Append("         <li class=\"d\"></li>");
                                     }

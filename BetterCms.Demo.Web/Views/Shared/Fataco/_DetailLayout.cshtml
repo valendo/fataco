@@ -32,6 +32,12 @@
 
     <script type="text/javascript">
         $('.VMENU_1').hide();
+        $('.a_s').parent('li').parent('ul').each(function () {
+            $(this).show();
+            $(this).siblings('a').parent('li').parent('ul').show();
+        });
+
+
         $('.VMENU_0').children('li').children('a').click(function () {
             $('.VMENU_1').hide('slow');
             $(this).siblings('ul').show('slow');

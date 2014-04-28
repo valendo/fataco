@@ -84,9 +84,11 @@ namespace BetterCMS.Module.Store.Controllers
                 {
                     string name = Utility.CurrentLanguageCode == "en" ? item.Name_en : item.Name;
                     string active_class = "";
+                    string active_class_a = "";
                     if (item.Id.ToString().Contains(id))
                     {
                         active_class = "s";
+                        active_class_a = "a_s";
                     }
                     var level1 = list.Where(t => t.ParentId == item.Id).OrderBy(t => t.SortOrder).ToList();
                     string url = "#";
@@ -94,7 +96,7 @@ namespace BetterCMS.Module.Store.Controllers
                     {
                         url = productUrl + "?t=" + name.GenerateSlug() + "&id=" + item.Id.ToString().ShortGuid();
                     }
-                    sb.AppendFormat("<li><a href=\"{0}\"><span class=\"{1}\">{2}</span></a>", url, active_class, name);
+                    sb.AppendFormat("<li><a class=\""+active_class_a+"\" href=\"{0}\"><span class=\"{1}\">{2}</span></a>", url, active_class, name);
                     if (level1.Count > 0)
                     {
                         sb.AppendLine("<ul class=\"VMENU_1 VMENU_1_709487940 reset\">");
@@ -102,9 +104,11 @@ namespace BetterCMS.Module.Store.Controllers
                         {
                             string name1 = Utility.CurrentLanguageCode == "en" ? item1.Name_en : item1.Name;
                             string active_class1 = "";
+                            string active_class1_a = "";
                             if (item1.Id.ToString().Contains(id))
                             {
                                 active_class1 = "s";
+                                active_class1_a = "a_s";
                             }
                             var level2 = list.Where(t => t.ParentId == item1.Id).OrderBy(t => t.SortOrder).ToList();
                             string url1 = "#";
@@ -112,7 +116,7 @@ namespace BetterCMS.Module.Store.Controllers
                             {
                                 url1 = productUrl + "?t=" + name1.GenerateSlug() + "&id=" + item1.Id.ToString().ShortGuid();
                             }
-                            sb.AppendFormat("<li><a href=\"{0}\"><span class=\"{1}\">{2}</span></a>", url1, active_class1, name1);
+                            sb.AppendFormat("<li><a class=\"" + active_class1_a + "\" href=\"{0}\"><span class=\"{1}\">{2}</span></a>", url1, active_class1, name1);
                             if (level2.Count > 0)
                             {
                                 sb.AppendLine("<ul class=\"VMENU_2 VMENU_2_709487940 reset\" style=\"display: none;\">");
@@ -120,16 +124,18 @@ namespace BetterCMS.Module.Store.Controllers
                                 {
                                     string name2 = Utility.CurrentLanguageCode == "en" ? item2.Name_en : item2.Name;
                                     string active_class2 = "";
+                                    string active_class2_a = "";
                                     if (item2.Id.ToString().Contains(id))
                                     {
                                         active_class2 = "s";
+                                        active_class2_a = "a_s";
                                     }
                                     string url2 = "#";
                                     if (!string.IsNullOrWhiteSpace(productUrl))
                                     {
                                         url2 = productUrl + "?t=" + name2.GenerateSlug() + "&id=" + item2.Id.ToString().ShortGuid();
                                     }
-                                    sb.AppendFormat("<li><a href=\"{0}\"><span class=\"{1}\">{2}</span></a></li>", url2, active_class2, name2);
+                                    sb.AppendFormat("<li><a class=\"" + active_class2_a + "\" href=\"{0}\"><span class=\"{1}\">{2}</span></a></li>", url2, active_class2, name2);
                                 }
                                 sb.AppendLine("</ul>");
                             }
