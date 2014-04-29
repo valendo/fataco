@@ -50,15 +50,13 @@ namespace BetterCMS.Module.Store
             };
         }
 
-        [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1305:FieldNamesMustNotUseHungarianNotation", Justification = "Reviewed. Suppression is OK here.")]
         public override IEnumerable<JsIncludeDescriptor> RegisterJsIncludes()
         {
             return new[]
                 {
                     storeJsModuleIncludeDescriptor,
                     new ProductJsModuleIncludeDescriptor(this),
-                    new JsIncludeDescriptor(this, "bcms.product.filter"),
-                    new JsIncludeDescriptor(this, "spectrum")
+                    new JsIncludeDescriptor(this, "bcms.product.filter")
                 };
         }
 

@@ -55,7 +55,7 @@ else
                 <tbody>
                     <tr>
                         <td><strong>@sizeLabel:</strong></td>
-                        <td align="left">@Model.Size</td>
+                        <td align="left">@Html.Raw(Model.Size.Replace(Environment.NewLine, "<br/>"))</td>
                     </tr>
                 </tbody>
             </table>
