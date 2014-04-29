@@ -1,6 +1,7 @@
 ﻿using BetterCms;
 using BetterCms.Core.Modules;
 using BetterCms.Core.Modules.Projections;
+using BetterCms.Core.Mvc.Extensions;
 using BetterCms.Module.Root;
 using BetterCMS.Module.FAQ.Registration;
 using System;
@@ -14,6 +15,7 @@ namespace BetterCMS.Module.FAQ
     {
         internal const string ModuleName = "faq";
         internal const string FaqAreaName = "bcms-faq";
+
         public override string Description
         {
             get {return "FAQ module for BetterCMS"; }
@@ -39,13 +41,13 @@ namespace BetterCMS.Module.FAQ
             faqJsModuleIncludeDescriptor = new CategoryJsModuleIncludeDescriptor(this);
         }
 
-        public override IEnumerable<CssIncludeDescriptor> RegisterCssIncludes()
-        {
-            return new[]
-                {
-                    new CssIncludeDescriptor(this, "style.css"),
-                };
-        }
+        //public override IEnumerable<CssIncludeDescriptor> RegisterCssIncludes()
+        //{
+        //    return new[]
+        //        {
+        //            new CssIncludeDescriptor(this, "style.css"),
+        //        };
+        //}
 
         public override IEnumerable<JsIncludeDescriptor> RegisterJsIncludes()
         {

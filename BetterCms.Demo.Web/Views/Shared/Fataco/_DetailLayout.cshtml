@@ -1,33 +1,32 @@
 ﻿@{
     Layout = "~/Views/Shared/Fataco/_FatacoLayout.cshtml";
 }
-
- <div class="main">  
-<section>
 @section HeadScripts {
-    @RenderSection("HeadScripts", false)  
+    @RenderSection("HeadScripts", false)
 }
-                        <div class="row"> 
-                            <div class="paneTop">
-                             @RenderSection("Top", false)
-                            </div>
+ <div class="main">  
+    <section>
+        <div class="row"> 
+            <div class="paneTop">
+                @RenderSection("Top", false)
+            </div>
 
-                            <div class="paneLeft">
-                                 @RenderSection("Left", false)
-                            </div>
-                            <div class="paneRight"> 
-                                @RenderSection("Right", false)
-                            </div>
-                            <div class="clear"></div>
+            <div class="paneLeft">
+                    @RenderSection("Left", false)
+            </div>
+            <div class="paneRight"> 
+                @RenderSection("Right", false)
+            </div>
+            <div class="clear"></div>
                             
-                            <div class="paneBottom">
-                             @RenderSection("Bottom", false)
-                            </div>
-                        </div>
-@RenderBody()
-                    </section>
+            <div class="paneBottom">
+                @RenderSection("Bottom", false)
+            </div>
+        </div>
+    @RenderBody()
+    </section>
 </div>
- @RenderSection("scripts", required: false)
+
 @section Scripts {
 
     <script type="text/javascript">

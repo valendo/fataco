@@ -1,50 +1,21 @@
 ﻿@using BetterCms.Demo.Web
 @{ Layout = "~/Areas/bcms-Root/Views/Shared/BaseLayout.cshtml"; }
-
-
 @section HeadScripts {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0" />
-    <title>FATOCO layout</title>
-
     <link rel="shortcut icon" type="image/x-icon" href="css/images/favicon.ico" />
     <link href="@Url.Content("~/Content/Fataco/css/style.css")" rel="stylesheet" />
     <link href="@Url.Content("~/Content/Fataco/css/add.css")" rel="stylesheet" />
     <link href="@Url.Content("~/Content/Fataco/js/colorbox/colorbox.css")" rel="stylesheet" />
     <link href="@Url.Content("~/Content/Fataco/css/jcarousel.responsive.css")" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="/file/bcms-root/content/styles/bcms.messages.css" />
-    @RenderSection("HeadScripts", false)
-    <script src="//codeorigin.jquery.com/jquery-1.8.3.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
     <!--[if lt IE 9]>
         <script src="js/modernizr.custom.js"></script>
     <![endif]-->
-    <script src="@Url.Content("~/Content/Fataco/js/functions.js")"></script>
-    <script src="@Url.Content("~/Content/Fataco/js/jquery.jcarousel.min.js")"></script>
-    <script src="@Url.Content("~/Content/Fataco/js/jcarousel.responsive.js")"></script>
-    <script src="@Url.Content("~/Content/Fataco/js/jquery.jticker.js")"></script>
-    <script src="@Url.Content("~/Content/Fataco/js/colorbox/jquery.colorbox-min.js")"></script>
-    <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
-    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")"></script>
-    <script src="@Url.Content("~/Scripts/validation.extenders.js")"></script>
-    <script type="text/javascript">
-        $(function () {
-            $(".group1").colorbox({ rel: 'group1' });
-            $('.jcarousel').jcarousel({
-                // Configuration goes here
-            });
-            $("#ticker").ticker({
-                cursorList: " ",
-                rate: 10,
-                delay: 4000
-            }).trigger("play");
-        });
-    </script>
-
+    <script src="//codeorigin.jquery.com/jquery-1.8.3.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    @RenderSection("HeadScripts", false)
 }
-
-
-
 <!-- wraper -->
 <div id="wrapper">
     <!-- shell -->
@@ -382,4 +353,29 @@
     <!-- end of shell -->
 </div>
 <!-- end of wrapper -->
-@RenderSection("scripts", required: false)
+@section Scripts {
+
+    <script src="@Url.Content("~/Content/Fataco/js/functions.js")"></script>
+    <script src="@Url.Content("~/Content/Fataco/js/jquery.jcarousel.min.js")"></script>
+    <script src="@Url.Content("~/Content/Fataco/js/jcarousel.responsive.js")"></script>
+    <script src="@Url.Content("~/Content/Fataco/js/jquery.jticker.js")"></script>
+    <script src="@Url.Content("~/Content/Fataco/js/colorbox/jquery.colorbox-min.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")"></script>
+    <script src="@Url.Content("~/Scripts/validation.extenders.js")"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(".group1").colorbox({ rel: 'group1' });
+            $('.jcarousel').jcarousel({
+                // Configuration goes here
+            });
+            $("#ticker").ticker({
+                cursorList: " ",
+                rate: 10,
+                delay: 4000
+            }).trigger("play");
+        });
+    </script>
+
+    @RenderSection("Scripts", false)
+}

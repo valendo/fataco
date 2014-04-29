@@ -41,13 +41,13 @@ namespace BetterCMS.Module.News
             newsJsModuleIncludeDescriptor = new CategoryJsModuleIncludeDescriptor(this);
         }
 
-        public override IEnumerable<CssIncludeDescriptor> RegisterCssIncludes()
-        {
-            return new[]
-                {
-                    new CssIncludeDescriptor(this, "PagedList.css"),
-                };
-        }
+        //public override IEnumerable<CssIncludeDescriptor> RegisterCssIncludes()
+        //{
+        //    return new[]
+        //        {
+        //            new CssIncludeDescriptor(this, "PagedList.css"),
+        //        };
+        //}
 
         public override IEnumerable<JsIncludeDescriptor> RegisterJsIncludes()
         {

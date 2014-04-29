@@ -239,9 +239,6 @@
     <Content Include="Areas\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Config\cms.config" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Views\Category\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>

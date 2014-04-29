@@ -237,7 +237,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <EmbeddedResource Include="Content\Styles\spectrum.css" />
     <Content Include="betterCms.license.txt" />
-    <Content Include="Content\PagedList.css" />
+    <EmbeddedResource Include="Content\Styles\PagedList.css" />
     <Content Include="Global.asax" />
     <EmbeddedResource Include="Scripts\bcms.product.category.js" />
     <EmbeddedResource Include="Scripts\bcms.product.js" />

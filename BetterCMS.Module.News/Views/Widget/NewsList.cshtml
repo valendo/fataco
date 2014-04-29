@@ -9,6 +9,8 @@
     string baseDetailUrl = ViewBag.DetailUrl;
 }
 
+<link rel="stylesheet" href="/file/bcms-news/content/styles/pagedlist.css" />
+
 <div class="heading3">@(Utility.CurrentLanguageCode == "en" ? "Fataco news & events" : "Tin tức & sự kiện Fataco")</div>
 <div class="news-list">
     @foreach (NewsViewModel item in Model)
