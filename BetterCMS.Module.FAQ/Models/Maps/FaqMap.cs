@@ -15,8 +15,8 @@ namespace BetterCMS.Module.FAQ.Models.Maps
             Map(f => f.CategoryId);
             Map(f => f.Question).Not.Nullable();
             Map(f => f.Question_en);
-            Map(f => f.Answer);
-            Map(f => f.Answer_en);
+            Map(f => f.Answer).CustomType("StringClob").CustomSqlType("nvarchar(max)");
+            Map(f => f.Answer_en).CustomType("StringClob").CustomSqlType("nvarchar(max)");
             Map(f => f.SortOrder);
         }
     }

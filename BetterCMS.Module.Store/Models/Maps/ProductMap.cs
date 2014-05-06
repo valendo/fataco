@@ -15,8 +15,8 @@ namespace BetterCMS.Module.Store.Models.Maps
             Map(f => f.Code).Not.Nullable();
             Map(f => f.Size).Nullable();
             Map(f => f.Color).Nullable();
-            Map(f => f.Description).Nullable();
-            Map(f => f.Description_en).Nullable();
+            Map(f => f.Description).Nullable().CustomType("StringClob").CustomSqlType("nvarchar(max)");
+            Map(f => f.Description_en).Nullable().CustomType("StringClob").CustomSqlType("nvarchar(max)");
             Map(f => f.IsFeature);
             Map(f => f.SortOrder);
             References(f => f.Image).Cascade.SaveUpdate().LazyLoad();

@@ -16,8 +16,8 @@ namespace BetterCMS.Module.News.Models.Maps
             Map(f => f.Title_en);
             Map(f => f.Summary);
             Map(f => f.Summary_en);
-            Map(f => f.Content);
-            Map(f => f.Content_en);
+            Map(f => f.Content).CustomType("StringClob").CustomSqlType("nvarchar(max)");
+            Map(f => f.Content_en).CustomType("StringClob").CustomSqlType("nvarchar(max)");
             Map(f => f.PublishDate);
             Map(f => f.SortOrder);
             References(f => f.Image).Cascade.SaveUpdate().LazyLoad();
