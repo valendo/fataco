@@ -1,0 +1,66 @@
+﻿@using BetterCMS.Module.Store.ViewModels;
+@using BetterCMS.Module.Store.Helpers;
+
+@model ProductViewModel
+
+@{
+    string baseDetailUrl = ViewBag.DetailUrl;
+    string codeLabel = "Mã";
+    string sizeLabel = "Cỡ";
+    string colorLabel = "Màu";
+    string detailText = "Chi tiết";
+    if (Utility.CurrentLanguageCode == "en")
+    {
+        codeLabel = "Code";
+        sizeLabel = "Size";
+        colorLabel = "Color";
+        detailText = "View detail";
+    }
+
+    string detailUrl = "#";
+    if (!string.IsNullOrWhiteSpace(baseDetailUrl))
+    {
+        detailUrl = baseDetailUrl + "?t=" + Utility.GenerateSlug(Model.Code) + "&id=" + Model.Id.ToString().ShortGuid();
+    }
+}
+<div class="m-product">
+    <div class="m-product-image">
+        <a href="@detailUrl">
+            <img width="150" src="@(Model.Image != null ? Model.Image.ImageUrl + "?w=150&h=160&scale=canvas" : "/content/fataco/images/no-image.jpg?w=150&h=160&scale=canvas")" />
+        </a>
+    </div>
+    <div class="m-product-name"><strong>@codeLabel: </strong>@Model.Code</div>
+    @*@if (!string.IsNullOrWhiteSpace(Model.Size))
+    {
+        <table cellpadding="0" cellspacing="2">
+            <tbody>
+                <tr>
+                    <td valign="top"><strong>@sizeLabel:</strong></td>
+                    <td align="left">@Html.Raw(Model.Size.Replace(Environment.NewLine, "<br/>"))</td>
+                </tr>
+            </tbody>
+        </table>
+    }*@
+
+    @if (!string.IsNullOrWhiteSpace(Model.Color))
+    {
+        <div class="m-product-desc">
+            <strong style="float: left;">@colorLabel: </strong>
+            @{
+        string[] arrColor = Model.Color.Split(';');
+        foreach (string color in arrColor)
+        {
+            if (!string.IsNullOrWhiteSpace(color))
+            {
+                <span style="width: 15px; height: 15px;border: 1px solid gray; margin-left: 3px; float: left; background: @color"></span>
+            }
+        }
+            }
+
+            <br>
+        </div>
+    }
+    <div class="m-product-detail">
+        <a href="@detailUrl">@detailText</a>
+    </div>
+</div>

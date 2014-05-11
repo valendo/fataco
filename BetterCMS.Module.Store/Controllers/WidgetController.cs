@@ -16,22 +16,89 @@ namespace BetterCMS.Module.Store.Controllers
 {
     public class WidgetController : CmsControllerBase
     {
+        private void GetRecursiveCategories(string categoryId, ref List<string> categories)
+        {
+            categories.Add(categoryId);
+            var subCategories = GetCommand<GetSubCategoriesCommand>().ExecuteCommand(categoryId);
+            if (subCategories.Count > 0)
+            {
+                foreach (var item in subCategories)
+                {
+                    GetRecursiveCategories(item.Id.ToString().ShortGuid(), ref categories);
+                }
+            }
+        }
+
+        private List<ProductViewModel> GetProductList(List<string> categories)
+        {
+            List<ProductViewModel> allProducts = new List<ProductViewModel>();
+            foreach (var item in categories)
+            {
+                var listProduct = GetCommand<GetProductListByCategoryIdCommand>().ExecuteCommand(item);
+                if (listProduct.Count > 0)
+                {
+                    foreach (var product in listProduct)
+                    {
+                        allProducts.Add(product);
+                    }
+                }
+            }
+            return allProducts;
+        }
         public ActionResult ProductList(string id, int? page, string detailUrl)
         {
-            var category = GetCommand<GetCategoryCommand>().ExecuteCommand(id);
-            var listProduct = GetCommand<GetProductListByCategoryIdCommand>().ExecuteCommand(id);
-            var pageNumber = page ?? 1;
-            var pageSize = int.Parse(WebConfigurationManager.AppSettings["PageSize"].ToString());
-            var pagedList = listProduct.ToPagedList(pageNumber, pageSize);
-            bool showPager = false;
-            if (listProduct.Count > pageSize)
-            {
-                showPager = true;
-            }
-            ViewBag.ShowPager = showPager;
             ViewBag.DetailUrl = detailUrl;
-            ViewBag.Category = category;
-            return View(pagedList);
+            if (!string.IsNullOrEmpty(id))
+            {
+                var category = GetCommand<GetCategoryCommand>().ExecuteCommand(id);
+                //var listProduct = GetCommand<GetProductListByCategoryIdCommand>().ExecuteCommand(id);
+                List<string> categories = new List<string>();
+                GetRecursiveCategories(id, ref categories);
+                var listProduct = GetProductList(categories);
+                var pageNumber = page ?? 1;
+                var pageSize = int.Parse(WebConfigurationManager.AppSettings["PageSize"].ToString());
+                var pagedList = listProduct.ToPagedList(pageNumber, pageSize);
+                bool showPager = false;
+                if (listProduct.Count > pageSize)
+                {
+                    showPager = true;
+                }
+                ViewBag.ShowPager = showPager;
+                ViewBag.Category = category;
+                ViewBag.AllProduct = false;
+                return View(pagedList);
+            }
+            else
+            {
+                var rootCategories = GetCommand<GetSubCategoriesCommand>().ExecuteCommand("00000000");
+                if (rootCategories.Count > 2)
+                {
+                    var firstCategory = rootCategories.ElementAt(0);
+                    var secondCategory = rootCategories.ElementAt(1);
+                    var thirdCategory = rootCategories.ElementAt(2);
+                    List<string> firstCategories = new List<string>();
+                    GetRecursiveCategories(firstCategory.Id.ToString().ShortGuid(), ref firstCategories);
+                    List<string> secondCategories = new List<string>();
+                    GetRecursiveCategories(secondCategory.Id.ToString().ShortGuid(), ref secondCategories);
+                    List<string> thirdCategories = new List<string>();
+                    GetRecursiveCategories(thirdCategory.Id.ToString().ShortGuid(), ref thirdCategories);
+                    var firstProducts = GetProductList(firstCategories);
+                    var secondProducts = GetProductList(secondCategories);
+                    var thirdProducts = GetProductList(thirdCategories);
+
+                    ViewBag.FirstCategory = firstCategory;
+                    ViewBag.SecondCategory = secondCategory;
+                    ViewBag.ThirdCategory = thirdCategory;
+
+                    var rand = new Random();
+
+                    ViewBag.FirstProducts = firstProducts.OrderBy(t => rand.Next()).Take(4).ToList();
+                    ViewBag.SecondProducts = secondProducts.OrderBy(t => rand.Next()).Take(4).ToList();
+                    ViewBag.ThirdProducts = thirdProducts.OrderBy(t => rand.Next()).Take(4).ToList();
+                }
+                ViewBag.AllProduct = true;
+                return View();
+            }
         }
 
         public ActionResult FeaturedProduct(string detailUrl)
@@ -57,11 +124,37 @@ namespace BetterCMS.Module.Store.Controllers
             return View(pagedList);
         }
 
+        private List<ProductViewModel> GetRealtedProducts(string[] codes)
+        {
+            List<ProductViewModel> relatedProducts = new List<ProductViewModel>();
+            foreach (var code in codes)
+            {
+                var product = GetCommand<GetProductByCodeCommand>().ExecuteCommand(code);
+                if (product != null)
+                {
+                    relatedProducts.Add(product);
+                }
+            }
+            return relatedProducts;
+        }
+
         public ActionResult ProductDetail(string id)
         {
             var model = GetCommand<GetProductByIdCommand>().ExecuteCommand(id);
             var category = GetCommand<GetCategoryCommand>().ExecuteCommand(model.CategoryId.ToString());
             ViewBag.Category = category;
+            if (model != null && !string.IsNullOrWhiteSpace(model.Size))
+            {
+                string[] arr = model.Size.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
+                if (arr.Length > 0)
+                {
+                    var relatedProducts = GetRealtedProducts(arr);
+                    if (relatedProducts.Count > 0)
+                    {
+                        ViewBag.RelatedProducts = relatedProducts;
+                    }
+                }
+            }
             return View(model);
         }
 

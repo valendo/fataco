@@ -197,6 +197,8 @@
     <Compile Include="Commands\Category\GetParentCategoriesCommand.cs" />
     <Compile Include="Commands\Category\GetCategoriesCommand.cs" />
     <Compile Include="Commands\Category\GetCategoryCommand.cs" />
+    <Compile Include="Commands\Widget\GetProductByCodeCommand.cs" />
+    <Compile Include="Commands\Widget\GetSubCategoriesCommand.cs" />
     <Compile Include="Commands\Category\SaveCategoryCommand.cs" />
     <Compile Include="Commands\Product\DeleteProductCommand.cs" />
     <Compile Include="Commands\Product\GetProductsCommand.cs" />
@@ -305,6 +307,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\Widget\FeaturedProduct.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Widget\Partial\_DisplayProduct.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

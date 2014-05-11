@@ -8,20 +8,20 @@
 @{
     string headerText = "Sản phẩm";
     string notFoundMsg = "Không tìm thấy sản phẩm nào.";
-    string baseDetailUrl = ViewBag.DetailUrl;
-    string codeLabel = "Mã";
-    string sizeLabel = "Cỡ";
-    string colorLabel = "Màu";
-    string detailText = "Chi tiết";
-    if (Utility.CurrentLanguageCode == "en")
-    {
-        headerText = "Products";
-        notFoundMsg = "No product was found.";
-        codeLabel = "Code";
-        sizeLabel = "Size";
-        colorLabel = "Color";
-        detailText = "View detail";
-    }
+    //string baseDetailUrl = ViewBag.DetailUrl;
+    //string codeLabel = "Mã";
+    //string sizeLabel = "Cỡ";
+    //string colorLabel = "Màu";
+    //string detailText = "Chi tiết";
+    //if (Utility.CurrentLanguageCode == "en")
+    //{
+    //    headerText = "Products";
+    //    notFoundMsg = "No product was found.";
+    //    codeLabel = "Code";
+    //    sizeLabel = "Size";
+    //    colorLabel = "Color";
+    //    detailText = "View detail";
+    //}
 }
 
 <div class="heading3">@headerText</div>
@@ -30,7 +30,8 @@
     {
         foreach (ProductViewModel item in Model)
     {
-        string detailUrl = "#";
+            {Html.RenderPartial("~/Areas/bcms-store/Views/Widget/Partial/_DisplayProduct.cshtml", item);}
+        @*string detailUrl = "#";
         if (!string.IsNullOrWhiteSpace(baseDetailUrl))
         {
             detailUrl = baseDetailUrl + "?t=" + Utility.GenerateSlug(item.Code) + "&id=" + item.Id.ToString().ShortGuid();
@@ -75,7 +76,7 @@
             <div class="m-product-detail">
                 <a href="@detailUrl">@detailText</a>
             </div>
-        </div>
+        </div>*@
     }
     }
     else
@@ -89,3 +90,4 @@
     @Html.PagedListPager((IPagedList)Model, page => Utility.AppendQueryString(new List<KeyValuePair<String, String>> { new KeyValuePair<string, string>("page", page.ToString()) }))
 }
 
+<div style="clear:both;"></div>

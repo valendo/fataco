@@ -10,6 +10,7 @@
     string sizeLabel = "Cỡ";
     string colorLabel = "Màu";
     string infoText = "Thông tin chi tiết";
+    string relatedText = "Sản phẩm liên quan";
     string description = Model.Description;
     if (Utility.CurrentLanguageCode == "en")
     {
@@ -17,6 +18,7 @@
         sizeLabel = "Size";
         colorLabel = "Color";
         infoText = "Detail information";
+        relatedText = "Related products";
         if (!string.IsNullOrWhiteSpace(Model.Description_en))
         {
             description = Model.Description_en;
@@ -30,7 +32,7 @@
             categoryName = category.Name_en;
         }
     }
-    
+    ViewBag.DetailUrl = HttpContext.Current.Request.Url.AbsolutePath;
 }
 @if (!string.IsNullOrWhiteSpace(categoryName))
 {
@@ -49,7 +51,7 @@ else
     <div>
         <div class="heading2">@infoText</div>
         <div class="m-product-name"><strong>@codeLabel: </strong>@Model.Code</div>
-        @if (!string.IsNullOrWhiteSpace(Model.Size))
+        @*@if (!string.IsNullOrWhiteSpace(Model.Size))
         {
             <table cellpadding="0" cellspacing="2">
                 <tbody>
@@ -59,7 +61,7 @@ else
                     </tr>
                 </tbody>
             </table>
-        }
+        }*@
         @if (!string.IsNullOrWhiteSpace(Model.Color))
         { 
             <div class="m-product-desc">
@@ -80,6 +82,41 @@ else
         <div class="product-detail">
             @Html.Raw(description)
         </div>
+        <br /><br />
+        @if (ViewBag.RelatedProducts != null)
+        {
+            <div class="heading2">@relatedText</div>
+            <div class="jcarousel-wrapper">
+                <div class="jcarousel">
+                    <ul>
+                        @foreach (ProductViewModel item in ViewBag.RelatedProducts)
+{
+    <li>
+        @{ Html.RenderPartial("~/Areas/bcms-store/Views/Widget/Partial/_DisplayProduct.cshtml", item); }
+    </li>
+}
+                        @foreach (ProductViewModel item in ViewBag.RelatedProducts)
+{
+    <li>
+        @{ Html.RenderPartial("~/Areas/bcms-store/Views/Widget/Partial/_DisplayProduct.cshtml", item); }
+    </li>
+}
+                        @foreach (ProductViewModel item in ViewBag.RelatedProducts)
+{
+    <li>
+        @{ Html.RenderPartial("~/Areas/bcms-store/Views/Widget/Partial/_DisplayProduct.cshtml", item); }
+    </li>
+}
+                    </ul>
+                </div>
+                <a href="#" class="jcarousel-control-prev">&lsaquo;</a>
+                <a href="#" class="jcarousel-control-next">&rsaquo;</a>
+            </div>
+        }
+        
     </div>
 </div>
 
+<script type="text/javascript">
+
+</script>

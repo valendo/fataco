@@ -72,11 +72,11 @@
     text-decoration:none;
 }
 .jcarousel-control-prev {
-    left: 15px;
+    left: -30px;
 }
 
 .jcarousel-control-next {
-    right: 15px;
+    right: -30px;
 }
 
 /** Carousel Pagination **/

@@ -5,21 +5,13 @@
 
 @model IPagedList<ProductViewModel>
 
-@{
+@if (ViewBag.AllProduct == false)
+{
     string categoryName = "Sản phẩm";
-    string baseDetailUrl = ViewBag.DetailUrl;
-    string codeLabel = "Mã";
-    string sizeLabel = "Cỡ";
-    string colorLabel = "Màu";
-    string detailText = "Chi tiết";
     if (Utility.CurrentLanguageCode == "en")
-	{
+    {
         categoryName = "Products";
-        codeLabel = "Code";
-        sizeLabel = "Size";
-        colorLabel = "Color";
-        detailText = "View detail";
-	}
+    }
     CategoryViewModel category = (CategoryViewModel)ViewBag.Category;
     if (category != null)
     {
@@ -29,65 +21,74 @@
             categoryName = category.Name_en;
         }
     }
-}
-
-<link rel="stylesheet" href="/file/bcms-store/content/styles/pagedlist.css" />
-
-<div class="heading3">@categoryName</div>
-<div>
-@foreach (ProductViewModel item in Model)
-{
-    string detailUrl = "#";
-    if (!string.IsNullOrWhiteSpace(baseDetailUrl))
+    
+    <link rel="stylesheet" href="/file/bcms-store/content/styles/pagedlist.css" />
+    <div class="heading3">@categoryName</div>
+    <div>
+    @foreach (ProductViewModel item in Model)
     {
-        detailUrl = baseDetailUrl + "?t=" + Utility.GenerateSlug(item.Code) + "&id=" + item.Id.ToString().ShortGuid();    
+        {Html.RenderPartial("~/Areas/bcms-store/Views/Widget/Partial/_DisplayProduct.cshtml", item);}
     }
-    <div class="m-product">
-        <div class="m-product-image">
-            <a class="group1" href="@(item.Image != null ? item.Image.ImageUrl + "?width=800" : "/content/fataco/images/no-image.jpg")">
-                <img width="150" src="@(item.Image != null ? item.Image.ImageUrl + "?w=150&h=160&scale=canvas" : "/content/fataco/images/no-image.jpg?w=150&h=160&scale=canvas")" />
-            </a>
-        </div>
-        <div class="m-product-name"><strong>@codeLabel: </strong>@item.Code</div>
-        @if (!string.IsNullOrWhiteSpace(item.Size))
-        {
-            <table cellpadding="0" cellspacing="2">
-                <tbody>
-                    <tr>
-                        <td valign="top"><strong>@sizeLabel:</strong></td>
-                        <td align="left">@Html.Raw(item.Size.Replace(Environment.NewLine, "<br/>"))</td>
-                    </tr>
-                </tbody>
-            </table>
-        }
-        
-        @if (!string.IsNullOrWhiteSpace(item.Color))
-        {
-            <div class="m-product-desc">
-                <strong style="float: left;">@colorLabel: </strong>
-                @{
-                    string[] arrColor = item.Color.Split(';');
-                    foreach (string color in arrColor)
-                    {
-                        if (!string.IsNullOrWhiteSpace(color))
-                        {
-                            <span style="width: 15px; height: 15px;border: 1px solid gray; margin-left: 3px; float: left; background: @color"></span>
-                        }
-                    }
-                }
-           
-                <br>
-            </div>
-        }
-        <div class="m-product-detail">
-            <a href="@detailUrl">@detailText</a>
-        </div>
     </div>
+    <div style="clear:both;"></div>
+    if (ViewBag.ShowPager)
+    {
+        @Html.PagedListPager((IPagedList)Model, page => Utility.AppendQueryString(new List<KeyValuePair<String, String>> { new KeyValuePair<string, string>("page", page.ToString()) }))    
+    }
 }
-</div>
-<div style="clear:both;"></div>
-@if (ViewBag.ShowPager)
+else
 {
-    @Html.PagedListPager((IPagedList)Model, page => Utility.AppendQueryString(new List<KeyValuePair<String, String>> { new KeyValuePair<string, string>("page", page.ToString()) }))    
+    var viewAllText = "Xem tất cả";
+    CategoryViewModel firstCategory = ViewBag.FirstCategory;
+    CategoryViewModel secondCategory = ViewBag.SecondCategory;
+    CategoryViewModel thirdCategory = ViewBag.ThirdCategory;
+    string FirstCategoryTitle = firstCategory.Name;
+    string SecondCategoryTitle = secondCategory.Name;
+    string ThirdCategoryTitle = thirdCategory.Name;
+   
+    if (Utility.CurrentLanguageCode == "en")
+    {
+        viewAllText = "View all";
+        FirstCategoryTitle = firstCategory.Name_en;
+        SecondCategoryTitle = secondCategory.Name_en;
+        ThirdCategoryTitle = thirdCategory.Name_en;
+
+    }
+    string firstProductUrl = "?t=" + FirstCategoryTitle.GenerateSlug() + "&id=" + firstCategory.Id.ToString().ShortGuid();
+    string secondProductUrl = "?t=" + SecondCategoryTitle.GenerateSlug() + "&id=" + secondCategory.Id.ToString().ShortGuid();
+    string thirdProductUrl = "?t=" + ThirdCategoryTitle.GenerateSlug() + "&id=" + thirdCategory.Id.ToString().ShortGuid();
+    
+    <div class="heading3">@FirstCategoryTitle</div>
+    <div>
+        @foreach (ProductViewModel item in ViewBag.FirstProducts)
+        {
+            {Html.RenderPartial("~/Areas/bcms-store/Views/Widget/Partial/_DisplayProduct.cshtml", item);}
+        }
+    </div>
+    <div style="clear:both;"></div>
+    <div style="text-align:right;"><a style="font-weight: bold; color: #6d276f;" href="@firstProductUrl">@viewAllText >></a></div>
+    
+    <div class="heading3">@SecondCategoryTitle</div>
+    <div>
+        @foreach (ProductViewModel item in ViewBag.SecondProducts)
+        {
+            {Html.RenderPartial("~/Areas/bcms-store/Views/Widget/Partial/_DisplayProduct.cshtml", item);}
+        }
+    </div>
+    <div style="clear:both;"></div>
+    <div style="text-align:right;"><a style="font-weight: bold; color: #6d276f;" href="@secondProductUrl">@viewAllText >></a></div>
+    
+    <div class="heading3">@ThirdCategoryTitle</div>
+    <div>
+        @foreach (ProductViewModel item in ViewBag.ThirdProducts)
+        {
+            { Html.RenderPartial("~/Areas/bcms-store/Views/Widget/Partial/_DisplayProduct.cshtml", item); }
+        }
+    </div>
+    <div style="clear:both;"></div>
+    <div style="text-align:right;"><a style="font-weight: bold; color: #6d276f;" href="@thirdProductUrl">@viewAllText >></a></div>
+    
+    
+    
 }
 

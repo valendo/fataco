@@ -7,24 +7,22 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using BetterCMS.Module.Store.Helpers;
 
 namespace BetterCMS.Module.Store.Commands.Widget
 {
-    public class GetProductListByCategoryIdCommand: CommandBase, ICommand<string, List<ProductViewModel>>
+    public class GetProductByCodeCommand : CommandBase, ICommand<string, ProductViewModel>
     {
         private readonly IMediaFileUrlResolver fileUrlResolver;
-        public GetProductListByCategoryIdCommand(IMediaFileUrlResolver fileUrlResolver)
+        public GetProductByCodeCommand(IMediaFileUrlResolver fileUrlResolver)
         {
             this.fileUrlResolver = fileUrlResolver;
         }
 
-        public List<ProductViewModel> Execute(string CategoryId)
+        public ProductViewModel Execute(string code)
         {
             var query = Repository
                 .AsQueryable<Models.Product>()
-                .Where(t => t.CategoryId.ToString().Contains(CategoryId))
-                .OrderBy(t => t.SortOrder).OrderByDescending(t => t.Code)
+                .Where(t => t.Code == code)
                 .Select(t => new ProductViewModel
                 {
                     Id = t.Id,
@@ -44,7 +42,7 @@ namespace BetterCMS.Module.Store.Commands.Widget
                                     } : null
                 });
 
-            return query.ToList();
+            return query.FirstOrDefault();
         }
     }
 }
