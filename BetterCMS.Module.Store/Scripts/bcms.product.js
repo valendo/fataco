@@ -18,6 +18,7 @@ bettercms.define('bcms.product', ['bcms.jquery', 'bcms', 'bcms.modal', 'bcms.sit
                 productEditButton: '.bcms-icn-edit',
                 productRowDeleteButton: '.bcms-grid-item-delete-button',
                 productParentRow: 'tr:first',
+                productShortIDCell: '.bcms-product-ShortID',
                 productCodeCell: '.bcms-product-Code',
                 productImageCell: '.bcms-product-Image',
                 productRowTemplate: '#bcms-products-list-row-template',
@@ -102,7 +103,7 @@ bettercms.define('bcms.product', ['bcms.jquery', 'bcms', 'bcms.modal', 'bcms.sit
         * Initailizes site settings products list items
         */
         function initializeSiteSettingsProductsListItem(container) {
-            container.find(selectors.productCells).on('click', function () {
+            container.find(selectors.productEditButton).on('click', function () {
                 editProduct($(this));
                 return false;
             });
@@ -178,6 +179,7 @@ bettercms.define('bcms.product', ['bcms.jquery', 'bcms', 'bcms.modal', 'bcms.sit
         function ProductViewModel(imageData, productData) {
             var self = this;
             self.id = productData.Id;
+            self.ShortID = productData.Id.split('-')[0];
             self.code = productData.Code;
             self.image = ko.observable(new media.ImageSelectorViewModel(imageData));
             return self;
@@ -202,10 +204,11 @@ bettercms.define('bcms.product', ['bcms.jquery', 'bcms', 'bcms.modal', 'bcms.sit
         /**
         * Set values, returned from server to row fields
         */
-        function setProductFields(row, json) {
+        function setProductFields(row, json) {            
             row.find(selectors.productEditButton).data('id', json.Id);
             row.find(selectors.productRowDeleteButton).data('id', json.Id);
             row.find(selectors.productRowDeleteButton).data('version', json.Version);
+            row.find(selectors.productShortIDCell).html(json.Id.split('-')[0]);
             row.find(selectors.productCodeCell).html(json.Code);
             row.find(selectors.productImageCell).attr('src', json.Image.ThumbnailUrl);
         }

@@ -16,6 +16,11 @@
             .Named("Image")
             .SortColumnName("Code")
             .Encode(false);
+
+        column.For(m => m.ShortID)
+            .Named("ID")
+            .SortColumnName("ShortID")
+            .Attributes(@class => "bcms-product-ShortID");
         
         column.For(m => m.Code)
             .Named("Code")

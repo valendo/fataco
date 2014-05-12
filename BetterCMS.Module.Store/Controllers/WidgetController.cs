@@ -124,12 +124,12 @@ namespace BetterCMS.Module.Store.Controllers
             return View(pagedList);
         }
 
-        private List<ProductViewModel> GetRealtedProducts(string[] codes)
+        private List<ProductViewModel> GetRealtedProducts(string[] shortIDs)
         {
             List<ProductViewModel> relatedProducts = new List<ProductViewModel>();
-            foreach (var code in codes)
+            foreach (var shortID in shortIDs)
             {
-                var product = GetCommand<GetProductByCodeCommand>().ExecuteCommand(code);
+                var product = GetCommand<GetProductByShortIDCommand>().ExecuteCommand(shortID);
                 if (product != null)
                 {
                     relatedProducts.Add(product);

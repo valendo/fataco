@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using BetterCMS.Module.Store.Helpers;
 
 namespace BetterCMS.Module.Store.ViewModels
 {
@@ -26,5 +27,8 @@ namespace BetterCMS.Module.Store.ViewModels
         public virtual ImageSelectorViewModel Image { get; set; }
         public virtual bool IsFeature { get; set; }
         public virtual int? SortOrder { get; set; }
+        public string ShortID {
+            get { return Id.ToString().ShortGuid(); }
+        }
     }
 }

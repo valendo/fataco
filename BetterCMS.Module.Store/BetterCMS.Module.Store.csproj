@@ -197,6 +197,7 @@
     <Compile Include="Commands\Category\GetParentCategoriesCommand.cs" />
     <Compile Include="Commands\Category\GetCategoriesCommand.cs" />
     <Compile Include="Commands\Category\GetCategoryCommand.cs" />
+    <Compile Include="Commands\Widget\GetProductByShortIDCommand.cs" />
     <Compile Include="Commands\Widget\GetProductByCodeCommand.cs" />
     <Compile Include="Commands\Widget\GetSubCategoriesCommand.cs" />
     <Compile Include="Commands\Category\SaveCategoryCommand.cs" />
