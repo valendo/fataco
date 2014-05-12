@@ -2,7 +2,14 @@
 @using BetterCMS.Module.Store.Helpers;
 
 @model ProductViewModel
-
+<style type="text/css">
+    .jcarousel .m-product {
+        width:160px !important;
+    }
+    .jcarousel-control-prev, .jcarousel-control-next {
+        top: 30%;
+    }
+</style>
 @{
     string categoryName = "";
     CategoryViewModel category = (CategoryViewModel)ViewBag.Category;
@@ -42,7 +49,7 @@ else
 {
     <div class="heading3">@Model.Code</div>    
 }
-
+<br />
 <div>
     <div class="product-image">
         <img src="@(Model.Image != null ? Model.Image.ImageUrl + "?width=700" : "/content/fataco/images/no-image.jpg?width=700")" />
@@ -86,28 +93,24 @@ else
         @if (ViewBag.RelatedProducts != null)
         {
             <div class="heading2">@relatedText</div>
-            <div class="jcarousel-wrapper">
+            <div class="jcarousel-wrapper" style="box-shadow:none;">
                 <div class="jcarousel">
                     <ul>
                         @foreach (ProductViewModel item in ViewBag.RelatedProducts)
-{
-    <li>
-        @{ Html.RenderPartial("~/Areas/bcms-store/Views/Widget/Partial/_DisplayProduct.cshtml", item); }
-    </li>
-}
+                        {
+                            { Html.RenderPartial("~/Areas/bcms-store/Views/Widget/Partial/_DisplayProduct.cshtml", item); }
+
+                        }
                         @foreach (ProductViewModel item in ViewBag.RelatedProducts)
-{
-    <li>
-        @{ Html.RenderPartial("~/Areas/bcms-store/Views/Widget/Partial/_DisplayProduct.cshtml", item); }
-    </li>
-}
+                        {
+                            { Html.RenderPartial("~/Areas/bcms-store/Views/Widget/Partial/_DisplayProduct.cshtml", item); }
+                        }
                         @foreach (ProductViewModel item in ViewBag.RelatedProducts)
-{
-    <li>
-        @{ Html.RenderPartial("~/Areas/bcms-store/Views/Widget/Partial/_DisplayProduct.cshtml", item); }
-    </li>
-}
+                        {
+                            { Html.RenderPartial("~/Areas/bcms-store/Views/Widget/Partial/_DisplayProduct.cshtml", item); }
+                        }
                     </ul>
+
                 </div>
                 <a href="#" class="jcarousel-control-prev">&lsaquo;</a>
                 <a href="#" class="jcarousel-control-next">&rsaquo;</a>
@@ -118,5 +121,10 @@ else
 </div>
 
 <script type="text/javascript">
-
+    $(function () {
+        $('.jcarousel').jcarousel({
+            items: '.m-product',
+            width: '150px'
+        });
+    });
 </script>
