@@ -4,7 +4,11 @@
 @using BetterCMS.Module.Store.Helpers;
 
 @model IPagedList<ProductViewModel>
-
+<style type="text/css">
+    .heading3 a {
+        color: #6D276F;
+    }
+</style>
 @if (ViewBag.AllProduct == false)
 {
     string categoryName = "Sản phẩm";
@@ -58,7 +62,7 @@ else
     string secondProductUrl = "?t=" + SecondCategoryTitle.GenerateSlug() + "&id=" + secondCategory.Id.ToString().ShortGuid();
     string thirdProductUrl = "?t=" + ThirdCategoryTitle.GenerateSlug() + "&id=" + thirdCategory.Id.ToString().ShortGuid();
     
-    <div class="heading3">@FirstCategoryTitle</div>
+    <div class="heading3"><a href="@firstProductUrl">@FirstCategoryTitle</a></div>
     <div>
         @foreach (ProductViewModel item in ViewBag.FirstProducts)
         {
@@ -68,7 +72,7 @@ else
     <div style="clear:both;"></div>
     <div style="text-align:right;"><a style="font-weight: bold; color: #6d276f;" href="@firstProductUrl">@viewAllText >></a></div>
     
-    <div class="heading3">@SecondCategoryTitle</div>
+    <div class="heading3"><a href="@secondProductUrl">@SecondCategoryTitle</a></div>
     <div>
         @foreach (ProductViewModel item in ViewBag.SecondProducts)
         {
@@ -78,7 +82,7 @@ else
     <div style="clear:both;"></div>
     <div style="text-align:right;"><a style="font-weight: bold; color: #6d276f;" href="@secondProductUrl">@viewAllText >></a></div>
     
-    <div class="heading3">@ThirdCategoryTitle</div>
+    <div class="heading3"><a href="@thirdProductUrl">@ThirdCategoryTitle</a></div>
     <div>
         @foreach (ProductViewModel item in ViewBag.ThirdProducts)
         {
