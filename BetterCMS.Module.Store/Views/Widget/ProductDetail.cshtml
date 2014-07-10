@@ -40,6 +40,7 @@
         }
     }
     string tempid = category.Id.ToString().ShortGuid();
+    string tempParentid = category.ParentId.ToString().ShortGuid();
     ViewBag.DetailUrl = HttpContext.Current.Request.Url.AbsolutePath;
 }
 @if (!string.IsNullOrWhiteSpace(categoryName))
@@ -114,14 +115,20 @@ else
 </div>
 
 <script type="text/javascript">
-    var cateID ='@tempid';
+    var cateID = '@tempid';
+    var parentID = '@tempParentid';
     $(function () {
         $('.jcarousel').jcarousel({
             items: '.m-product',
             width: '150px'
         });
         var temp2 = 3;
-        
+      
+        if (parent != '') {
+            $('.' + parentID).addClass('a_s');
+            $('.' + parentID).children('span').addClass('s');
+        }
+       
         $('.' + cateID).addClass('a_s');
         $('.' + cateID).children('span').addClass('s');
         $('.a_s').parent('li').parent('ul').each(function () {

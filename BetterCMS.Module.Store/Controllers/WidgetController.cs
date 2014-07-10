@@ -228,7 +228,7 @@ namespace BetterCMS.Module.Store.Controllers
                                     {
                                         url2 = productUrl + "?t=" + name2.GenerateSlug() + "&id=" + item2.Id.ToString().ShortGuid();
                                     }
-                                    sb.AppendFormat("<li><a class=\"" + active_class2_a + "" + item1.Id.ToString().ShortGuid() + "\" href=\"{0}\"><span class=\"{1}\">{2}</span></a></li>", url2, active_class2, name2);
+                                    sb.AppendFormat("<li><a class=\"" + active_class2_a + "" + item2.Id.ToString().ShortGuid() + "\" href=\"{0}\"><span class=\"{1}\">{2}</span></a></li>", url2, active_class2, name2);
                                 }
                                 sb.AppendLine("</ul>");
                             }
