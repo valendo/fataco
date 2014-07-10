@@ -39,6 +39,7 @@
             categoryName = category.Name_en;
         }
     }
+    string tempid = category.Id.ToString().ShortGuid();
     ViewBag.DetailUrl = HttpContext.Current.Request.Url.AbsolutePath;
 }
 @if (!string.IsNullOrWhiteSpace(categoryName))
@@ -113,10 +114,19 @@ else
 </div>
 
 <script type="text/javascript">
+    var cateID ='@tempid';
     $(function () {
         $('.jcarousel').jcarousel({
             items: '.m-product',
             width: '150px'
+        });
+        var temp2 = 3;
+        
+        $('.' + cateID).addClass('a_s');
+        $('.' + cateID).children('span').addClass('s');
+        $('.a_s').parent('li').parent('ul').each(function () {
+            $(this).show();
+            $(this).siblings('a').parent('li').parent('ul').show();
         });
     });
 </script>
